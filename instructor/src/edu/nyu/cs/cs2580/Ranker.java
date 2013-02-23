@@ -112,7 +112,8 @@ class Ranker {
 	    // details of how index works.
 	    Document d = _index.getDoc(did);
 	    Vector < String > dv = d.get_body_vector();
-	    Map<String, Integer> termFrequency = getTermFrequency(dv);
+	    Map<String, Integer> documentTermFrequency = getTermFrequency(dv);
+	    Map<String, Integer> queryTermFrequency = getTermFrequency(qv);
 	    		
 	    //Document vector that stores all tf.idfs for the document
 	    Vector<Double> documentVector = new Vector<Double>();
@@ -129,17 +130,23 @@ class Ranker {
 	    	String documentTerm = dv.get(i);
 	    	
 	    	//Calculating the tf.idfs Document vectors
-	    	double tf = (double) termFrequency.get(documentTerm);
+	    	double tf = (double) documentTermFrequency.get(documentTerm);
 	    	//double tf = (double) .termFrequency(documentTerm);
-	    	double idf = 1d + Math.log(_index.numDocs()/(_index.documentFrequency(documentTerm)))/Math.log(2);
+	    	double idf = getIDF(documentTerm);
 	    	double xi = tf*idf;
 	    	
 	    	documentVector.add(xi);
 	    	
-	    	//Calculating the query vector
-	    	double yi = (qv.contains(documentTerm)) ? 1d : 0d;
-	    	queryVector.add(yi);
+	    	double yi = 0.0;
+	    	if(qv.contains(documentTerm)){	
+	    		String queryTerm = documentTerm;
+	    		//Calculating the query vector
+		    	double queryTerm_tf = (double) queryTermFrequency.get(queryTerm);
+		    	double queryTerm_idf = getIDF(queryTerm);
+		    	yi = queryTerm_tf * queryTerm_idf;	
+	    	}
 	    	
+	    	queryVector.add(yi);
 	    	/*
 	    	 * Cosine Similarity 
 	    	 * Sum(xi*yi)/(Sqrt( Sum(xi^2)*Sum(yi^2) ))
@@ -170,6 +177,10 @@ class Ranker {
 	    return new ScoredDocument(did, d.get_title_string(), score);
 	  }
   
+  
+  private Double getIDF(String term){
+	  return 1d + Math.log(_index.numDocs()/(_index.documentFrequency(term)))/Math.log(2);
+  }
   
   /**
    * Calculates Query Likelihood 
