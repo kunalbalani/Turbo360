@@ -120,6 +120,7 @@ class Ranker {
 	    	
 	    	//Calculating the tf.idfs Document vectors
 	    	double tf = getTermFrequency(documentTerm, dv);
+	    	//double tf = (double) .termFrequency(documentTerm);
 	    	double idf = 1d + Math.log(_index.numDocs()/(_index.documentFrequency(documentTerm)))/Math.log(2);
 	    	double xi = tf*idf;
 	    	
@@ -146,6 +147,44 @@ class Ranker {
   
   
   /**
+   * Calculates Query Likelihood 
+   * */
+  public ScoredDocument runquery_ql(String query, int did){
+
+	  	double smoothFactor = 0.5;
+        // Build query vector
+        Scanner s = new Scanner(query);
+        Vector < String > qv = new Vector < String > ();
+        while (s.hasNext()){
+          String term = s.next();
+          qv.add(term);
+        }
+
+        // Get the document vector. For hw1, you don't have to worry about the
+        // details of how index works.
+        Document d = _index.getDoc(did);
+        Vector < String > dv = d.get_body_vector();
+        double score = 1;
+        int docTermCount = dv.size();
+        int collectionTermCount = _index.termFrequency();
+        for(int i = 0; i < qv.size(); i++){
+            String queryTerm = qv.get(i);
+            int qtermFreqDoc = getTermFrequency(queryTerm, dv);
+            double firstTerm = qtermFreqDoc/docTermCount;
+            firstTerm *= (1-smoothFactor);
+            int qtermFreqCollection = _index.termFrequency(queryTerm);
+            double secondTerm = qtermFreqCollection/collectionTermCount;
+            secondTerm *= smoothFactor;
+            score *= (firstTerm + secondTerm);
+            
+        }
+        
+        return new ScoredDocument(did, d.get_title_string(), score);
+      }
+  
+  
+  
+  /**
    * Calculates the Numviews ranking signal
    * */
   public ScoredDocument runquery_numviews(String query, int did){
@@ -163,6 +202,8 @@ class Ranker {
 	   	double score = d.get_numviews();
 	    return new ScoredDocument(did, d.get_title_string(), score);
 	  }
+  
+  
   
 	
   /**
