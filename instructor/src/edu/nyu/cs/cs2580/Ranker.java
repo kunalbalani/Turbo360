@@ -17,6 +17,28 @@ class Ranker {
     }
     return retrieval_results;
   }
+  
+  
+  public Vector < ScoredDocument > runquery(String query, String ranker_type){
+	    Vector < ScoredDocument > retrieval_results = new Vector < ScoredDocument > ();
+	    for (int i = 0; i < _index.numDocs(); ++i){
+	    	ScoredDocument doc = null;
+	    	if (ranker_type.equals("cosine")){
+	    		doc = runquery_cosine(query, i);
+	        } else if (ranker_type.equals("QL")){
+	              
+	        } else if (ranker_type.equals("phrase")){
+	              
+	        } else if (ranker_type.equals("linear")){
+	            	
+	        }else{
+	        	doc = runquery(query, i);
+	        }
+	    	
+	    	retrieval_results.add(doc);
+	    }
+	    return retrieval_results;
+	  }
 
   public ScoredDocument runquery(String query, int did){
 
@@ -47,4 +69,77 @@ class Ranker {
 
     return new ScoredDocument(did, d.get_title_string(), score);
   }
+  
+  
+  
+  /**
+   * Calculates the Cosine Similarity
+   * */
+  public ScoredDocument runquery_cosine(String query, int did){
+
+	    // Build query vector
+	    Scanner s = new Scanner(query);
+	    Vector < String > qv = new Vector < String > ();
+	    while (s.hasNext()){
+	      String term = s.next();
+	      qv.add(term);
+	    }
+
+	    // Get the document vector. For hw1, you don't have to worry about the
+	    // details of how index works.
+	    Document d = _index.getDoc(did);
+	    Vector < String > dv = d.get_body_vector();
+
+	    //Document vector that stores all tf.idfs for the document
+	    //Vector<Double> documentVector = new Vector<Double>();
+	    //Vector<Double> queryVector = new Vector<Double>();
+	    
+	    double xiyi = 0.0; //Store the sum of xi*yi
+	    double xi2 = 0.0; //Stores the sum of xi^2
+	    double yi2 = 0.0; //Stores the sum of yi^2
+	    double score = 0.0; 
+	    
+	    
+	    for (int i = 0; i < dv.size(); ++i){
+	    	String documentTerm = dv.get(i);
+	    	
+	    	//Calculating the tf.idfs Document vectors
+	    	double tf = getTermFrequency(documentTerm, dv);
+	    	double idf = 1d + Math.log(_index.numDocs()/_index.documentFrequency(documentTerm))/Math.log(2);
+	    	double xi = tf*idf;
+	    	
+	    	//documentVector.add(tf*idf);
+	    	
+	    	//Calculating the query vector
+	    	//queryVector.add((qv.contains(documentTerm)) ? 1d : 0d);
+	    	double yi = (qv.contains(documentTerm)) ? 1d : 0d;
+	    	
+	    	/*
+	    	 * Cosine Similarity 
+	    	 * Sum(xi*yi)/(Sqrt( Sum(xi^2)*Sum(yi^2) ))
+	    	 * */
+	    	xiyi += xi*yi;
+	    	xi2 += Math.pow(xi,2);
+	    	yi2 += Math.pow(yi,2);
+	    	
+	    }
+	    
+	    score = xiyi/Math.sqrt(xi2 * yi2);
+	    
+	    return new ScoredDocument(did, d.get_title_string(), score);
+	  }
+	
+  /**
+   * Counts the term frequency within the document.
+   * */
+  private int getTermFrequency(String t, Vector<String> documentVector){
+	  
+	  int frequency = 0;
+	  for(String dt : documentVector){
+		  frequency += (dt.equalsIgnoreCase(t)) ? 1 : 0;
+	  }
+	  
+	  return frequency;
+  }
+  
 }

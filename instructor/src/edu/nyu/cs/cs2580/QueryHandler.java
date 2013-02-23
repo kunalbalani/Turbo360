@@ -54,12 +54,15 @@ class QueryHandler implements HttpHandler {
         Map<String,String> query_map = getQueryMap(uriQuery);
         Set<String> keys = query_map.keySet();
         if (keys.contains("query")){
+        	
+        	Vector < ScoredDocument > sds;
+        	
           if (keys.contains("ranker")){
             String ranker_type = query_map.get("ranker");
             // @CS2580: Invoke different ranking functions inside your
             // implementation of the Ranker class.
             if (ranker_type.equals("cosine")){
-              queryResponse = (ranker_type + " not implemented.");
+            	sds = _ranker.runquery(query_map.get("query"), "cosine");
             } else if (ranker_type.equals("QL")){
               queryResponse = (ranker_type + " not implemented.");
             } else if (ranker_type.equals("phrase")){
@@ -72,7 +75,7 @@ class QueryHandler implements HttpHandler {
           } else {
             // @CS2580: The following is instructor's simple ranker that does not
             // use the Ranker class.
-            Vector < ScoredDocument > sds = _ranker.runquery(query_map.get("query"));
+            sds = _ranker.runquery(query_map.get("query"));
             Iterator < ScoredDocument > itr = sds.iterator();
             while (itr.hasNext()){
               ScoredDocument sd = itr.next();
