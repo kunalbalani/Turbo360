@@ -1,7 +1,10 @@
 package edu.nyu.cs.cs2580;
 
-import java.util.Vector;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Vector;
 
 class Ranker {
   private Index _index;
@@ -39,6 +42,16 @@ class Ranker {
 	    	
 	    	retrieval_results.add(doc);
 	    }
+	    
+	    //Sorts the documents in descendng order.
+	    Collections.sort(retrieval_results, new Comparator<ScoredDocument>() {
+
+			@Override
+			public int compare(ScoredDocument o1, ScoredDocument o2) {
+				return -Double.compare(o1._score, o2._score); //Sorts in descending order
+			}
+		});	
+		
 	    return retrieval_results;
 	  }
 
@@ -107,7 +120,7 @@ class Ranker {
 	    	
 	    	//Calculating the tf.idfs Document vectors
 	    	double tf = getTermFrequency(documentTerm, dv);
-	    	double idf = 1d + Math.log(_index.numDocs()/_index.documentFrequency(documentTerm))/Math.log(2);
+	    	double idf = 1d + Math.log(_index.numDocs()/(_index.documentFrequency(documentTerm)))/Math.log(2);
 	    	double xi = tf*idf;
 	    	
 	    	//documentVector.add(tf*idf);
