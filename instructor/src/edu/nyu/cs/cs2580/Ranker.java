@@ -2,7 +2,8 @@ package edu.nyu.cs.cs2580;
 
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -48,7 +49,14 @@ class Ranker {
 
 			@Override
 			public int compare(ScoredDocument o1, ScoredDocument o2) {
-				return -Double.compare(o1._score, o2._score); //Sorts in descending order
+				Double o1_score = o1._score;
+				Double o2_score = o2._score;
+				if(o1_score.isNaN())
+					return 1;
+				else if (o2_score.isNaN())
+					return -1;
+				else
+					return -Double.compare(o1._score, o2._score); //Sorts in descending order
 			}
 		});	
 		
@@ -104,12 +112,14 @@ class Ranker {
 	    // details of how index works.
 	    Document d = _index.getDoc(did);
 	    Vector < String > dv = d.get_body_vector();
-
+	    Map<String, Integer> termFrequency = getTermFrequency(dv);
+	    		
 	    //Document vector that stores all tf.idfs for the document
-	    //Vector<Double> documentVector = new Vector<Double>();
-	    //Vector<Double> queryVector = new Vector<Double>();
+	    Vector<Double> documentVector = new Vector<Double>();
+	    Vector<Double> queryVector = new Vector<Double>();
 	    
-	    double xiyi = 0.0; //Store the sum of xi*yi
+	    
+//	    double xiyi = 0.0; //Store the sum of xi*yi
 	    double xi2 = 0.0; //Stores the sum of xi^2
 	    double yi2 = 0.0; //Stores the sum of yi^2
 	    double score = 0.0; 
@@ -119,28 +129,43 @@ class Ranker {
 	    	String documentTerm = dv.get(i);
 	    	
 	    	//Calculating the tf.idfs Document vectors
-	    	double tf = getTermFrequency(documentTerm, dv);
+	    	double tf = (double) termFrequency.get(documentTerm);
 	    	//double tf = (double) .termFrequency(documentTerm);
 	    	double idf = 1d + Math.log(_index.numDocs()/(_index.documentFrequency(documentTerm)))/Math.log(2);
 	    	double xi = tf*idf;
 	    	
-	    	//documentVector.add(tf*idf);
+	    	documentVector.add(xi);
 	    	
 	    	//Calculating the query vector
-	    	//queryVector.add((qv.contains(documentTerm)) ? 1d : 0d);
 	    	double yi = (qv.contains(documentTerm)) ? 1d : 0d;
+	    	queryVector.add(yi);
 	    	
 	    	/*
 	    	 * Cosine Similarity 
 	    	 * Sum(xi*yi)/(Sqrt( Sum(xi^2)*Sum(yi^2) ))
 	    	 * */
-	    	xiyi += xi*yi;
+	    	//xiyi += xi*yi;
 	    	xi2 += Math.pow(xi,2);
 	    	yi2 += Math.pow(yi,2);
 	    	
 	    }
 	    
-	    score = xiyi/Math.sqrt(xi2 * yi2);
+	    double xi_norm = Math.sqrt(xi2);
+	    double yi_norm = Math.sqrt(yi2);
+	    
+	    Vector<Double> documentVector_normalized = new Vector<Double>();
+	    Vector<Double> queryVector_normalized = new Vector<Double>();
+	    
+	    for(int i=0; i<documentVector.size();i++){
+	    	documentVector_normalized.add(documentVector.get(i)/xi_norm);
+	    	queryVector_normalized.add(queryVector.get(i)/yi_norm);
+	    }
+	    
+	    for(int i=0; i<documentVector_normalized.size(); i++){
+	    	score += documentVector_normalized.get(i) * queryVector_normalized.get(i);
+	    }
+	    
+	    //score = xiyi/Math.sqrt(xi2 * yi2);
 	    
 	    return new ScoredDocument(did, d.get_title_string(), score);
 	  }
@@ -164,12 +189,13 @@ class Ranker {
         // details of how index works.
         Document d = _index.getDoc(did);
         Vector < String > dv = d.get_body_vector();
+        Map<String, Integer> termFrequency = getTermFrequency(dv);
         double score = 1d;
         int docTermCount = dv.size();
         int collectionTermCount = _index.termFrequency();
         for(int i = 0; i < qv.size(); i++){
             String queryTerm = qv.get(i);
-            int qtermFreqDoc = getTermFrequency(queryTerm, dv);
+            int qtermFreqDoc = (termFrequency.containsKey(queryTerm)) ? termFrequency.get(queryTerm) : 0;
             double firstTerm = (double) qtermFreqDoc/docTermCount;
             firstTerm *= (1-smoothFactor);
             int qtermFreqCollection = _index.termFrequency(queryTerm);
@@ -209,14 +235,17 @@ class Ranker {
   /**
    * Counts the term frequency within the document.
    * */
-  private int getTermFrequency(String t, Vector<String> documentVector){
+  private Map<String, Integer> getTermFrequency(Vector<String> documentVector){
 	  
-	  int frequency = 0;
+	  Map<String, Integer> termFrequency = new HashMap<String, Integer>();
 	  for(String dt : documentVector){
-		  frequency += (dt.equalsIgnoreCase(t)) ? 1 : 0;
+		  if(termFrequency.containsKey(dt))
+			  termFrequency.put(dt, termFrequency.get(dt)+1);
+		  else
+			  termFrequency.put(dt, 1);
 	  }
 	  
-	  return frequency;
+	  return termFrequency;
   }
   
 }
