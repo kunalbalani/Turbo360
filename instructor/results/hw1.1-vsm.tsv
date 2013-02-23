@@ -1,0 +1,659 @@
+google	0	1890 us census	NaN
+google	1	a9.com	0.0011540261495859856
+google	2	acm computing classification system	NaN
+google	3	advise	NaN
+google	4	aol	0.0011970095909780174
+google	5	aol search	0.0011970095909780174
+google	6	academic press	NaN
+google	7	academic journal	0.006165521279351566
+google	8	accuracy and precision	7.058401512276355E-4
+google	9	actuate corporation	0.0018365502750627945
+google	10	adversarial information retrieval	NaN
+google	11	adverse drug reaction	NaN
+google	12	advertising	4.1374902690914E-4
+google	13	aggregate (data warehouse)	NaN
+google	14	aggregate function	NaN
+google	15	alan emtage	0.019101317491013035
+google	16	algorithm	7.696669711458154E-5
+google	17	algorithm design	NaN
+google	18	aliweb	0.003907677039079079
+google	19	alltheweb	0.04217839009344298
+google	20	alpha consumer	NaN
+google	21	altavista	0.005633952971168389
+google	22	alvin weinberg	0.015375282657744786
+google	23	analysis of algorithms	0.006490388280062708
+google	24	analytics	0.0015295992481390184
+google	25	anchor modeling	NaN
+google	26	angoss	NaN
+google	27	anomaly detection	0.005268606157088455
+google	28	archie comics	2.4157403666471005E-4
+google	29	archie search engine	NaN
+google	30	argonne national laboratory	2.1115358868088526E-4
+google	31	artificial intelligence	7.318073627235541E-5
+google	32	artificial life	NaN
+google	33	artificial neural network	NaN
+google	34	as we may think	NaN
+google	35	ask.com	0.005648325059592383
+google	36	association for computing machinery	NaN
+google	37	association rule	6.531729843193247E-4
+google	38	association rule learning	6.531729843193247E-4
+google	39	association rule mining	6.531729843193247E-4
+google	40	association rules	6.531729843193247E-4
+google	41	atlantic monthly	NaN
+google	42	automata theory	NaN
+google	43	automated reasoning	0.0016146770170700029
+google	44	automatic summarization	2.3464034819875706E-4
+google	45	baidu	0.006794177087936154
+google	46	bayes' theorem	5.882828891171318E-4
+google	47	berlekamp	NaN
+google	48	bibliometrics	0.009424207773498531
+google	49	bill inmon	NaN
+google	50	binary independence model	NaN
+google	51	binary classification	NaN
+google	52	bing	0.02307508539416561
+google	53	bioinformatic	NaN
+google	54	bioinformatics	NaN
+google	55	biomedical	NaN
+google	56	blackle.com	0.052171834258380866
+google	57	blekko	0.015419045877960152
+google	58	boogami	NaN
+google	59	boolean algebra	0.0033911342954738035
+google	60	boolean operators	NaN
+google	61	bram stoker	7.419951177605331E-4
+google	62	british petroleum	7.17922232543921E-4
+google	63	business intelligence	NaN
+google	64	business intelligence tools	NaN
+google	65	buzzword	NaN
+google	66	c. j. van rijsbergen	NaN
+google	67	capps ii	NaN
+google	68	cern	NaN
+google	69	cikm conference	NaN
+google	70	crisp-dm	NaN
+google	71	calvin mooers	NaN
+google	72	cambridge university press	NaN
+google	73	cancer	5.274650508632906E-4
+google	74	carnegie mellon university	2.3861066312144038E-4
+google	75	carrot2	5.446168413999945E-4
+google	76	case western reserve university	NaN
+google	77	categorization	NaN
+google	78	category theory	NaN
+google	79	censorship	0.0013417657400889894
+google	80	chacha (search engine)	2.6023254067525543E-4
+google	81	chemicalize.org	0.011227380975294408
+google	82	chess	3.57953067809415E-5
+google	83	chess endgame	NaN
+google	84	churn rate	NaN
+google	85	clarabridge	NaN
+google	86	classification of the sciences (peirce)	NaN
+google	87	cloud storage	0.007751488229038042
+google	88	cluster analysis	1.8101320582387262E-4
+google	89	co-occurrence	NaN
+google	90	cognitive science	NaN
+google	91	collaborative information seeking	2.9943613177831155E-4
+google	92	collaborative search engine	NaN
+google	93	column-oriented dbms	NaN
+google	94	combinatorial game	5.610261057712705E-4
+google	95	combinatorics	2.984246027772468E-4
+google	96	communications of the acm	NaN
+google	97	comparison of olap servers	NaN
+google	98	comparison of web search engines	0.1688219315571166
+google	99	compiler	NaN
+google	100	computability theory	NaN
+google	101	computational chemistry	NaN
+google	102	computational complexity theory	NaN
+google	103	computational geometry	NaN
+google	104	computational linguistics	NaN
+google	105	computational neuroscience	NaN
+google	106	computational physics	NaN
+google	107	computational science	NaN
+google	108	computer accessibility	NaN
+google	109	computer animation	NaN
+google	110	computer architecture	NaN
+google	111	computer data storage	NaN
+google	112	computer graphics	0.0011918980510129396
+google	113	computer music	3.065147003205726E-4
+google	114	computer networking	NaN
+google	115	computer programming	NaN
+google	116	computer science	2.56399890590165E-4
+google	117	computer vision	8.872855939398048E-4
+google	118	concurrency (computer science)	NaN
+google	119	concurrency control	NaN
+google	120	condition monitoring	NaN
+google	121	conference on information and knowledge management	NaN
+google	122	conference on knowledge discovery and data mining	NaN
+google	123	contextual advertising	0.012770285566681121
+google	124	controlled vocabulary	NaN
+google	125	cornelis j. van rijsbergen	NaN
+google	126	cross-language information retrieval	NaN
+google	127	cross-platform	NaN
+google	128	cross industry standard process for data mining	NaN
+google	129	cryptography	NaN
+google	130	cuil	0.017328157253817804
+google	131	cultural studies	1.5911598464572467E-4
+google	132	customer analytics	NaN
+google	133	customer relationship management	0.0020977086006176786
+google	134	cyril w. cleverdon	NaN
+google	135	dna	NaN
+google	136	dashboard (business)	NaN
+google	137	data	NaN
+google	138	data mining extensions	NaN
+google	139	data pre-processing	NaN
+google	140	data vault modeling	NaN
+google	141	data analysis	NaN
+google	142	data cleaning	NaN
+google	143	data clustering	1.8101320582387262E-4
+google	144	data collection	NaN
+google	145	data dictionary	NaN
+google	146	data dredging	NaN
+google	147	data extraction	NaN
+google	148	data integration	NaN
+google	149	data loading	NaN
+google	150	data management	NaN
+google	151	data mart	NaN
+google	152	data mining	NaN
+google	153	data mining in agriculture	NaN
+google	154	data mining in meteorology	NaN
+google	155	data modeling	NaN
+google	156	data set	0.00431224891834658
+google	157	data snooping	NaN
+google	158	data structure	NaN
+google	159	data transformation	NaN
+google	160	data visualization	NaN
+google	161	data warehouse	NaN
+google	162	database	NaN
+google	163	database management system	NaN
+google	164	database system	NaN
+google	165	daum communications	0.005905460998569944
+google	166	decision making	NaN
+google	167	decision support system	NaN
+google	168	decision tree learning	NaN
+google	169	decision trees	NaN
+google	170	deepwater horizon oil spill	8.123651862261586E-5
+google	171	degenerate dimension	NaN
+google	172	desktop search	0.032774195919591145
+google	173	digital object identifier	3.824580836026696E-4
+google	174	digital obsolescence	NaN
+google	175	dimension (data warehouse)	NaN
+google	176	dimension reduction	NaN
+google	177	dimension table	NaN
+google	178	dimensional modeling	NaN
+google	179	discounted cumulative gain	NaN
+google	180	discovery (observation)	NaN
+google	181	discovery net	NaN
+google	182	dissolved gas analysis	NaN
+google	183	distributed computing	NaN
+google	184	distributed web crawling	0.0035307183389958106
+google	185	divergence-from-randomness model	NaN
+google	186	document retrieval	NaN
+google	187	dogpile	0.0038483306739460475
+google	188	don swanson	NaN
+google	189	donald b. crouch	NaN
+google	190	dot-com bubble	0.0022920459481431898
+google	191	dots-and-boxes	NaN
+google	192	dracula	3.9557466848845095E-4
+google	193	drug discovery	NaN
+google	194	duckduckgo	0.027815057809815545
+google	195	early-arriving fact	NaN
+google	196	educational data mining	NaN
+google	197	electrical power	NaN
+google	198	electronic health records	NaN
+google	199	eli pariser	0.012418733249344234
+google	200	emanuel goldberg	0.002934906145659914
+google	201	enterprise search	NaN
+google	202	environment for developing kdd-applications supported by index-structures	NaN
+google	203	eugene garfield	NaN
+google	204	europe	0.001967170838775774
+google	205	european conference on machine learning and principles and practice of knowledge discovery in databases	NaN
+google	206	european summer school in information retrieval	NaN
+google	207	evolutionary computation	NaN
+google	208	exalead	0.008474526960578219
+google	209	excite	0.0017081476047445482
+google	210	experian hitwise	NaN
+google	211	expert system	NaN
+google	212	expertise finding	NaN
+google	213	exploratory data analysis	NaN
+google	214	extended boolean model	NaN
+google	215	extract, transform, load	NaN
+google	216	f-score	NaN
+google	217	f. wilfrid lancaster	NaN
+google	218	fico	NaN
+google	219	facebook	0.0020945949121550303
+google	220	fact (data warehouse)	NaN
+google	221	fact table	NaN
+google	222	factor analysis	4.4431175938463126E-4
+google	223	federated search	0.006238516634653966
+google	224	file transfer protocol	NaN
+google	225	filter bubble	0.1687117199209398
+google	226	first amendment to the united states constitution	4.467480947851426E-4
+google	227	focused crawler	NaN
+google	228	forestle	0.034838145005734504
+google	229	formal methods	NaN
+google	230	forrester research	NaN
+google	231	functional programming	NaN
+google	232	fuzzy retrieval	NaN
+google	233	gnu project	6.075083156936705E-4
+google	234	gartner	NaN
+google	235	general architecture for text engineering	0.005973507821374739
+google	236	generalized vector space model	NaN
+google	237	genetic algorithms	NaN
+google	238	genetics	NaN
+google	239	genieknows	0.0019004943558714777
+google	240	genres	NaN
+google	241	geographic information systems	6.102066962262547E-4
+google	242	gerard salton	NaN
+google	243	gerard salton award	NaN
+google	244	go.com	NaN
+google	245	goby inc.	0.005549057700515695
+google	246	goodsearch	NaN
+google	247	google	0.9151388514524782
+google	248	google bombing	0.6513688250957803
+google	249	google drive	0.8978525035385496
+google	250	google search	0.8065469748935382
+google	251	google effect	0.06322630973183008
+google	252	gopher (protocol)	0.007465875236020972
+google	253	graph theory	2.44450454706787E-4
+google	254	grid computing	NaN
+google	255	guruji.com	0.005101517774748759
+google	256	holap	NaN
+google	257	html	5.390023466583874E-4
+google	258	hans peter luhn	NaN
+google	259	harmonic mean	NaN
+google	260	health insurance portability and accountability act	NaN
+google	261	herman hollerith	NaN
+google	262	hitwise	NaN
+google	263	hotbot	0.0023309561862241974
+google	264	human%e2%80%93computer information retrieval	NaN
+google	265	human%e2%80%93computer interaction	NaN
+google	266	human rights	2.142225410526794E-4
+google	267	hypertext	NaN
+google	268	ibm	0.0035784951704545278
+google	269	ieee	NaN
+google	270	ill-posed	NaN
+google	271	image processing	0.0013870481421540298
+google	272	image retrieval	NaN
+google	273	imperial college london	NaN
+google	274	independency	NaN
+google	275	index (database)	NaN
+google	276	index (search engine)	0.002473537413724291
+google	277	info.com	0.04036159032807834
+google	278	informatics (academic field)	NaN
+google	279	informationweek	NaN
+google	280	information retrieval facility	NaN
+google	281	information access	NaN
+google	282	information architecture	0.005907165148759919
+google	283	information extraction	NaN
+google	284	information integration	NaN
+google	285	information management	NaN
+google	286	information need	NaN
+google	287	information overload	0.0020767854064435956
+google	288	information retrieval	NaN
+google	289	information retrieval applications	NaN
+google	290	information science	NaN
+google	291	information seeking	NaN
+google	292	information society	NaN
+google	293	information technology	0.0025248504379134415
+google	294	information theory	0.0012633180558541002
+google	295	infoseek	NaN
+google	296	initial public offering	0.0018098118411118548
+google	297	inktomi (company)	0.003246220909520095
+google	298	institutional memory	NaN
+google	299	insulator (electrical)	0.001654945985342628
+google	300	intellectual freedom	NaN
+google	301	intellectual property	3.4405706838091664E-4
+google	302	interactive visualization	NaN
+google	303	international conference on very large data bases	NaN
+google	304	international standard book number	NaN
+google	305	internet search engines and libraries	0.0039729031174227936
+google	306	interpreter (computing)	NaN
+google	307	inverted index	NaN
+google	308	iterative algorithm	NaN
+google	309	j. c. r. licklider	0.002966217054803214
+google	310	jasis	NaN
+google	311	jhepwork	0.0059654283423434765
+google	312	jacquard loom	0.00135491762464038
+google	313	java (programming language)	0.0033318500124676414
+google	314	java data mining	NaN
+google	315	john nunn	NaN
+google	316	john seward	NaN
+google	317	joseph marie jacquard	NaN
+google	318	jughead (computer)	NaN
+google	319	jughead jones	NaN
+google	320	jumpstation	0.008122070037083927
+google	321	kdd conference	NaN
+google	322	knime	NaN
+google	323	kxen inc.	NaN
+google	324	karen spaìˆrck jones	NaN
+google	325	keypunch	NaN
+google	326	keyword (internet search)	0.3675069829578726
+google	327	kluwer academic publishers	NaN
+google	328	knowledge discovery	8.187678307921427E-4
+google	329	knowledge organization	NaN
+google	330	knowledge visualization	NaN
+google	331	lionsolver	NaN
+google	332	language model	NaN
+google	333	latent dirichlet allocation	NaN
+google	334	latent semantic analysis	NaN
+google	335	latent semantic indexing	NaN
+google	336	leapfish	0.012456822149929882
+google	337	learning to rank	0.004447399862879307
+google	338	library and information science	NaN
+google	339	linkrot	0.042655196039002155
+google	340	list of computer science conferences	NaN
+google	341	list of information retrieval libraries	NaN
+google	342	list of reporting software	NaN
+google	343	list of search engines	0.11844507301093547
+google	344	live search	0.02307508539416561
+google	345	local search (internet)	0.10110556676350908
+google	346	logic programming	3.8084458385443103E-4
+google	347	looksmart	NaN
+google	348	lycos	4.328731590325178E-4
+google	349	matrix	NaN
+google	350	medlars	NaN
+google	351	mit	4.263614436262909E-4
+google	352	ml-flex	NaN
+google	353	molap	NaN
+google	354	msn search	0.02307508539416561
+google	355	machine learning	5.903634803433871E-4
+google	356	magellan (search engine)	0.0017081476047445482
+google	357	main page	NaN
+google	358	mark mccahill	NaN
+google	359	market basket analysis	NaN
+google	360	mass surveillance	0.023470653552482946
+google	361	massachusetts institute of technology	5.374672272228292E-4
+google	362	mathematical logic	NaN
+google	363	mathematics	0.001097141328625198
+google	364	mcgill university	5.7528157765230623E-5
+google	365	mean reciprocal rank	NaN
+google	366	measure (data warehouse)	NaN
+google	367	medicine	NaN
+google	368	memory	NaN
+google	369	meta tags	0.03701662686785739
+google	370	metadata	1.1270054775890738E-4
+google	371	metasearch engine	NaN
+google	372	microarchitecture	NaN
+google	373	microsoft	0.007803770458974022
+google	374	microsoft analysis services	NaN
+google	375	mind maps	NaN
+google	376	mining software repositories	NaN
+google	377	missing data	NaN
+google	378	modeling and simulation	NaN
+google	379	montreal	4.932648924037908E-4
+google	380	morgan kaufmann	NaN
+google	381	msnbot	NaN
+google	382	mugurdy	NaN
+google	383	multidimensional expressions	NaN
+google	384	multifactor dimensionality reduction	NaN
+google	385	multilinear subspace learning	NaN
+google	386	multimedia information retrieval	NaN
+google	387	multiprocessing	NaN
+google	388	multisearch	NaN
+google	389	multivariate statistics	NaN
+google	390	music information retrieval	NaN
+google	391	nltk	0.0042004869076167186
+google	392	named-entity recognition	NaN
+google	393	national bureau of standards	NaN
+google	394	national center for supercomputing applications	NaN
+google	395	national institute of standards and technology	NaN
+google	396	national security agency	NaN
+google	397	natural language toolkit	0.0042004869076167186
+google	398	natural language processing	NaN
+google	399	natural language search engine	0.009223401891378862
+google	400	nature (journal)	NaN
+google	401	naver	0.003682913904725682
+google	402	netscape	1.3701593715027943E-4
+google	403	network topology	NaN
+google	404	neural networks	2.132257352725265E-4
+google	405	nicholas j. belkin	NaN
+google	406	nicholas jardine	NaN
+google	407	northern light group	NaN
+google	408	number theory	0.010826192622123646
+google	409	numerical analysis	NaN
+google	410	oclc	4.784204498129727E-4
+google	411	olap cube	0.001971081810613564
+google	412	object-oriented programming	5.522875307963528E-4
+google	413	online algorithm	NaN
+google	414	online analytical processing	0.001904682894026046
+google	415	online search	NaN
+google	416	ontologies	1.9566925223579658E-4
+google	417	ontology (information science)	1.9566927192143078E-4
+google	418	opensearch	0.0019019909788662189
+google	419	open directory project	0.002340214901761287
+google	420	open drive	0.1511992861550182
+google	421	operating system	0.0016118292228559314
+google	422	operational data store	NaN
+google	423	oracle	NaN
+google	424	oracle data mining	NaN
+google	425	oracle machine	NaN
+google	426	orange (software)	NaN
+google	427	organic search	0.07753339206854146
+google	428	orthogonality	0.001907777629456068
+google	429	oscar nierstrasz	NaN
+google	430	outline of information science	0.001766919668680703
+google	431	overfitting	NaN
+google	432	overture	NaN
+google	433	pagerank	0.15491243111884798
+google	434	paid inclusion	0.016498255867706847
+google	435	parallel computing	NaN
+google	436	parsing	NaN
+google	437	pattern	0.0010086780426656723
+google	438	people's republic of china	3.7687978240468124E-4
+google	439	perl	3.28596497730255E-5
+google	440	personal information management	NaN
+google	441	pharmacy	NaN
+google	442	philosophy of information	NaN
+google	443	picollator	NaN
+google	444	police-enforced anpr in the uk	NaN
+google	445	positive predictive value	NaN
+google	446	power transformer	0.0021183667919414274
+google	447	powerset (company)	0.01430211252781304
+google	448	precision and recall	NaN
+google	449	predictive model markup language	NaN
+google	450	predictive analytics	NaN
+google	451	prentice hall	NaN
+google	452	preservation (library and archival science)	5.901479097735233E-4
+google	453	principle of least astonishment	0.02032298827850644
+google	454	privacy	1.010139390045912E-4
+google	455	probabilistic relevance model	NaN
+google	456	probabilistic relevance model (bm25)	NaN
+google	457	procedural programming	NaN
+google	458	profiling practices	NaN
+google	459	programming language	NaN
+google	460	programming paradigm	0.0028622140117119266
+google	461	proximity search (text)	0.021415542828550044
+google	462	pubmed identifier	4.201384602893247E-4
+google	463	public library	NaN
+google	464	punched cards	NaN
+google	465	python (programming language)	0.00348052534789283
+google	466	quaero	0.01601381679645541
+google	467	quantitative structure%e2%80%93activity relationship	NaN
+google	468	quantum computer	8.257259722810872E-5
+google	469	query string	NaN
+google	470	question answering	6.182900750005864E-4
+google	471	quora	2.520239727231842E-4
+google	472	rolap	NaN
+google	473	r (programming language)	0.011782648633607288
+google	474	ralph kimball	NaN
+google	475	rank order	NaN
+google	476	rapidminer	NaN
+google	477	reactive business intelligence	NaN
+google	478	real-time computing	NaN
+google	479	receiver operating characteristic	NaN
+google	480	regression analysis	NaN
+google	481	relational database	NaN
+google	482	relevance	NaN
+google	483	relevance (information retrieval)	NaN
+google	484	relevance feedback	0.0013821337644157917
+google	485	representational state transfer	0.005091486438344362
+google	486	requirements analysis	4.0551349363335097E-4
+google	487	rexer's annual data miner survey	0.004268231999939623
+google	488	robert m. hayes	NaN
+google	489	robert r. korfhage	NaN
+google	490	robert tibshirani	NaN
+google	491	robotics	1.2362311243572951E-4
+google	492	robots.txt	0.018329336888337378
+google	493	robots exclusion standard	0.018329336888337378
+google	494	rocchio classification	NaN
+google	495	routing	NaN
+google	496	rule of inference	0.002364637571015946
+google	497	russian federation	1.0586431191305515E-4
+google	498	sapo (company)	NaN
+google	499	sas (software)	NaN
+google	500	sas institute	NaN
+google	501	semma	NaN
+google	502	sigkdd	NaN
+google	503	sigmod	NaN
+google	504	smart information retrieval system	NaN
+google	505	spss modeler	NaN
+google	506	sql	NaN
+google	507	statistica	NaN
+google	508	scalability	0.013039833400290288
+google	509	science, technology and society	NaN
+google	510	scientific american magazine	7.775741908530855E-4
+google	511	searchme	0.005020967625298152
+google	512	search engine watch	0.00793772951638348
+google	513	search aggregator	0.026020525085949587
+google	514	search directory	0.003918556023487946
+google	515	search engine (computing)	NaN
+google	516	search engine (disambiguation)	NaN
+google	517	search engine indexing	0.002473537413724291
+google	518	search engine marketing	0.0447219802905033
+google	519	search engine optimization	0.3675069829578726
+google	520	search engine results pages	0.007689457776036869
+google	521	search oriented architecture	NaN
+google	522	selection-based search	0.006812673739791462
+google	523	self-organizing map	NaN
+google	524	semantic web	2.774435501532857E-4
+google	525	semantic search	0.015378635928532074
+google	526	sensitivity and specificity	NaN
+google	527	sequence mining	NaN
+google	528	set theory	NaN
+google	529	sixth normal form	NaN
+google	530	slowly changing dimension	NaN
+google	531	social science research network	NaN
+google	532	social information seeking	NaN
+google	533	social search	0.09718801924610909
+google	534	society for industrial and applied mathematics	NaN
+google	535	software	NaN
+google	536	software design	NaN
+google	537	software development process	NaN
+google	538	software engineering	8.494930627566457E-4
+google	539	software release life cycle	0.01562642542649892
+google	540	software testing	8.57600313442259E-5
+google	541	sogou.com	NaN
+google	542	sorrell v. ims health, inc.	NaN
+google	543	spatial index	NaN
+google	544	spearman's rank correlation coefficient	NaN
+google	545	special interest group on information retrieval	NaN
+google	546	spell checker	0.004702894820889979
+google	547	spider trap	NaN
+google	548	spreadsheets	3.7528318261606915E-4
+google	549	springer verlag	NaN
+google	550	sproose	NaN
+google	551	standard boolean model	NaN
+google	552	star schema	NaN
+google	553	statcounter	NaN
+google	554	statsoft	NaN
+google	555	statistical classification	NaN
+google	556	statistical inference	3.378593947577568E-4
+google	557	statistical model	NaN
+google	558	statistical noise	NaN
+google	559	statistics	NaN
+google	560	stellar wind (code name)	NaN
+google	561	structured data analysis (statistics)	NaN
+google	562	subject indexing	NaN
+google	563	subspace clustering	NaN
+google	564	support vector machines	NaN
+google	565	supreme court of the united states	5.276516227091987E-4
+google	566	surrogate key	NaN
+google	567	surveillance	0.006771128735222623
+google	568	symbolic computation	NaN
+google	569	systems architecture	NaN
+google	570	tablebase	1.9540931457042978E-4
+google	571	tabulating machine	NaN
+google	572	telecommunication	3.419653950432948E-4
+google	573	temporal information retrieval	NaN
+google	574	teoma	0.0037721651871756405
+google	575	test set	NaN
+google	576	text retrieval conference	0.0014921634558288485
+google	577	text corpora	9.041162890805331E-4
+google	578	text mining	NaN
+google	579	tf-idf	NaN
+google	580	the american statistician	NaN
+google	581	theodor nelson	0.001112349040682457
+google	582	theory of forms	5.12208113004855E-4
+google	583	theory of computation	NaN
+google	584	tim berners-lee	0.003952930021734153
+google	585	tony kent strix award	NaN
+google	586	topic-based vector space model	NaN
+google	587	total information awareness	NaN
+google	588	traffic analysis	NaN
+google	589	training set	NaN
+google	590	transaction processing	NaN
+google	591	trevor hastie	NaN
+google	592	true knowledge	0.003980847410620529
+google	593	type theory	NaN
+google	594	ubm plc	NaN
+google	595	uima	NaN
+google	596	us congress	0.005369622727469683
+google	597	ubiquitous computing	NaN
+google	598	uncertain inference	NaN
+google	599	united states national research council	NaN
+google	600	university of calabria	NaN
+google	601	university of geneva	NaN
+google	602	university of minnesota	NaN
+google	603	uplift modelling	NaN
+google	604	uppsala monitoring centre	NaN
+google	605	usability	NaN
+google	606	user expectations	NaN
+google	607	user interface	NaN
+google	608	vannevar bush	2.6445093048548446E-4
+google	609	vector space model	NaN
+google	610	veronica (computer)	NaN
+google	611	veronica lodge	NaN
+google	612	vertical search	0.012336952806250613
+google	613	video search engine	0.007599007643976484
+google	614	viewzi	0.003135669260456186
+google	615	virtual reality	2.0401279685969035E-4
+google	616	visualization (computer graphics)	NaN
+google	617	vivisimo	NaN
+google	618	voice search	0.021008932006922675
+google	619	volunia	0.06941268788029649
+google	620	w3catalog	0.013168313991720488
+google	621	wearable computer	0.0018861036338343523
+google	622	webcrawler	0.0038444236521696976
+google	623	web archiving	0.002271890716493967
+google	624	web cache	0.006566901172227917
+google	625	web crawler	0.0015658820194781667
+google	626	web crawling	0.0015658820194781667
+google	627	web directories	0.003918556023487946
+google	628	web directory	0.003918556023487946
+google	629	web form	NaN
+google	630	web indexing	NaN
+google	631	web mining	0.001060063547333045
+google	632	web page	NaN
+google	633	web portal	NaN
+google	634	web query classification	NaN
+google	635	web robot	0.013601134194732965
+google	636	web scraping	0.0026907690078902245
+google	637	web search engine	0.10541524998157861
+google	638	web search query	NaN
+google	639	webserver	0.001172095896796129
+google	640	website parse template	NaN
+google	641	website mirroring software	0.0016591828537157486
+google	642	weka (machine learning)	NaN
+google	643	wide area information server	NaN
+google	644	wikia search	0.02700917084203389
+google	645	wikiseek	0.006544082049431269
+google	646	wireless sensor network	NaN
+google	647	wolfram alpha	0.008870241466210918
+google	648	world wide web	0.003986707581149311
+google	649	world wide web wanderer	NaN
+google	650	xml	NaN
+google	651	xml-retrieval	0.0025172946895173297
+google	652	xml for analysis	NaN
+google	653	yahoo!	0.004924864926606196
+google	654	yahoo! search	0.005300964237970543
+google	655	yandex	0.007115369379463099
+google	656	yebol	0.016284614659460878
+google	657	yummly	0.005447931401787267
+google	658	z39.50	NaN

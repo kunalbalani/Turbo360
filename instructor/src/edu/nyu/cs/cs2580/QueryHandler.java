@@ -1,15 +1,20 @@
 package edu.nyu.cs.cs2580;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.Vector;
+
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-import java.util.Iterator;
-import java.util.Vector;
 
 class QueryHandler implements HttpHandler {
   private static String plainResponse =
@@ -55,25 +60,37 @@ class QueryHandler implements HttpHandler {
         Set<String> keys = query_map.keySet();
         if (keys.contains("query")){
         	
-        	Vector < ScoredDocument > sds;
+        	Vector < ScoredDocument > sds = null;
         	
           if (keys.contains("ranker")){
             String ranker_type = query_map.get("ranker");
+            String outputFileName = "";
             // @CS2580: Invoke different ranking functions inside your
             // implementation of the Ranker class.
             if (ranker_type.equals("cosine")){
             	sds = _ranker.runquery(query_map.get("query"), "cosine");
+            	outputFileName = "hw1.1-vsm.tsv";
             } else if (ranker_type.equals("QL")){
               queryResponse = (ranker_type + " not implemented.");
+              outputFileName = "hw1.1-ql.tsv";
             } else if (ranker_type.equals("phrase")){
               queryResponse = (ranker_type + " not implemented.");
+              outputFileName = "hw1.1-phrase.tsv";
             } else if (ranker_type.equals("numviews")){
               sds = _ranker.runquery(query_map.get("query"), "numviews");
+              outputFileName = "hw1.1-numviews.tsv";
             } else if (ranker_type.equals("linear")){
                 queryResponse = (ranker_type + " not implemented.");
+                outputFileName = "hw1.2-linear.tsv";
             } else {
               queryResponse = (ranker_type+" not implemented.");
             }
+            
+            //defaults to text, if query doesnt contain format parameter
+            //and checks if format is equal to "text", if format is present
+            if(!keys.contains("format") || query_map.get("format").equalsIgnoreCase("text"))
+            	writeResultToFile(query_map.get("query"), sds, outputFileName);
+            
           } else {
             // @CS2580: The following is instructor's simple ranker that does not
             // use the Ranker class.
@@ -101,5 +118,42 @@ class QueryHandler implements HttpHandler {
       OutputStream responseBody = exchange.getResponseBody();
       responseBody.write(queryResponse.getBytes());
       responseBody.close();
+  }
+
+  
+  /**
+   * Writes the ranking results to the appropriate files in the results folder
+ * @throws IOException 
+ * @throws FileNotFoundException 
+   * */
+  private void writeResultToFile(String query, Vector<ScoredDocument> scoredDocuments,
+		String outputFileName) throws IOException {
+	
+	  if(scoredDocuments == null || outputFileName.isEmpty())
+		  return;
+	  
+	  OutputStream outputStream = null;
+	  Writer out = null;
+	  
+	  try{
+		  
+	 
+		  outputStream = new FileOutputStream("./results/"+outputFileName);
+	      out = new OutputStreamWriter(outputStream);
+	      
+		  for(ScoredDocument sd : scoredDocuments){
+			  String text = query+"\t"+sd.asString()+"\n";
+			  out.write(text);
+		  }
+	  
+	  }catch(FileNotFoundException fnfe){
+		  throw new FileNotFoundException("File Not Found : "+outputFileName+"\n");
+	  }finally{
+		  if(out != null)
+			  out.close();
+		  if(outputStream != null)
+			  outputStream.close();
+	  }
+	  
   }
 }
