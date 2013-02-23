@@ -61,10 +61,11 @@ class QueryHandler implements HttpHandler {
         if (keys.contains("query")){
         	
         	Vector < ScoredDocument > sds = null;
+        	String outputFileName = "";
         	
           if (keys.contains("ranker")){
             String ranker_type = query_map.get("ranker");
-            String outputFileName = "";
+            
             // @CS2580: Invoke different ranking functions inside your
             // implementation of the Ranker class.
             if (ranker_type.equals("cosine")){
@@ -86,15 +87,12 @@ class QueryHandler implements HttpHandler {
               queryResponse = (ranker_type+" not implemented.");
             }
             
-            //defaults to text, if query doesnt contain format parameter
-            //and checks if format is equal to "text", if format is present
-            if(!keys.contains("format") || query_map.get("format").equalsIgnoreCase("text"))
-            	writeResultToFile(query_map.get("query"), sds, outputFileName);
             
           } else {
             // @CS2580: The following is instructor's simple ranker that does not
             // use the Ranker class.
             sds = _ranker.runquery(query_map.get("query"));
+          }  
             Iterator < ScoredDocument > itr = sds.iterator();
             while (itr.hasNext()){
               ScoredDocument sd = itr.next();
@@ -106,7 +104,11 @@ class QueryHandler implements HttpHandler {
             if (queryResponse.length() > 0){
               queryResponse = queryResponse + "\n";
             }
-          }
+          
+          //defaults to text, if query doesnt contain format parameter
+          //and checks if format is equal to "text", if format is present
+          if(!keys.contains("format") || query_map.get("format").equalsIgnoreCase("text"))
+            	writeResultToFile(queryResponse, outputFileName);
         }
       }
     }
@@ -126,25 +128,21 @@ class QueryHandler implements HttpHandler {
  * @throws IOException 
  * @throws FileNotFoundException 
    * */
-  private void writeResultToFile(String query, Vector<ScoredDocument> scoredDocuments,
+  private void writeResultToFile(String queryResponse,
 		String outputFileName) throws IOException {
 	
-	  if(scoredDocuments == null || outputFileName.isEmpty())
+	  if(outputFileName.isEmpty())
 		  return;
 	  
 	  OutputStream outputStream = null;
 	  Writer out = null;
 	  
 	  try{
-		  
 	 
 		  outputStream = new FileOutputStream("./results/"+outputFileName);
 	      out = new OutputStreamWriter(outputStream);
 	      
-		  for(ScoredDocument sd : scoredDocuments){
-			  String text = query+"\t"+sd.asString()+"\n";
-			  out.write(text);
-		  }
+		  out.write(queryResponse);
 	  
 	  }catch(FileNotFoundException fnfe){
 		  throw new FileNotFoundException("File Not Found : "+outputFileName+"\n");
