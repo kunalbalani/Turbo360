@@ -17,141 +17,141 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 class QueryHandler implements HttpHandler {
-  private static String plainResponse =
-      "Request received, but I am not smart enough to echo yet!\n";
+	private static String plainResponse =
+			"Request received, but I am not smart enough to echo yet!\n";
 
-  private Ranker _ranker;
+	private Ranker _ranker;
 
-  public QueryHandler(Ranker ranker){
-    _ranker = ranker;
-  }
+	public QueryHandler(Ranker ranker){
+		_ranker = ranker;
+	}
 
-  public static Map<String, String> getQueryMap(String query){  
-    String[] params = query.split("&");  
-    Map<String, String> map = new HashMap<String, String>();  
-    for (String param : params){  
-      String name = param.split("=")[0];  
-      String value = param.split("=")[1];  
-      map.put(name, value);  
-    }
-    return map;  
-  } 
-  
-  public void handle(HttpExchange exchange) throws IOException {
-    String requestMethod = exchange.getRequestMethod();
-    if (!requestMethod.equalsIgnoreCase("GET")){  // GET requests only.
-      return;
-    }
+	public static Map<String, String> getQueryMap(String query){  
+		String[] params = query.split("&");  
+		Map<String, String> map = new HashMap<String, String>();  
+		for (String param : params){  
+			String name = param.split("=")[0];  
+			String value = param.split("=")[1];  
+			map.put(name, value);  
+		}
+		return map;  
+	} 
 
-    // Print the user request header.
-    Headers requestHeaders = exchange.getRequestHeaders();
-    System.out.print("Incoming request: ");
-    for (String key : requestHeaders.keySet()){
-      System.out.print(key + ":" + requestHeaders.get(key) + "; ");
-    }
-    System.out.println();
-    String queryResponse = "";  
-    String uriQuery = exchange.getRequestURI().getQuery();
-    String uriPath = exchange.getRequestURI().getPath();
+	public void handle(HttpExchange exchange) throws IOException {
+		String requestMethod = exchange.getRequestMethod();
+		if (!requestMethod.equalsIgnoreCase("GET")){  // GET requests only.
+			return;
+		}
 
-    if ((uriPath != null) && (uriQuery != null)){
-      if (uriPath.equals("/search")){
-        Map<String,String> query_map = getQueryMap(uriQuery);
-        Set<String> keys = query_map.keySet();
-        if (keys.contains("query")){
-        	
-        	Vector < ScoredDocument > sds = null;
-        	String outputFileName = "";
-        	
-          if (keys.contains("ranker")){
-            String ranker_type = query_map.get("ranker");
-            
-            // @CS2580: Invoke different ranking functions inside your
-            // implementation of the Ranker class.
-            if (ranker_type.equals("cosine")){
-            	sds = _ranker.runquery(query_map.get("query"), "cosine");
-            	outputFileName = "hw1.1-vsm.tsv";
-            } else if (ranker_type.equals("QL")){
-              queryResponse = (ranker_type + " not implemented.");
-              outputFileName = "hw1.1-ql.tsv";
-            } else if (ranker_type.equals("phrase")){
-              queryResponse = (ranker_type + " not implemented.");
-              outputFileName = "hw1.1-phrase.tsv";
-            } else if (ranker_type.equals("numviews")){
-              sds = _ranker.runquery(query_map.get("query"), "numviews");
-              outputFileName = "hw1.1-numviews.tsv";
-            } else if (ranker_type.equals("linear")){
-                queryResponse = (ranker_type + " not implemented.");
-                outputFileName = "hw1.2-linear.tsv";
-            } else {
-              queryResponse = (ranker_type+" not implemented.");
-            }
-            
-            
-          } else {
-            // @CS2580: The following is instructor's simple ranker that does not
-            // use the Ranker class.
-            sds = _ranker.runquery(query_map.get("query"));
-          }  
-            Iterator < ScoredDocument > itr = sds.iterator();
-            while (itr.hasNext()){
-              ScoredDocument sd = itr.next();
-              if (queryResponse.length() > 0){
-                queryResponse = queryResponse + "\n";
-              }
-              queryResponse = queryResponse + query_map.get("query") + "\t" + sd.asString();
-            }
-            if (queryResponse.length() > 0){
-              queryResponse = queryResponse + "\n";
-            }
-          
-          //defaults to text, if query doesnt contain format parameter
-          //and checks if format is equal to "text", if format is present
-          if(!keys.contains("format") || query_map.get("format").equalsIgnoreCase("text"))
-            	writeResultToFile(queryResponse, outputFileName);
-        }
-      }
-    }
-    
-      // Construct a simple response.
-      Headers responseHeaders = exchange.getResponseHeaders();
-      responseHeaders.set("Content-Type", "text/plain");
-      exchange.sendResponseHeaders(200, 0);  // arbitrary number of bytes
-      OutputStream responseBody = exchange.getResponseBody();
-      responseBody.write(queryResponse.getBytes());
-      responseBody.close();
-  }
+		// Print the user request header.
+		Headers requestHeaders = exchange.getRequestHeaders();
+		System.out.print("Incoming request: ");
+		for (String key : requestHeaders.keySet()){
+			System.out.print(key + ":" + requestHeaders.get(key) + "; ");
+		}
+		System.out.println();
+		String queryResponse = "";  
+		String uriQuery = exchange.getRequestURI().getQuery();
+		String uriPath = exchange.getRequestURI().getPath();
 
-  
-  /**
-   * Writes the ranking results to the appropriate files in the results folder
- * @throws IOException 
- * @throws FileNotFoundException 
-   * */
-  private void writeResultToFile(String queryResponse,
-		String outputFileName) throws IOException {
-	
-	  if(outputFileName.isEmpty())
-		  return;
-	  
-	  OutputStream outputStream = null;
-	  Writer out = null;
-	  
-	  try{
-	 
-		  outputStream = new FileOutputStream("./results/"+outputFileName);
-	      out = new OutputStreamWriter(outputStream);
-	      
-		  out.write(queryResponse);
-	  
-	  }catch(FileNotFoundException fnfe){
-		  throw new FileNotFoundException("File Not Found : "+outputFileName+"\n");
-	  }finally{
-		  if(out != null)
-			  out.close();
-		  if(outputStream != null)
-			  outputStream.close();
-	  }
-	  
-  }
+		if ((uriPath != null) && (uriQuery != null)){
+			if (uriPath.equals("/search")){
+				Map<String,String> query_map = getQueryMap(uriQuery);
+				Set<String> keys = query_map.keySet();
+				if (keys.contains("query")){
+
+					Vector < ScoredDocument > sds = null;
+					String outputFileName = "";
+
+					if (keys.contains("ranker")){
+						String ranker_type = query_map.get("ranker");
+
+						// @CS2580: Invoke different ranking functions inside your
+						// implementation of the Ranker class.
+						if (ranker_type.equals("cosine")){
+							sds = _ranker.runquery(query_map.get("query"), "cosine");
+							outputFileName = "hw1.1-vsm.tsv";
+						} else if (ranker_type.equals("QL")){
+							queryResponse = (ranker_type + " not implemented.");
+							outputFileName = "hw1.1-ql.tsv";
+						} else if (ranker_type.equals("phrase")){
+							queryResponse = (ranker_type + " not implemented.");
+							outputFileName = "hw1.1-phrase.tsv";
+						} else if (ranker_type.equals("numviews")){
+							sds = _ranker.runquery(query_map.get("query"), "numviews");
+							outputFileName = "hw1.1-numviews.tsv";
+						} else if (ranker_type.equals("linear")){
+							queryResponse = (ranker_type + " not implemented.");
+							outputFileName = "hw1.2-linear.tsv";
+						} else {
+							queryResponse = (ranker_type+" not implemented.");
+						}
+
+
+					} else {
+						// @CS2580: The following is instructor's simple ranker that does not
+						// use the Ranker class.
+						sds = _ranker.runquery(query_map.get("query"));
+					}  
+
+					Iterator < ScoredDocument > itr = sds.iterator();
+					while (itr.hasNext()){
+						ScoredDocument sd = itr.next();
+						if (queryResponse.length() > 0){
+							queryResponse = queryResponse + "\n";
+						}
+						queryResponse = queryResponse + query_map.get("query") + "\t" + sd.asString();
+					}
+					if (queryResponse.length() > 0){
+						queryResponse = queryResponse + "\n";
+					}
+
+					//defaults to text, if query doesnt contain format parameter
+					//and checks if format is equal to "text", if format is present
+					if(!keys.contains("format") || query_map.get("format").equalsIgnoreCase("text"))
+						writeResultToFile(queryResponse, outputFileName);
+				}
+			}
+		}
+
+		// Construct a simple response.
+		Headers responseHeaders = exchange.getResponseHeaders();
+		responseHeaders.set("Content-Type", "text/plain");
+		exchange.sendResponseHeaders(200, 0);  // arbitrary number of bytes
+		OutputStream responseBody = exchange.getResponseBody();
+		responseBody.write(queryResponse.getBytes());
+		responseBody.close();
+	}
+
+
+	/**
+	 * Writes the ranking results to the appropriate files in the results folder
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
+	 * */
+	private void writeResultToFile(String queryResponse,
+			String outputFileName) throws IOException {
+
+		if(outputFileName.isEmpty())
+			return;
+
+		OutputStream outputStream = null;
+		Writer out = null;
+
+		try{
+
+			outputStream = new FileOutputStream("./results/"+outputFileName);
+			out = new OutputStreamWriter(outputStream);
+			out.write(queryResponse);
+
+		}catch(FileNotFoundException fnfe){
+			throw new FileNotFoundException("File Not Found : "+outputFileName+"\n");
+		}finally{
+			if(out != null)
+				out.close();
+			if(outputStream != null)
+				outputStream.close();
+		}
+
+	}
 }
