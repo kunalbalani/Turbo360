@@ -29,9 +29,11 @@ class Ranker {
 	              
 	        } else if (ranker_type.equals("phrase")){
 	              
+	        } else if (ranker_type.equals("numviews")){
+	        	doc = runquery_numviews(query, i);
 	        } else if (ranker_type.equals("linear")){
-	            	
-	        }else{
+            	
+	        } else{
 	        	doc = runquery(query, i);
 	        }
 	    	
@@ -128,6 +130,27 @@ class Ranker {
 	    
 	    return new ScoredDocument(did, d.get_title_string(), score);
 	  }
+  
+  
+  /**
+   * Calculates the Numviews ranking signal
+   * */
+  public ScoredDocument runquery_numviews(String query, int did){
+
+	    // Build query vector
+	    Scanner s = new Scanner(query);
+	    Vector < String > qv = new Vector < String > ();
+	    while (s.hasNext()){
+	      String term = s.next();
+	      qv.add(term);
+	    }
+
+	    Document d = _index.getDoc(did);
+	    //get the numof views for the document
+	   	double score = d.get_numviews();
+	    return new ScoredDocument(did, d.get_title_string(), score);
+	  }
+  
 	
   /**
    * Counts the term frequency within the document.
