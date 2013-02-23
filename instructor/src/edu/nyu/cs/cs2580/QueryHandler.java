@@ -68,11 +68,11 @@ class QueryHandler implements HttpHandler {
 
 						// @CS2580: Invoke different ranking functions inside your
 						// implementation of the Ranker class.
-						if (ranker_type.equals("cosine")){
+						if (ranker_type.equalsIgnoreCase("cosine")){
 							sds = _ranker.runquery(query_map.get("query"), "cosine");
 							outputFileName = "hw1.1-vsm.tsv";
-						} else if (ranker_type.equals("QL")){
-							queryResponse = (ranker_type + " not implemented.");
+						} else if (ranker_type.equalsIgnoreCase("QL")){
+							sds = _ranker.runquery(query_map.get("query"), "QL");
 							outputFileName = "hw1.1-ql.tsv";
 						} else if (ranker_type.equals("phrase")){
 							queryResponse = (ranker_type + " not implemented.");

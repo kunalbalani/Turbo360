@@ -26,10 +26,10 @@ class Ranker {
 	    Vector < ScoredDocument > retrieval_results = new Vector < ScoredDocument > ();
 	    for (int i = 0; i < _index.numDocs(); ++i){
 	    	ScoredDocument doc = null;
-	    	if (ranker_type.equals("cosine")){
+	    	if (ranker_type.equalsIgnoreCase("cosine")){
 	    		doc = runquery_cosine(query, i);
-	        } else if (ranker_type.equals("QL")){
-	              
+	        } else if (ranker_type.equalsIgnoreCase("QL")){
+	        	doc = runquery_ql(query, i);
 	        } else if (ranker_type.equals("phrase")){
 	              
 	        } else if (ranker_type.equals("numviews")){
@@ -164,16 +164,16 @@ class Ranker {
         // details of how index works.
         Document d = _index.getDoc(did);
         Vector < String > dv = d.get_body_vector();
-        double score = 1;
+        double score = 1d;
         int docTermCount = dv.size();
         int collectionTermCount = _index.termFrequency();
         for(int i = 0; i < qv.size(); i++){
             String queryTerm = qv.get(i);
             int qtermFreqDoc = getTermFrequency(queryTerm, dv);
-            double firstTerm = qtermFreqDoc/docTermCount;
+            double firstTerm = (double) qtermFreqDoc/docTermCount;
             firstTerm *= (1-smoothFactor);
             int qtermFreqCollection = _index.termFrequency(queryTerm);
-            double secondTerm = qtermFreqCollection/collectionTermCount;
+            double secondTerm = (double) qtermFreqCollection/collectionTermCount;
             secondTerm *= smoothFactor;
             score *= (firstTerm + secondTerm);
             
