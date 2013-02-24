@@ -1,13 +1,14 @@
 package edu.nyu.cs.cs2580;
 
-import java.io.IOException;
-import java.io.File;
-import java.io.FileReader;
-import java.io.InputStreamReader;
 import java.io.BufferedReader;
-import java.util.Vector;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.Vector;
 
 class Evaluator {
 
@@ -21,8 +22,12 @@ class Evaluator {
 		String p = args[0];
 		// first read the relevance judgments into the HashMap
 		readRelevanceJudgments(p,relevance_judgments);
+
 		// now evaluate the results from stdin
-		evaluateStdin(relevance_judgments);
+		//evaluateStdin(relevance_judgments);
+
+		// Evaluates All Metrics
+		evaluateStdin_AllMetrics(relevance_judgments);
 	}
 
 	public static void readRelevanceJudgments(
@@ -61,46 +66,110 @@ class Evaluator {
 
 	public static void evaluateStdin(
 			HashMap < String , HashMap < Integer , Double > > relevance_judgments){
-		// only consider one query per call    
+		// only consider one query per call   
+
 		try {
+
 			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-			String line = null;
-			double RR = 0.0;
-			double N = 0.0;
-			while ((line = reader.readLine()) != null){
-				Scanner s = new Scanner(line).useDelimiter("\t");
-				String query = s.next();
-				int did = Integer.parseInt(s.next());
-				String title = s.next();
-				double rel = Double.parseDouble(s.next());
-				if (relevance_judgments.containsKey(query) == false){
-					throw new IOException("query not found");
+			try{
+
+				String line = null;
+				double RR = 0.0;
+				double N = 0.0;
+				while ((line = reader.readLine()) != null){
+					Scanner s = new Scanner(line).useDelimiter("\t");
+					String query = s.next();
+					int did = Integer.parseInt(s.next());
+					String title = s.next();
+					double rel = Double.parseDouble(s.next());
+					if (relevance_judgments.containsKey(query) == false){
+						throw new IOException("query not found");
+					}
+					HashMap < Integer , Double > qr = relevance_judgments.get(query);
+					if (qr.containsKey(did) != false){
+						RR += qr.get(did);					
+					}
+					++N;
 				}
-				HashMap < Integer , Double > qr = relevance_judgments.get(query);
-				if (qr.containsKey(did) != false){
-					RR += qr.get(did);					
-				}
-				++N;
+				System.out.println(Double.toString(RR/N));
+			} finally {
+				reader.close();
 			}
-			System.out.println(Double.toString(RR/N));
 		} catch (Exception e){
 			System.err.println("Error:" + e.getMessage());
 		}
 	}
 
 
-	private Double getPrecision(BufferedReader reader, int kDocuments, 
+	public static void evaluateStdin_AllMetrics(
 			HashMap < String , HashMap < Integer , Double > > relevance_judgments){
 
-		double RR = 0.0;
-		double N = 0.0;
-		String line = null;
-		
 		try{
-			
-			for(int i=0; i<kDocuments; i++){
-				line = reader.readLine();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+			try{
+				String line = null;
+				Vector<String> results = new Vector<String>();
+				String query = null;
+				
+				boolean gotQuery = false;
+				while ((line = reader.readLine()) != null){
+					if(!gotQuery){
+						Scanner s = new Scanner(line).useDelimiter("\t");
+						query = s.next();
+						s.close();
+						gotQuery = true;
+					}
+					results.add(line);
+				}
+
+				Double precision_1 = calculatePrecision(results, 1, relevance_judgments);
+				Double precision_5 = calculatePrecision(results, 5, relevance_judgments);
+				Double precision_10 = calculatePrecision(results, 10, relevance_judgments);
+
+				Double recall_1 = calculateRecall(results, 1, relevance_judgments);
+				Double recall_5 = calculateRecall(results, 5, relevance_judgments);
+				Double recall_10 = calculateRecall(results, 10, relevance_judgments);
+
+				String output = query+"\t" + 
+						Double.toString(precision_1) + "\t" + 
+						Double.toString(precision_5) + "\t" + 
+						Double.toString(precision_10) + "\t" + 
+						Double.toString(recall_1) + "\t" + 
+						Double.toString(recall_5) + "\t" + 
+						Double.toString(recall_10) + "\n";
+
+
+				System.out.println(output);
+
+			} finally {
+				reader.close();
+			}
+
+		}catch(Exception e){
+			e.printStackTrace();
+			System.err.println("Error:" + e.getMessage());
+		}
+
+	}
+
+
+	/**
+	 * Calculates Precision
+	 * */
+	private static Double calculatePrecision(Vector<String> results, int k, 
+			HashMap < String , HashMap < Integer , Double > > relevance_judgments){
+
+		if(k == 0 || results.size() == 0) return 0.0;
+		
+		double RR = 0.0;
+
+		String line = null;
+
+		try{
+
+			for(int i=0; i<k; i++){
+				line = results.get(i);
 				Scanner s = new Scanner(line).useDelimiter("\t");
 				String query = s.next();
 				int did = Integer.parseInt(s.next());
@@ -113,12 +182,62 @@ class Evaluator {
 				if (qr.containsKey(did) != false){
 					RR += qr.get(did);					
 				}
-				++N;
 			}
 		}catch (Exception e){
 			System.err.println("Error:" + e.getMessage());
 		}
-		return (RR/N);
+		return (RR/k);
+	}
+
+
+	/**
+	 * Calculates the Recall
+	 * */
+	private static Double calculateRecall(Vector<String> results, int k, 
+			HashMap < String , HashMap < Integer , Double > > relevance_judgments){
+
+		if(k == 0 || results.size() == 0) return 0.0;
+
+		double RR = 0.0;
+		double R = 0.0;
+		
+		String line = results.get(0);
+
+		Scanner s = new Scanner(line).useDelimiter("\t");
+		String query = s.next();
+		s.close();
+
+		HashMap<Integer, Double> relevantJudgements = relevance_judgments.get(query);
+		Set<Integer> documents = relevantJudgements.keySet();
+		Iterator<Integer> iter = documents.iterator();
+
+		while(iter.hasNext()){
+			Integer did = iter.next();
+			R += relevantJudgements.get(did);
+		}
+
+		try{
+
+			for(int i=0; i<k; i++){
+				line = results.get(i);
+				s = new Scanner(line).useDelimiter("\t");
+				query = s.next();
+				int did = Integer.parseInt(s.next());
+				String title = s.next();
+				double rel = Double.parseDouble(s.next());
+				if (relevance_judgments.containsKey(query) == false){
+					throw new IOException("query not found");
+				}
+				HashMap < Integer , Double > qr = relevance_judgments.get(query);
+				if (qr.containsKey(did) != false){
+					RR += qr.get(did);					
+				}
+				
+			}
+		}catch (Exception e){
+			System.err.println("Error:" + e.getMessage());
+		}
+		return (RR/R);
 	}
 
 }
