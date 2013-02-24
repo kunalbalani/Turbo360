@@ -135,7 +135,17 @@ class Evaluator {
 				Double f0_50_1 = calculateF(results, 1, relevance_judgments, 0.5);
 				Double f0_50_5 = calculateF(results, 5, relevance_judgments, 0.5);
 				Double f0_50_10 = calculateF(results, 10, relevance_judgments, 0.5);
-
+				
+				
+				Double averagePrecision = calculateAveragePrecision(results, relevance_judgments);
+				
+				//TODO
+				Double ndcg_1 = 0.0;
+				Double ndcg_5 = 0.0;
+				Double ndcg_10 = 0.0;
+				
+				Double reciprocalRank = calculateReciprocalRank(results, relevance_judgments);
+				
 				String output = query+"\t" + 
 						Double.toString(precision_1) + "\t" + 
 						Double.toString(precision_5) + "\t" + 
@@ -145,7 +155,12 @@ class Evaluator {
 						Double.toString(recall_10) + "\t" + 
 						Double.toString(f0_50_1) + "\t" + 
 						Double.toString(f0_50_5) + "\t" + 
-						Double.toString(f0_50_10) + "\n";
+						Double.toString(f0_50_10) + "\t" +
+						Double.toString(averagePrecision) + "\t" + 
+						Double.toString(ndcg_1) + "\t" +
+						Double.toString(ndcg_5) + "\t" +
+						Double.toString(ndcg_10) + "\t" +
+						Double.toString(reciprocalRank) + "\n";
 
 
 				System.out.println(output);
@@ -177,6 +192,7 @@ class Evaluator {
 		try{
 			double RR = 0.0;
 			String line = null;
+			
 			for(int i=0; i<k; i++){
 				line = results.get(i);
 				Scanner s = new Scanner(line).useDelimiter("\t");
@@ -266,7 +282,7 @@ class Evaluator {
 	}
 
 	/**
-	 * Calculates the Recall at k
+	 * Calculates the F-Measure at alpha
 	 * */
 	private static Double calculateF(Vector<String> results, int k, 
 			HashMap < String , HashMap < Integer , Double > > relevance_judgments, Double alpha){
@@ -278,6 +294,88 @@ class Evaluator {
 		
 		return Math.pow(temp,-1);
 	}
+	
+	
+	/**
+	 * Calculates Average Precision
+	 * */
+	private static Double calculateAveragePrecision(Vector<String> results, 
+			HashMap < String , HashMap < Integer , Double > > relevance_judgments){
+		
+		if(results.size() == 0) return 0.0;
+		double AP = 0.0;
+		double RR = 0.0;
+		
+		try{
+			String line = null;
+			
+			for(int i=0; i<results.size(); i++){
+				
+				line = results.get(i);
+				Scanner s = new Scanner(line).useDelimiter("\t");
+				String query = s.next();
+				int did = Integer.parseInt(s.next());
+				String title = s.next();
+				double rel = Double.parseDouble(s.next());
+				if (relevance_judgments.containsKey(query) == false){
+					throw new IOException("query not found");
+				}
+				HashMap < Integer , Double > qr = relevance_judgments.get(query);
+				if (qr.containsKey(did) != false){
+					RR += qr.get(did);
+					if(qr.get(did).equals(1.0)){
+						AP += RR/(i+1); //+1 To avoid divide by 0 error;
+					}
+				}
+				
+			}
+			
+		}catch(Exception e){
+			System.err.println("Error:" + e.getMessage());
+		}
+		
+		return (AP/RR);
+	}
+	
+	
+	/**
+	 * Calculates Reciprocal Rank
+	 * */
+	private static Double calculateReciprocalRank(Vector<String> results, 
+			HashMap < String , HashMap < Integer , Double > > relevance_judgments){
+		
+		if(results.size() == 0) return 0.0;
+		
+		try{
+			String line = null;
+			
+			for(int i=0; i<results.size(); i++){
+				
+				line = results.get(i);
+				Scanner s = new Scanner(line).useDelimiter("\t");
+				String query = s.next();
+				int did = Integer.parseInt(s.next());
+				String title = s.next();
+				double rel = Double.parseDouble(s.next());
+				if (relevance_judgments.containsKey(query) == false){
+					throw new IOException("query not found");
+				}
+				HashMap < Integer , Double > qr = relevance_judgments.get(query);
+				if (qr.containsKey(did) != false){
+					if(qr.get(did).equals(1.0)){
+						return 1.0/(i+1);
+					}
+				}
+				
+			}
+			
+		}catch(Exception e){
+			System.err.println("Error:" + e.getMessage());
+		}
+		
+		return 0.0;
+	}
+	
 	
 	//Keeps the records of already calculated metrics
 	private static Map<Integer, Double> PrecisionRecord = new HashMap<Integer, Double>();
