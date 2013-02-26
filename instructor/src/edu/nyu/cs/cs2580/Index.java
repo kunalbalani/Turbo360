@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.util.Vector;
 
-class Index {
+public class Index {
   public Vector < Document > _documents;
   public Index(String index_source){
     System.out.println("Indexing documents ...");
