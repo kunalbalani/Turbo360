@@ -270,7 +270,7 @@ class QueryHandler implements HttpHandler
 		FileWriter fileWriter = null;
 
 		try{
-			fileWriter = new FileWriter("../results/"+outputFileName, true);
+			fileWriter = new FileWriter("./results/"+outputFileName, true);
 			fileWriter.write(text);
 			fileWriter.close();
 		}finally{
