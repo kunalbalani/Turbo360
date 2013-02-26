@@ -10,7 +10,6 @@ public class PhraseModel extends Model {
 	
 	public PhraseModel(Index _index) {
 		super(_index);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -44,11 +43,10 @@ public class PhraseModel extends Model {
 			throw new IllegalArgumentException("Phrase subquery contains more than 2 terms");
 		}
 
-		String search_query = sub_query.firstElement()+ " "+ sub_query.lastElement(); 
-
-		for(int i = 0 ; i < dv.size() ;i++){
-			if(search_query.equalsIgnoreCase(dv.get(i))){
-				count ++;
+		for(int i = 0 ; i < dv.size()-1 ;i++){
+			if(sub_query.firstElement().equalsIgnoreCase(dv.get(i)) && 
+				sub_query.lastElement().equalsIgnoreCase(dv.get(i+1))){
+				count++;
 			}
 		}
 

@@ -73,16 +73,16 @@ class QueryHandler implements HttpHandler
 						if (ranker_type.equalsIgnoreCase("cosine")){
 							sds = _ranker.runquery(query_map.get("query"), "cosine");
 							outputFileName = "hw1.1-vsm.tsv";
-						} else if (ranker_type.equalsIgnoreCase("QL")){
-							sds = _ranker.runquery(query_map.get("query"), "QL");
+						} else if (ranker_type.equalsIgnoreCase("ql")){
+							sds = _ranker.runquery(query_map.get("query"), "ql");
 							outputFileName = "hw1.1-ql.tsv";
-						} else if (ranker_type.equals("phrase")){
+						} else if (ranker_type.equalsIgnoreCase("phrase")){
 							sds = _ranker.runquery(query_map.get("query"), "phrase");
 							outputFileName = "hw1.1-phrase.tsv";
-						} else if (ranker_type.equals("numviews")){
+						} else if (ranker_type.equalsIgnoreCase("numviews")){
 							sds = _ranker.runquery(query_map.get("query"), "numviews");
 							outputFileName = "hw1.1-numviews.tsv";
-						} else if (ranker_type.equals("linear")){
+						} else if (ranker_type.equalsIgnoreCase("linear")){
 							sds = _ranker.runquery(query_map.get("query"), "linear");
 							outputFileName = "hw1.2-linear.tsv";
 						} else {
