@@ -20,9 +20,6 @@ import com.sun.net.httpserver.HttpHandler;
 
 class QueryHandler implements HttpHandler
 {
-	private static String plainResponse =
-			"Request received, but I am not smart enough to echo yet!\n";
-
 	private Ranker _ranker;
 
 	public QueryHandler(Ranker ranker){
