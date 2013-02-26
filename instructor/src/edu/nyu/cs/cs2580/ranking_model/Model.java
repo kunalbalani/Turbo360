@@ -30,8 +30,9 @@ public abstract class Model
 		this._index = _index;
 	}
 	
+	
+	
 	/**
-	 * 
 	 * Counts the term frequency within the document.
 	 */
 	public Map<String, Integer> getTermFrequency(Vector<String> documentVector){
