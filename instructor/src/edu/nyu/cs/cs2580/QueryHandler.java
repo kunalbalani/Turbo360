@@ -51,6 +51,7 @@ class QueryHandler implements HttpHandler {
 		}
 		System.out.println();
 		String queryResponse = "";  
+		String contentType = "text/plain";
 		String uriQuery = exchange.getRequestURI().getQuery();
 		String uriPath = exchange.getRequestURI().getPath();
 
@@ -94,33 +95,91 @@ class QueryHandler implements HttpHandler {
 						sds = _ranker.runquery(query_map.get("query"));
 					}  
 
-					Iterator < ScoredDocument > itr = sds.iterator();
-					while (itr.hasNext()){
-						ScoredDocument sd = itr.next();
-						if (queryResponse.length() > 0){
-							queryResponse = queryResponse + "\n";
-						}
-						queryResponse = queryResponse + query_map.get("query") + "\t" + sd.asString();
-					}
-					if (queryResponse.length() > 0){
-						queryResponse = queryResponse + "\n";
-					}
-
 					//defaults to text, if query doesnt contain format parameter
 					//and checks if format is equal to "text", if format is present
-					if(!keys.contains("format") || query_map.get("format").equalsIgnoreCase("text"))
+					if(!keys.contains("format") || query_map.get("format").equalsIgnoreCase("text")){
+						queryResponse = getTextOutput(query_map, sds);
 						writeResultToFile(queryResponse, outputFileName);
+					}else{
+						contentType = "text/html";
+						queryResponse = getHTMLOutput(query_map, sds, 10);
+					}
 				}
 			}
 		}
 
 		// Construct a simple response.
 		Headers responseHeaders = exchange.getResponseHeaders();
-		responseHeaders.set("Content-Type", "text/plain");
+		responseHeaders.set("Content-Type", contentType);
 		exchange.sendResponseHeaders(200, 0);  // arbitrary number of bytes
 		OutputStream responseBody = exchange.getResponseBody();
 		responseBody.write(queryResponse.getBytes());
 		responseBody.close();
+	}
+
+
+
+	/**
+	 * Creates HTML output
+	 * */
+	private static String getHTMLOutput(Map<String,String> query_map, 
+			Vector<ScoredDocument> sds, int numberOfResults) {
+
+		String output = "";
+		String query = "";
+		String ranker = "";
+
+		if(query_map.containsKey("query")){
+			query = query_map.get("query");
+		}
+		if(query_map.containsKey("ranker")){
+			ranker = query_map.get("ranker");
+		}
+
+		output += "<html><body><br>" + 
+				"<div style='font-size:25px; font-weight:bold'>Query : " + query + "<br>" +
+				"Ranker : " + ranker + "<br>" +
+				"<br><hr></div><br>";
+
+		Iterator < ScoredDocument > itr = sds.iterator();
+		while (itr.hasNext() && numberOfResults > 0){
+			ScoredDocument sd = itr.next();
+			String title = sd._title;
+			int did = sd._did;
+			double score = sd._score;
+			output += "<div>" +
+					"<span style='font-size:20px'><a href='clicked?did="+did+"' target='_blank'>"+title+"</a></span><br>" +
+					"<span>Score : "+Double.toString(score)+"</span>" +
+					"</div><br><br>";
+			numberOfResults--;
+		}
+
+		output += "</body></html>";
+		
+		return output;
+	}
+
+
+	/**
+	 * Creates text output
+	 * */
+	private static String getTextOutput(Map<String,String> query_map, 
+			Vector<ScoredDocument> sds){
+		String output = "";
+
+		Iterator < ScoredDocument > itr = sds.iterator();
+		while (itr.hasNext()){
+			ScoredDocument sd = itr.next();
+			if (output.length() > 0){
+				output = output + "\n";
+			}
+			output = output + query_map.get("query") + "\t" + sd.asString();
+		}
+		if (output.length() > 0){
+			output = output + "\n";
+		}
+
+		return output;
 	}
 
 
