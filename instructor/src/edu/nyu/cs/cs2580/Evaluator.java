@@ -1,9 +1,14 @@
 package edu.nyu.cs.cs2580;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -112,6 +117,7 @@ class Evaluator {
 				String line = null;
 				Vector<String> results = new Vector<String>();
 				String query = null;
+				String outputFileName = "tempEvaluatorResults.tsv";
 
 				boolean gotQuery = false;
 				while ((line = reader.readLine()) != null){
@@ -139,7 +145,6 @@ class Evaluator {
 				
 				Double averagePrecision = calculateAveragePrecision(results, relevance_judgments);
 				
-				//TODO
 				Double ndcg_1 = 0.0;
 				Double ndcg_5 = 0.0;
 				Double ndcg_10 = 0.0;
@@ -163,8 +168,10 @@ class Evaluator {
 						Double.toString(reciprocalRank) + "\n";
 
 
+				writeResultToFile(output, outputFileName);
+				
 				System.out.println(output);
-
+				
 			} finally {
 				reader.close();
 			}
@@ -374,6 +381,36 @@ class Evaluator {
 		}
 		
 		return 0.0;
+	}
+	
+	
+	/**
+	 * Writes the evaluator results to the appropriate file in the results folder
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
+	 * */
+	private static void writeResultToFile(String body,
+			String outputFileName) throws IOException {
+
+		if(outputFileName.isEmpty())
+			return;
+
+		OutputStream outputStream = null;
+		Writer out = null;
+
+		try{
+			outputStream = new FileOutputStream("./results/"+outputFileName);
+			out = new OutputStreamWriter(outputStream);
+			out.write(body);
+		}catch(FileNotFoundException fnfe){
+			throw new FileNotFoundException("File Not Found : "+outputFileName+"\n");
+		}finally{
+			if(out != null)
+				out.close();
+			if(outputStream != null)
+				outputStream.close();
+		}
+
 	}
 	
 	

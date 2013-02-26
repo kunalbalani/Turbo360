@@ -139,11 +139,9 @@ class QueryHandler implements HttpHandler {
 		Writer out = null;
 
 		try{
-
-			outputStream = new FileOutputStream("./results/"+outputFileName);
+			outputStream = new FileOutputStream("results/"+outputFileName);
 			out = new OutputStreamWriter(outputStream);
 			out.write(queryResponse);
-
 		}catch(FileNotFoundException fnfe){
 			throw new FileNotFoundException("File Not Found : "+outputFileName+"\n");
 		}finally{
