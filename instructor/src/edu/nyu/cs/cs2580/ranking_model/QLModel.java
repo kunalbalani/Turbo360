@@ -16,7 +16,7 @@ public class QLModel extends Model
 	@Override
 	public Double getScore(Vector<String> qv, Document d) {
 
-		Vector < String > dv = d.get_body_vector();
+		Vector < String > dv = d.get_document_vector();
 
 		double smoothFactor = 0.5;
 		

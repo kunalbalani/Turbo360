@@ -17,7 +17,7 @@ public class CosineModel extends Model
 	@Override
 	public Double getScore(Vector<String> qv, Document d) {
 		
-		Vector < String > dv = d.get_body_vector();
+		Vector < String > dv = d.get_document_vector();
 		
 		Map<String, Integer> documentTermFrequency = getTermFrequency(dv);
 		Map<String, Integer> queryTermFrequency = getTermFrequency(qv);

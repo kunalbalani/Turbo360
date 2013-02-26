@@ -16,7 +16,7 @@ public class PhraseModel extends Model {
 	@Override
 	public Double getScore(Vector<String> qv, Document d){
 		
-		Vector<String> dv = d.get_body_vector();
+		Vector<String> dv = d.get_document_vector();
 		
 		// Score the document. Here we have provided a very simple ranking model,
 		// where a document is scored 1.0 if it gets hit by at least one query term.
