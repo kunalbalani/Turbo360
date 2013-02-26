@@ -22,12 +22,11 @@ public class CosineModel extends Model
 		Map<String, Integer> documentTermFrequency = getTermFrequency(dv);
 		Map<String, Integer> queryTermFrequency = getTermFrequency(qv);
 
-		//Document vector that stores all tf.idfs for the document
+		//Document vector that stores all tf.idfs for the documents
 		Vector<Double> documentVector = new Vector<Double>();
 		Vector<Double> queryVector = new Vector<Double>();
 
 
-		//	    double xiyi = 0.0; //Store the sum of xi*yi
 		double xi2 = 0.0; //Stores the sum of xi^2
 		double yi2 = 0.0; //Stores the sum of yi^2
 		double score = 0.0; 
@@ -38,7 +37,6 @@ public class CosineModel extends Model
 
 			//Calculating the tf.idfs Document vectors
 			double tf = (double) documentTermFrequency.get(documentTerm);
-			//double tf = (double) .termFrequency(documentTerm);
 			double idf = getIDF(documentTerm);
 			double xi = tf*idf;
 
@@ -54,16 +52,14 @@ public class CosineModel extends Model
 			}
 
 			queryVector.add(yi);
-			/*
-			 * Cosine Similarity 
-			 * Sum(xi*yi)/(Sqrt( Sum(xi^2)*Sum(yi^2) ))
-			 * */
-			//xiyi += xi*yi;
+
 			xi2 += Math.pow(xi,2);
 			yi2 += Math.pow(yi,2);
 
 		}
 
+		
+		
 		double xi_norm = Math.sqrt(xi2);
 		double yi_norm = Math.sqrt(yi2);
 
@@ -75,12 +71,15 @@ public class CosineModel extends Model
 			queryVector_normalized.add(queryVector.get(i)/yi_norm);
 		}
 
-		for(int i=0; i<documentVector_normalized.size(); i++){
+		
+		
+		
+		
+		
+		for(int i=0; i<documentVector_normalized.size(); i++)
 			score += documentVector_normalized.get(i) * queryVector_normalized.get(i);
-		}
-
-		//score = xiyi/Math.sqrt(xi2 * yi2);
-
+		
+		
 		return score;
 	}
 	
