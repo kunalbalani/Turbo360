@@ -77,16 +77,16 @@ class QueryHandler implements HttpHandler
 							sds = _ranker.runquery(query_map.get("query"), "QL");
 							outputFileName = "hw1.1-ql.tsv";
 						} else if (ranker_type.equals("phrase")){
-							queryResponse = (ranker_type + " not implemented.");
+							sds = _ranker.runquery(query_map.get("query"), "phrase");
 							outputFileName = "hw1.1-phrase.tsv";
 						} else if (ranker_type.equals("numviews")){
 							sds = _ranker.runquery(query_map.get("query"), "numviews");
 							outputFileName = "hw1.1-numviews.tsv";
 						} else if (ranker_type.equals("linear")){
-							queryResponse = (ranker_type + " not implemented.");
+							sds = _ranker.runquery(query_map.get("query"), "linear");
 							outputFileName = "hw1.2-linear.tsv";
 						} else {
-							queryResponse = (ranker_type+" not implemented.");
+							sds = _ranker.runquery(query_map.get("query"));
 						}
 
 

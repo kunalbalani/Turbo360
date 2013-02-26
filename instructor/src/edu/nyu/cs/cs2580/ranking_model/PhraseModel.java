@@ -41,7 +41,7 @@ public class PhraseModel extends Model {
 		int count = 0;
 
 		if(sub_query.size() != 2){
-			throw new IllegalArgumentException("Pharse subquey contains more than 2 terms");
+			throw new IllegalArgumentException("Phrase subquery contains more than 2 terms");
 		}
 
 		String search_query = sub_query.firstElement()+ " "+ sub_query.lastElement(); 
