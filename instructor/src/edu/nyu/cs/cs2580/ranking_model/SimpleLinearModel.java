@@ -15,9 +15,9 @@ public class SimpleLinearModel extends Model
 	@Override
 	public Double getScore(Vector<String> qv, Document d) {
 
-		double cosineBeta = 0.2;
+		double cosineBeta = 0.3;
 		double qlBeta = 0.2;
-		double phraseBeta = 0.5;
+		double phraseBeta = 0.4;
 		double numviewsBeta = 0.1;
 		
 		Index _index = super.get_index();
