@@ -50,11 +50,17 @@ class Evaluator {
 					String grade = s.next();
 					double rel = 0.0;
 					// convert to binary relevance
-					if ((grade.equals("Perfect")) ||
-							(grade.equals("Excellent")) ||
-							(grade.equals("Good"))){
+					if (grade.equals("Perfect"))
+						rel = 10.0;
+					else if (grade.equals("Excellent"))
+						rel = 7.0;
+					else if (grade.equals("Good"))
+						rel = 5.0;
+					else if (grade.equals("Fair"))
 						rel = 1.0;
-					}
+					else if (grade.equals("Bad"))
+						rel = 0.0;
+					
 					if (relevance_judgments.containsKey(query) == false){
 						HashMap < Integer , Double > qr = new HashMap < Integer , Double >();
 						relevance_judgments.put(query,qr);
@@ -69,6 +75,10 @@ class Evaluator {
 			System.err.println("Oops " + ioe.getMessage());
 		}
 	}
+	
+	
+	
+
 
 	public static void evaluateStdin(
 			HashMap < String , HashMap < Integer , Double > > relevance_judgments){
@@ -145,9 +155,9 @@ class Evaluator {
 				
 				Double averagePrecision = calculateAveragePrecision(results, relevance_judgments);
 				
-				Double ndcg_1 = 0.0;
-				Double ndcg_5 = 0.0;
-				Double ndcg_10 = 0.0;
+				Double ndcg_1 = calculateDCG(results, 1, relevance_judgments);
+				Double ndcg_5 = calculateDCG(results, 5, relevance_judgments);
+				Double ndcg_10 = calculateDCG(results, 10, relevance_judgments);
 				
 				Double reciprocalRank = calculateReciprocalRank(results, relevance_judgments);
 				
@@ -382,6 +392,46 @@ class Evaluator {
 		
 		return 0.0;
 	}
+	
+	
+	/**
+	 * Calculates DCG
+	 * */
+	private static Double calculateDCG(Vector<String> results, int k, 
+			HashMap < String , HashMap < Integer , Double > > relevance_judgments){
+
+		if(k == 0 || results.size() == 0) return 0.0;
+		
+		double DCG = 0.0;
+
+		try{
+			
+			String line = null;
+			
+			for(int i=0; i<k; i++){
+				line = results.get(i);
+				Scanner s = new Scanner(line).useDelimiter("\t");
+				String query = s.next();
+				int did = Integer.parseInt(s.next());
+				String title = s.next();
+				double rel = Double.parseDouble(s.next());
+				if (relevance_judgments.containsKey(query) == false){
+					throw new IOException("query not found");
+				}
+				HashMap < Integer , Double > qr = relevance_judgments.get(query);
+				if (qr.containsKey(did) != false){
+					DCG += (qr.get(did))/(Math.log(i+1)/Math.log(2));					
+				}
+			}
+			
+			
+		}catch (Exception e){
+			System.err.println("Error:" + e.getMessage());
+		}
+		
+		return DCG;
+	}
+
 	
 	
 	/**
