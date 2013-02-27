@@ -15,9 +15,9 @@ public class SimpleLinearModel extends Model
 	@Override
 	public Double getScore(Vector<String> qv, Document d) {
 
-		double cosineBeta = 0.2;
+		double cosineBeta = 0.3;
 		double qlBeta = 0.2;
-		double phraseBeta = 0.5;
+		double phraseBeta = 0.4;
 		double numviewsBeta = 0.1;
 		
 		Index _index = super.get_index();
@@ -28,8 +28,7 @@ public class SimpleLinearModel extends Model
 		double numviewsScore = numviewsBeta * ModelFactory.getModel(_index, "numviews").getScore(qv,d);
 		
 		
-//		return cosineScore + qlScore + phraseScore + numviewsScore;
-		return 0.0;
+		return cosineScore + qlScore + phraseScore + numviewsScore;
 	}
 
 }

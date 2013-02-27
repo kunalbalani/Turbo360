@@ -2,10 +2,13 @@ package edu.nyu.cs.cs2580;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.InetSocketAddress;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.URLEncoder;
 import java.util.concurrent.Executors;
 
 import junit.framework.Test;
@@ -18,11 +21,10 @@ import com.sun.net.httpserver.HttpServer;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-extends TestCase
+public class AppTest extends TestCase
 {
 	int port_no = 12345;
-	String path = "src/data/queries.tsv";
+	String path = "src/data/qrels.tsv";
 
 	/**
 	 * Create the test case
@@ -44,15 +46,22 @@ extends TestCase
 
 	/**
 	 * Rigorous Test :-)
+	 * @throws UnsupportedEncodingException 
+	 * @throws MalformedURLException 
+	 * @throws URISyntaxException 
 	 */
-	public void testApp()
+	public void testApp() throws UnsupportedEncodingException, MalformedURLException, URISyntaxException
 	{
-		String query = "hello world";
+		String query = "data mining";
 		String format = "text";
-		String raker = "cosine";
+		String raker = "phrase";
 
-		String httpRequest = "http://localhost:"+port_no+"/search?query="+URLEncoder.encode(query+"&ranker="+raker+"&format="+format);
+		String httpRequest = "http://localhost:"+port_no+"/search?query="+query+"&ranker="+raker+"&format="+format;
 
+		URL url = new URL(httpRequest);
+		URI uri = new URI(url.getProtocol(), url.getUserInfo(), url.getHost(), url.getPort(), url.getPath(), url.getQuery(), url.getRef());
+		url = uri.toURL();
+		
 		try{
 
 			// create the HttpServer
@@ -68,8 +77,8 @@ extends TestCase
 
 
 			// verify our client code
-			System.out.println("Sending reuqest "+httpRequest);
-			URL url = new URL(httpRequest);
+			System.out.println("Sending reuqest "+url.toString());
+			
 			URLConnection conn = url.openConnection();
 			BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 

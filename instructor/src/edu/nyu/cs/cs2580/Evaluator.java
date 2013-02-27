@@ -2,12 +2,10 @@ package edu.nyu.cs.cs2580;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -202,8 +200,6 @@ class Evaluator {
 
 		if(k == 0 || results.size() == 0) return 0.0;
 		
-		if(PrecisionRecord.containsKey(k)) return PrecisionRecord.get(k);
-		
 		double precision = 0.0;
 
 		try{
@@ -222,13 +218,11 @@ class Evaluator {
 				}
 				HashMap < Integer , Double > qr = relevance_judgments.get(query);
 				if (qr.containsKey(did) != false){
-					RR += qr.get(did);					
+					RR += (qr.get(did).compareTo(5.0) >= 0) ? 1.0 : 0.0;					
 				}
 			}
 			
 			precision = RR/k;
-			
-			PrecisionRecord.put(k, RR);
 			
 		}catch (Exception e){
 			System.err.println("Error:" + e.getMessage());
@@ -245,8 +239,6 @@ class Evaluator {
 			HashMap < String , HashMap < Integer , Double > > relevance_judgments){
 
 		if(k == 0 || results.size() == 0) return 0.0;
-
-		if(RecallRecord.containsKey(k)) return RecallRecord.get(k);
 
 		double recall = 0.0;
 
@@ -267,7 +259,7 @@ class Evaluator {
 
 			while(iter.hasNext()){
 				Integer did = iter.next();
-				R += relevantJudgements.get(did);
+				R += (relevantJudgements.get(did).compareTo(5.0) >= 0) ? 1.0 : 0.0;
 			}
 
 			for(int i=0; i<k; i++){
@@ -284,13 +276,11 @@ class Evaluator {
 				
 				HashMap < Integer , Double > qr = relevance_judgments.get(query);
 				if (qr.containsKey(did) != false){
-					RR += qr.get(did);					
+					RR += (qr.get(did).compareTo(5.0) >= 0) ? 1.0 : 0.0;			
 				}
 			}
 			
 			recall = RR/R;
-			
-			RecallRecord.put(k, recall);
 			
 		}catch (Exception e){
 			System.err.println("Error:" + e.getMessage());
@@ -339,8 +329,8 @@ class Evaluator {
 				}
 				HashMap < Integer , Double > qr = relevance_judgments.get(query);
 				if (qr.containsKey(did) != false){
-					RR += qr.get(did);
-					if(qr.get(did).equals(1.0)){
+					RR += (qr.get(did).compareTo(5.0) >= 0) ? 1.0 : 0.0;
+					if(qr.get(did).compareTo(5.0) >= 0){
 						AP += RR/(i+1); //+1 To avoid divide by 0 error;
 					}
 				}
@@ -379,7 +369,7 @@ class Evaluator {
 				}
 				HashMap < Integer , Double > qr = relevance_judgments.get(query);
 				if (qr.containsKey(did) != false){
-					if(qr.get(did).equals(1.0)){
+					if(qr.get(did).compareTo(5.0) >= 0){
 						return 1.0/(i+1);
 					}
 				}
@@ -484,7 +474,11 @@ class Evaluator {
 				}
 				HashMap < Integer , Double > qr = relevance_judgments.get(query);
 				if (qr.containsKey(did) != false){
+<<<<<<< HEAD
 					DCG += (qr.get(did))/(Math.log(i+2)/Math.log(2));					
+=======
+					DCG += (qr.get(did))/(Math.log(i+2)/Math.log(2));//i+2 To avoid divide by 0 error;				
+>>>>>>> c73aaafe782011dc06f6cb7f6649dbcf45c4ca75
 				}
 			}
 			
@@ -512,27 +506,19 @@ class Evaluator {
 		if(outputFileName.isEmpty())
 			return;
 
-		OutputStream outputStream = null;
-		Writer out = null;
+		FileWriter outputStream = null;
 
 		try{
-			outputStream = new FileOutputStream("./results/"+outputFileName);
-			out = new OutputStreamWriter(outputStream);
-			out.write(body);
+			outputStream = new FileWriter(outputFileName, true);
+			outputStream.write(body);
 		}catch(FileNotFoundException fnfe){
 			throw new FileNotFoundException("File Not Found : "+outputFileName+"\n");
 		}finally{
-			if(out != null)
-				out.close();
 			if(outputStream != null)
 				outputStream.close();
 		}
 
 	}
 	
-	
-	//Keeps the records of already calculated metrics
-	private static Map<Integer, Double> PrecisionRecord = new HashMap<Integer, Double>();
-	private static Map<Integer, Double> RecallRecord = new HashMap<Integer, Double>();
 	
 }

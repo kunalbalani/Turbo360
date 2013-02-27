@@ -86,16 +86,19 @@ class Ranker
 	 * Correlation between the query and document is directly 
 	 * Proportional to their corresponding score.
 	 * 
-	 * @param query
-	 * @param did
-	 * @param ranker_type Cosine,QL,linear,phrase,numviews
-	 * @return
+	 * @param qv Query Vector
+	 * @param did Document ID
+	 * @param ranker_type Cosine, QL, phrase, numviews or linear
+	 * @return Scored Document
 	 */
 	public ScoredDocument runquery(Vector<String> qv, int did , String ranker_type)
 	{
 		Document d = _index.getDoc(did);
 		double score = ModelFactory.getModel(_index, ranker_type).getScore(qv,d);
 
+		if(new Double(score).isNaN()){
+			score = 0.0;
+		}
 		return new ScoredDocument(did, d.get_title_string(), score);
 	}
 	

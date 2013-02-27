@@ -65,7 +65,11 @@ public class Document {
         _df.put(idx,old_df + 1);
       }
     }
-    _numviews = Integer.parseInt(s.next());
+    try{
+    	_numviews = Integer.parseInt(s.next());
+    }catch(Exception e){
+    	_numviews = 0;
+    }
     _docid = did;
   }
   
