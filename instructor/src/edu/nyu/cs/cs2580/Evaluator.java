@@ -8,15 +8,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
-import java.util.SortedMap;
-import java.util.TreeMap;
 import java.util.Vector;
 
 class Evaluator {
@@ -155,6 +151,12 @@ class Evaluator {
 				Double f0_50_5 = calculateF(results, 5, relevance_judgments, 0.5);
 				Double f0_50_10 = calculateF(results, 10, relevance_judgments, 0.5);
 
+				Vector<Double> precAtRecall = calculatePrecisionAtRecall(results,relevance_judgments);
+
+				String precisionAtRecall = "";
+				for(int i=0; i<precAtRecall.size();i++){
+					precisionAtRecall += precAtRecall.get(i) + "\t";
+				}
 
 				Double averagePrecision = calculateAveragePrecision(results, relevance_judgments);
 
@@ -174,6 +176,7 @@ class Evaluator {
 						Double.toString(f0_50_1) + "\t" + 
 						Double.toString(f0_50_5) + "\t" + 
 						Double.toString(f0_50_10) + "\t" +
+						precisionAtRecall +
 						Double.toString(averagePrecision) + "\t" + 
 						Double.toString(ndcg_1) + "\t" +
 						Double.toString(ndcg_5) + "\t" +
@@ -308,6 +311,42 @@ class Evaluator {
 	}
 
 
+
+	/**
+
+	 * calculate recall frequency at point
+
+	 */
+
+	public static Vector<Double> calculatePrecisionAtRecall(Vector <String> results,
+			HashMap < String , HashMap < Integer , Double > > relevance_judgments){
+
+		Vector<Double> precisionList = new Vector<Double>();
+
+		for (int i = 0; i < 10; i++) {
+			precisionList.add(0.0);
+		}
+
+		int max_results = results.size();
+
+		for(int k = 0 ; k < max_results ;k++) {
+
+			//for k compute the recall
+			double r = calculateRecall(results,k,relevance_judgments);
+
+			//convert double to integer
+			int r_int = (int)r*10;
+
+			if(r_int >= 0 && r_int < 10){
+				precisionList.add(r_int, 
+						calculatePrecision(results, k, relevance_judgments));
+			}
+		}
+
+		return precisionList;
+	}
+
+
 	/**
 	 * Calculates Average Precision
 	 * */
@@ -396,7 +435,7 @@ class Evaluator {
 			HashMap < String , HashMap < Integer , Double > > relevance_judgments){
 
 		if(k == 0 || results.size() == 0) return 0.0;
-		
+
 		double DCGMax = 0.0;
 		double DCG = 0.0;
 
@@ -404,7 +443,7 @@ class Evaluator {
 
 			String line = null;
 
-			
+
 			for(int i=0; i<k; i++){
 				line = results.get(i);
 				Scanner s = new Scanner(line).useDelimiter("\t");
