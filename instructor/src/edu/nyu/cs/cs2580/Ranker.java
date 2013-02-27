@@ -44,10 +44,19 @@ class Ranker
 	{
 		Vector < ScoredDocument > retrieval_results = new Vector < ScoredDocument > ();
 
+		// Build query vector
+		Scanner s = new Scanner(query);
+		Vector < String > qv = new Vector < String > ();
+		while (s.hasNext())
+		{
+			String term = s.next();
+			qv.add(term);
+		}
+
 		for (int i = 0; i < _index.numDocs(); ++i)
 		{
 			ScoredDocument doc = null;
-			doc = runquery(query, i, ranker_type);
+			doc = runquery(qv, i, ranker_type);
 			retrieval_results.add(doc);
 		}
 
@@ -66,7 +75,7 @@ class Ranker
 					return -Double.compare(o1._score, o2._score); //Sorts in descending order
 			}
 		});	
-		
+
 		return retrieval_results;
 	}
 
@@ -82,20 +91,12 @@ class Ranker
 	 * @param ranker_type Cosine,QL,linear,phrase,numviews
 	 * @return
 	 */
-	public ScoredDocument runquery(String query, int did , String ranker_type)
+	public ScoredDocument runquery(Vector<String> qv, int did , String ranker_type)
 	{
-		// Build query vector
-		Scanner s = new Scanner(query);
-		Vector < String > qv = new Vector < String > ();
-		while (s.hasNext())
-		{
-			String term = s.next();
-			qv.add(term);
-		}
-
 		Document d = _index.getDoc(did);
 		double score = ModelFactory.getModel(_index, ranker_type).getScore(qv,d);
 
 		return new ScoredDocument(did, d.get_title_string(), score);
 	}
+	
 }

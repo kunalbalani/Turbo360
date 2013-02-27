@@ -20,7 +20,7 @@ public class SimpleLinearModel extends Model
 		double phraseBeta = 0.5;
 		double numviewsBeta = 0.1;
 		
-		Index _index = get_index();
+		Index _index = super.get_index();
 		
 		double cosineScore = cosineBeta * ModelFactory.getModel(_index, "cosine").getScore(qv,d);
 		double qlScore = qlBeta * ModelFactory.getModel(_index, "ql").getScore(qv,d);
