@@ -30,8 +30,6 @@ public abstract class Model
 		this._index = _index;
 	}
 	
-	
-	
 	/**
 	 * Counts the term frequency within the document.
 	 */

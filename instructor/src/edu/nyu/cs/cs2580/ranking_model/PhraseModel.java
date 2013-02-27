@@ -43,7 +43,8 @@ public class PhraseModel extends Model {
 			throw new IllegalArgumentException("Phrase subquery contains more than 2 terms");
 		}
 
-		for(int i = 0 ; i < dv.size()-1 ;i++){
+		for(int i = 0 ; i < dv.size()-1 ;i++)
+		{
 			if(sub_query.firstElement().equalsIgnoreCase(dv.get(i)) && 
 				sub_query.lastElement().equalsIgnoreCase(dv.get(i+1))){
 				count++;

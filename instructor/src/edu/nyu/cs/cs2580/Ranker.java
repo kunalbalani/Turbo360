@@ -96,6 +96,9 @@ class Ranker
 		Document d = _index.getDoc(did);
 		double score = ModelFactory.getModel(_index, ranker_type).getScore(qv,d);
 
+		if(new Double(score).isNaN()){
+			score = 0.0;
+		}
 		return new ScoredDocument(did, d.get_title_string(), score);
 	}
 	

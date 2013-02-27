@@ -18,11 +18,10 @@ import com.sun.net.httpserver.HttpServer;
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-extends TestCase
+public class AppTest extends TestCase
 {
 	int port_no = 12345;
-	String path = "src/data/queries.tsv";
+	String path = "src/data/qrels.tsv";
 
 	/**
 	 * Create the test case
@@ -47,9 +46,9 @@ extends TestCase
 	 */
 	public void testApp()
 	{
-		String query = "hello world";
+		String query = "data mining";
 		String format = "text";
-		String raker = "cosine";
+		String raker = "phrase";
 
 		String httpRequest = "http://localhost:"+port_no+"/search?query="+URLEncoder.encode(query+"&ranker="+raker+"&format="+format);
 
