@@ -6,10 +6,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.Writer;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.Vector;
@@ -417,13 +417,13 @@ class Evaluator {
 		    		}catch (Exception e){
 		    			System.err.println("Error:" + e.getMessage());
 		    		}
-				return 0.0;
+				return 0;
 		        //return o1.message.compareTo(o2.message);
 		    }
 		}
 		
 		Vector<String> sortedResults = new Vector<String>(results);
-		Comparator<String> comparator = new VectorComparator<String>();
+		Comparator<String> comparator = new VectorComparator();
 		Collections.sort(sortedResults, comparator);
 		
 		
@@ -484,7 +484,7 @@ class Evaluator {
 			System.err.println("Error:" + e.getMessage());
 		}
 		
-		if(DCGMax!=0)
+		if(new Double(DCGMax).compareTo(0.0) != 0)
 			return DCG/DCGMax;
 		else
 			return 0.0;
