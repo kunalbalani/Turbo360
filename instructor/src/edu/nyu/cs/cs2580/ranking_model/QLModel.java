@@ -17,6 +17,7 @@ public class QLModel extends Model
 	public Double getScore(Vector<String> qv, Document d) {
 
 		Vector < String > dv = d.get_document_vector();
+		Vector<Double> QueryVector_Smoothening = new Vector<Double>();
 
 		double smoothFactor = 0.5;
 		
@@ -32,9 +33,15 @@ public class QLModel extends Model
 			int qtermFreqCollection = get_index().termFrequency(queryTerm);
 			double secondTerm = (double) qtermFreqCollection/collectionTermCount;
 			secondTerm *= smoothFactor;
-			score *= (firstTerm + secondTerm);
+			QueryVector_Smoothening.add(firstTerm + secondTerm);
+			//score *= (firstTerm + secondTerm);
 
 		}
+		
+		for(int i=0; i<QueryVector_Smoothening.size(); i++){
+			score *= QueryVector_Smoothening.get(i);
+		}
+		
 		return score;
 	}
 
