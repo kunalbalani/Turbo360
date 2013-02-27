@@ -36,8 +36,7 @@ public class CosineModel extends Model
 			String documentTerm = dv.get(i);
 
 			//Calculating the tf.idfs Document vectors
-			//Taking log of term frequency to reduce the impact of frequent terms
-			double tf = Math.log((double) documentTermFrequency.get(documentTerm));
+			double tf = (double) documentTermFrequency.get(documentTerm);
 			double idf = getIDF(documentTerm);
 			double xi = tf*idf;
 
@@ -50,7 +49,7 @@ public class CosineModel extends Model
 			if(qv.contains(documentTerm)){	
 				String queryTerm = documentTerm;
 				//Calculating the query vector
-				double queryTerm_tf = Math.log((double) queryTermFrequency.get(queryTerm));
+				double queryTerm_tf = (double) queryTermFrequency.get(queryTerm);
 				double queryTerm_idf = getIDF(queryTerm);
 				yi = queryTerm_tf * queryTerm_idf;	
 			}
