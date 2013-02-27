@@ -175,8 +175,8 @@ class Evaluator {
 						Double.toString(recall_10) + "\t" + 
 						Double.toString(f0_50_1) + "\t" + 
 						Double.toString(f0_50_5) + "\t" + 
-						Double.toString(f0_50_10) + "\t" +
-						precisionAtRecall +
+						Double.toString(f0_50_10) + "\t" + "||" +
+						precisionAtRecall + "||" +
 						Double.toString(averagePrecision) + "\t" + 
 						Double.toString(ndcg_1) + "\t" +
 						Double.toString(ndcg_5) + "\t" +
