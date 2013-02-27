@@ -30,6 +30,8 @@ public abstract class Model
 		this._index = _index;
 	}
 	
+	
+	
 	/**
 	 * Counts the term frequency within the document.
 	 */
@@ -46,6 +48,12 @@ public abstract class Model
 		return termFrequency;
 	}
 	
+	/**
+	 * Computes the inverse document frequency.
+	 * 
+	 * @param term
+	 * @return
+	 */
 	public Double getIDF(String term)
 	{
 		return 1d + Math.log(_index.numDocs()/(_index.documentFrequency(term)))/Math.log(2);
@@ -56,7 +64,6 @@ public abstract class Model
 	 * 
 	 * @return
 	 */
-
 	public Double getScore(Vector<String> qv, Document d){
 		
 		Vector < String > dv = d.get_body_vector();

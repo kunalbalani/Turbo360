@@ -84,6 +84,13 @@ public class Document {
   public Vector < String > get_body_vector(){
     return getTermVector(_body);
   }
+  
+  public Vector <String> get_document_vector(){
+	  
+	  Vector <String> dcoment_vector = new Vector<String>(get_title_vector());
+	  dcoment_vector.addAll(get_body_vector());
+	  return dcoment_vector; 
+  }
 
   private Vector < String > getTermVector(Vector < Integer > tv){
     Vector < String > retval = new Vector < String >();

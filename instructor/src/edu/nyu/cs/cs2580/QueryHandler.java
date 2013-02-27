@@ -1,15 +1,17 @@
 package edu.nyu.cs.cs2580;
 
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import java.util.TimeZone;
+import java.util.UUID;
 import java.util.Vector;
 
 import com.sun.net.httpserver.Headers;
@@ -18,9 +20,6 @@ import com.sun.net.httpserver.HttpHandler;
 
 class QueryHandler implements HttpHandler
 {
-	private static String plainResponse =
-			"Request received, but I am not smart enough to echo yet!\n";
-
 	private Ranker _ranker;
 
 	public QueryHandler(Ranker ranker){
@@ -39,6 +38,7 @@ class QueryHandler implements HttpHandler
 	} 
 
 	public void handle(HttpExchange exchange) throws IOException {
+
 		String requestMethod = exchange.getRequestMethod();
 		if (!requestMethod.equalsIgnoreCase("GET")){  // GET requests only.
 			return;
@@ -73,20 +73,20 @@ class QueryHandler implements HttpHandler
 						if (ranker_type.equalsIgnoreCase("cosine")){
 							sds = _ranker.runquery(query_map.get("query"), "cosine");
 							outputFileName = "hw1.1-vsm.tsv";
-						} else if (ranker_type.equalsIgnoreCase("QL")){
-							sds = _ranker.runquery(query_map.get("query"), "QL");
+						} else if (ranker_type.equalsIgnoreCase("ql")){
+							sds = _ranker.runquery(query_map.get("query"), "ql");
 							outputFileName = "hw1.1-ql.tsv";
-						} else if (ranker_type.equals("phrase")){
-							queryResponse = (ranker_type + " not implemented.");
+						} else if (ranker_type.equalsIgnoreCase("phrase")){
+							sds = _ranker.runquery(query_map.get("query"), "phrase");
 							outputFileName = "hw1.1-phrase.tsv";
-						} else if (ranker_type.equals("numviews")){
+						} else if (ranker_type.equalsIgnoreCase("numviews")){
 							sds = _ranker.runquery(query_map.get("query"), "numviews");
 							outputFileName = "hw1.1-numviews.tsv";
-						} else if (ranker_type.equals("linear")){
-							queryResponse = (ranker_type + " not implemented.");
+						} else if (ranker_type.equalsIgnoreCase("linear")){
+							sds = _ranker.runquery(query_map.get("query"), "linear");
 							outputFileName = "hw1.2-linear.tsv";
 						} else {
-							queryResponse = (ranker_type+" not implemented.");
+							sds = _ranker.runquery(query_map.get("query"));
 						}
 
 
@@ -96,16 +96,24 @@ class QueryHandler implements HttpHandler
 						sds = _ranker.runquery(query_map.get("query"));
 					}  
 
+
+					String searchSessionID = getSearchSessionID();
+					logAction(query_map, sds, searchSessionID);
+
 					//defaults to text, if query doesnt contain format parameter
 					//and checks if format is equal to "text", if format is present
 					if(!keys.contains("format") || query_map.get("format").equalsIgnoreCase("text")){
 						queryResponse = getTextOutput(query_map, sds);
-						writeResultToFile(queryResponse, outputFileName);
+						//writes the result to the appropriate file in resutls folder
+						writeToFile(queryResponse, outputFileName);
 					}else{
 						contentType = "text/html";
-						queryResponse = getHTMLOutput(query_map, sds, 10);
+						queryResponse = getHTMLOutput(query_map, sds, 10, searchSessionID);
 					}
+
 				}
+			} else if (uriPath.equals("/click")){
+				logClick(uriQuery);
 			}
 		}
 
@@ -124,7 +132,7 @@ class QueryHandler implements HttpHandler
 	 * Creates HTML output
 	 * */
 	private static String getHTMLOutput(Map<String,String> query_map, 
-			Vector<ScoredDocument> sds, int numberOfResults) {
+			Vector<ScoredDocument> sds, int numberOfResults, String searchSessionID) {
 
 		String output = "";
 		String query = "";
@@ -143,20 +151,24 @@ class QueryHandler implements HttpHandler
 				"<br><hr></div><br>";
 
 		Iterator < ScoredDocument > itr = sds.iterator();
+
 		while (itr.hasNext() && numberOfResults > 0){
 			ScoredDocument sd = itr.next();
 			String title = sd._title;
 			int did = sd._did;
 			double score = sd._score;
 			output += "<div>" +
-					"<span style='font-size:20px'><a href='clicked?did="+did+"' target='_blank'>"+title+"</a></span><br>" +
+					"<span style='font-size:20px'>" +
+					"<a href='click?query="+query+"&did="+did+"&ssid="+searchSessionID+"' " +
+					"target='_blank'>"+title+"</a>" +
+					"</span><br>" +
 					"<span>Score : "+Double.toString(score)+"</span>" +
 					"</div><br><br>";
 			numberOfResults--;
 		}
 
 		output += "</body></html>";
-		
+
 		return output;
 	}
 
@@ -184,31 +196,86 @@ class QueryHandler implements HttpHandler
 	}
 
 
+
+	/**
+	 * Logs the user search session actions
+	 * @throws IOException 
+	 * */
+	private void logAction(Map<String, String> query_map,
+			Vector<ScoredDocument> sds, String searchSessionID) throws IOException {
+
+		String query = query_map.get("query");
+		String logMessage = "";		
+		
+		String DATE_FORMAT = "yyyyMMddHHmmssZ";
+		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+		sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+		String dateTimeString =  sdf.format(new Date());
+
+		Iterator < ScoredDocument > itr = sds.iterator();
+		while (itr.hasNext()){
+			ScoredDocument sd = itr.next();
+			logMessage += searchSessionID + "\t" + 
+						  query + "\t" + 
+						  sd._did + "\t" +
+						  "render\t" + 
+						  dateTimeString + "\n";
+		}
+
+		writeToFile(logMessage, "hw1.4-log.tsv");
+	}
+
+	
+	/**
+	 * Logs the click event
+	 * */
+	private void logClick(String uriQuery) throws IOException {
+		
+		Map<String,String> query_map = getQueryMap(uriQuery);
+		
+		String DATE_FORMAT = "yyyyMMddHHmmssZ";
+		SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
+		sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+		String dateTimeString =  sdf.format(new Date());
+	
+		String logMessage = query_map.get("ssid") + "\t" + 
+				query_map.get("query") + "\t" + 
+				query_map.get("did") + "\t" +
+				  "click\t" + 
+				  dateTimeString + "\n";
+		
+		writeToFile(logMessage, "hw1.4-log.tsv");
+	}
+
+	
+	/**
+	 * Generates a Universally Unique IDentifier.
+	 * */
+	private static String getSearchSessionID(){
+		return UUID.randomUUID().toString();
+	}
+
+
 	/**
 	 * Writes the ranking results to the appropriate files in the results folder
 	 * @throws IOException 
 	 * @throws FileNotFoundException 
 	 * */
-	private void writeResultToFile(String queryResponse,
+	private void writeToFile(String text,
 			String outputFileName) throws IOException {
 
 		if(outputFileName.isEmpty())
 			return;
 
-		OutputStream outputStream = null;
-		Writer out = null;
+		FileWriter fileWriter = null;
 
 		try{
-			outputStream = new FileOutputStream("results/"+outputFileName);
-			out = new OutputStreamWriter(outputStream);
-			out.write(queryResponse);
-		}catch(FileNotFoundException fnfe){
-			throw new FileNotFoundException("File Not Found : "+outputFileName+"\n");
+			fileWriter = new FileWriter("./results/"+outputFileName, true);
+			fileWriter.write(text);
+			fileWriter.close();
 		}finally{
-			if(out != null)
-				out.close();
-			if(outputStream != null)
-				outputStream.close();
+			if(fileWriter != null)
+				fileWriter.close();
 		}
 
 	}

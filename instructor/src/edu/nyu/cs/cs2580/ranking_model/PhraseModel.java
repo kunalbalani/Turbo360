@@ -10,13 +10,12 @@ public class PhraseModel extends Model {
 	
 	public PhraseModel(Index _index) {
 		super(_index);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
 	public Double getScore(Vector<String> qv, Document d){
 		
-		Vector<String> dv = d.get_body_vector();
+		Vector<String> dv = d.get_document_vector();
 		
 		// Score the document. Here we have provided a very simple ranking model,
 		// where a document is scored 1.0 if it gets hit by at least one query term.
@@ -41,14 +40,13 @@ public class PhraseModel extends Model {
 		int count = 0;
 
 		if(sub_query.size() != 2){
-			throw new IllegalArgumentException("Pharse subquey contains more than 2 terms");
+			throw new IllegalArgumentException("Phrase subquery contains more than 2 terms");
 		}
 
-		String search_query = sub_query.firstElement()+ " "+ sub_query.lastElement(); 
-
-		for(int i = 0 ; i < dv.size() ;i++){
-			if(search_query.equalsIgnoreCase(dv.get(i))){
-				count ++;
+		for(int i = 0 ; i < dv.size()-1 ;i++){
+			if(sub_query.firstElement().equalsIgnoreCase(dv.get(i)) && 
+				sub_query.lastElement().equalsIgnoreCase(dv.get(i+1))){
+				count++;
 			}
 		}
 

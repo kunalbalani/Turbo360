@@ -1,249 +1,1567 @@
-google	249	google drive	0.028122752151310534
-google	247	google	0.022214491140113438
-google	250	google search	0.020917917410253818
-google	420	open drive	0.01923030628407475
-google	248	google bombing	0.01645252850629697
-google	98	comparison of web search engines	0.010693638945229554
-google	326	keyword (internet search)	0.009809889031379018
-google	519	search engine optimization	0.009809889031379018
-google	619	volunia	0.009248373131409892
-google	433	pagerank	0.008840083020389274
-google	345	local search (internet)	0.00726916481473656
-google	427	organic search	0.0072335268959910146
-google	228	forestle	0.0067954379556703
-google	225	filter bubble	0.006744970269326972
-google	343	list of search engines	0.006683917825277533
-google	56	blackle.com	0.005963888605892367
-google	533	social search	0.0056547535450239125
-google	277	info.com	0.005428768897631704
-google	19	alltheweb	0.005208190643254074
-google	251	google effect	0.004961079550258782
-google	637	web search engine	0.0049590742214316455
-google	194	duckduckgo	0.004426498018156529
-google	644	wikia search	0.004400777549892214
-google	130	cuil	0.0042868643743407065
-google	369	meta tags	0.0037124194774955884
-google	336	leapfish	0.003700686143011399
-google	618	voice search	0.003618764509742279
-google	656	yebol	0.0035894856072828515
-google	461	proximity search (text)	0.0034291790699040588
-google	52	bing	0.0034011401256001405
-google	344	live search	0.0034011401256001405
-google	354	msn search	0.0034011401256001405
-google	57	blekko	0.0033835434907470725
-google	172	desktop search	0.003211787765556233
-google	492	robots.txt	0.003166779582250177
-google	493	robots exclusion standard	0.003166779582250177
-google	518	search engine marketing	0.003164371153391419
-google	15	alan emtage	0.0031272467027543003
-google	620	w3catalog	0.003104132263163888
-google	655	yandex	0.0030761827586021297
-google	123	contextual advertising	0.0030001172850070337
-google	339	linkrot	0.002975255397969089
-google	513	search aggregator	0.0029364818701168556
-google	199	eli pariser	0.002934009987778455
-google	245	goby inc.	0.0026573130573850265
-google	525	semantic search	0.0026304370364695095
-google	647	wolfram alpha	0.0025559555848277864
-google	208	exalead	0.0025168419171807815
-google	434	paid inclusion	0.0025039024608967345
-google	22	alvin weinberg	0.0024655583723608627
-google	165	daum communications	0.0024458918117990073
-google	657	yummly	0.0024300008239754767
-google	635	web robot	0.00241054201244185
-google	453	principle of least astonishment	0.0023934021153320176
-google	612	vertical search	0.002389640114549521
-google	81	chemicalize.org	0.0023812368473592376
-google	520	search engine results pages	0.002372917333662545
-google	466	quaero	0.0023417796155969822
-google	45	baidu	0.002327586688356951
-google	360	mass surveillance	0.0023092318550131017
-google	252	gopher (protocol)	0.0022844238968713496
-google	539	software release life cycle	0.002250249304017771
-google	391	nltk	0.002245530096844576
-google	397	natural language toolkit	0.002245530096844576
-google	447	powerset (company)	0.002219628537570708
-google	645	wikiseek	0.0020930032351694924
-google	255	guruji.com	0.002089198233875792
-google	654	yahoo! search	0.002089198233875792
-google	235	general architecture for text engineering	0.0020258482123367847
-google	320	jumpstation	0.0019808232985511565
-google	187	dogpile	0.001937277961634664
-google	512	search engine watch	0.0019312999606781837
-google	508	scalability	0.0018932622457074615
-google	21	altavista	0.0018910330485751004
-google	574	teoma	0.001855952525281633
-google	622	webcrawler	0.001848151401919869
-google	87	cloud storage	0.0018449322414769123
-google	653	yahoo!	0.0018412610743185676
-google	624	web cache	0.0018303559982184251
-google	48	bibliometrics	0.0018070780174729907
-google	35	ask.com	0.0018030143041856523
-google	401	naver	0.0017556291016731429
-google	614	viewzi	0.0017448456167959022
-google	311	jhepwork	0.001719852281685265
-google	9	actuate corporation	0.0017117877655562328
-google	522	selection-based search	0.0016950719346811097
-google	511	searchme	0.0016864466349519442
-google	465	python (programming language)	0.0016707648566590563
-google	613	video search engine	0.001630905412615056
-google	408	number theory	0.0016265334662514393
-google	27	anomaly detection	0.00162419652468032
-google	373	microsoft	0.0016024684330979539
-google	473	r (programming language)	0.0016016936897870998
-google	297	inktomi (company)	0.0015672197587127765
-google	263	hotbot	0.001560684200191207
-google	209	excite	0.0015531844841090302
-google	356	magellan (search engine)	0.0015531844841090302
-google	282	information architecture	0.0015514183281087096
-google	514	search directory	0.0015493087035796833
-google	627	web directories	0.0015493087035796833
-google	628	web directory	0.0015493087035796833
-google	223	federated search	0.0015389176249441566
-google	399	natural language search engine	0.0015079661095052771
-google	546	spell checker	0.0014842867999324398
-google	7	academic journal	0.0014825996874472912
-google	18	aliweb	0.001479836920702162
-google	23	analysis of algorithms	0.001450613033380392
-google	487	rexer's annual data miner survey	0.0014317301701638639
-google	156	data set	0.0014150226460063029
-google	592	true knowledge	0.0013847352756504454
-google	313	java (programming language)	0.0013838307763089207
-google	485	representational state transfer	0.001375578007839671
-google	268	ibm	0.0013724484262168934
-google	567	surveillance	0.0013650775462375206
-google	184	distributed web crawling	0.0013628294322228993
-google	200	emanuel goldberg	0.0013511739548145447
-google	305	internet search engines and libraries	0.0013490783700718916
-google	596	us congress	0.0013307911700749576
-google	59	boolean algebra	0.0013258497858202793
-google	219	facebook	0.0013035449362607718
-google	239	genieknows	0.0012952183373181928
-google	309	j. c. r. licklider	0.0012729549933901273
-google	584	tim berners-lee	0.0012681675875146896
-google	577	text corpora	0.0012636641452471817
-google	4	aol	0.001247693446156447
-google	5	aol search	0.001247693446156447
-google	428	orthogonality	0.0012438913483870237
-google	419	open directory project	0.0012423480372030916
-google	418	opensearch	0.001236446737224648
-google	337	learning to rank	0.001216498398126892
-google	651	xml-retrieval	0.001214300328370303
-google	484	relevance feedback	0.0012088056582003678
-google	641	website mirroring software	0.001197696414730188
-google	271	image processing	0.0011893426843718963
-google	648	world wide web	0.001166902113036037
-google	496	rule of inference	0.001165920372277395
-google	460	programming paradigm	0.0011554434887150614
-google	312	jacquard loom	0.0011511550766282888
-google	623	web archiving	0.001147707556314733
-google	446	power transformer	0.0011260379726813362
-google	430	outline of information science	0.0011206185096281867
-google	299	insulator (electrical)	0.0011127500750991357
-google	276	index (search engine)	0.001111947829581843
-google	517	search engine indexing	0.001111947829581843
-google	1	a9.com	0.0011101941400582247
-google	204	europe	0.0011063249430979625
-google	133	customer relationship management	0.0011045607427753999
-google	75	carrot2	0.0011033304437081512
-google	348	lycos	0.0011033304437081512
-google	296	initial public offering	0.0011030240722854972
-google	636	web scraping	0.0011030240722854972
-google	61	bram stoker	0.0010949295280083399
-google	411	olap cube	0.0010946361575929861
-google	621	wearable computer	0.0010925950770566135
-google	414	online analytical processing	0.001088861672041904
-google	576	text retrieval conference	0.0010783566805122444
-google	287	information overload	0.0010735822662798216
-google	24	analytics	0.0010709831678550833
-google	190	dot-com bubble	0.001062500882226796
-google	43	automated reasoning	0.001051692592204771
-google	62	british petroleum	0.0010239533024809563
-google	233	gnu project	0.0010218652849360776
-google	79	censorship	0.0010134165610519094
-google	581	theodor nelson	0.0010110097882971064
-google	293	information technology	0.0010015588464023643
-google	625	web crawler	0.0010012233661351039
-google	626	web crawling	0.0010012233661351039
-google	421	operating system	9.959055797431821E-4
-google	294	information theory	9.867144517732415E-4
-google	192	dracula	9.807013546562684E-4
-google	363	mathematics	9.794537184470249E-4
-google	471	quora	9.777452123647433E-4
-google	112	computer graphics	9.629178509404617E-4
-google	80	chacha (search engine)	9.577297232542159E-4
-google	639	webserver	9.538013183151871E-4
-google	410	oclc	9.52635549756618E-4
-google	46	bayes' theorem	9.503373838768433E-4
-google	631	web mining	9.490919895714201E-4
-google	8	accuracy and precision	9.431621292767324E-4
-google	437	pattern	9.402025668353556E-4
-google	117	computer vision	9.36053295944212E-4
-google	73	cancer	9.321653458104015E-4
-google	94	combinatorial game	9.157029368449765E-4
-google	538	software engineering	9.03395353216704E-4
-google	470	question answering	9.03138703175827E-4
-google	462	pubmed identifier	9.012534722633186E-4
-google	361	massachusetts institute of technology	8.901226274740967E-4
-google	452	preservation (library and archival science)	8.851580845576196E-4
-google	95	combinatorics	8.846784986129408E-4
-google	241	geographic information systems	8.8201018952355E-4
-google	510	scientific american magazine	8.817401788805018E-4
-google	28	archie comics	8.813655169552491E-4
-google	582	theory of forms	8.795448532931895E-4
-google	565	supreme court of the united states	8.779973558495926E-4
-google	379	montreal	8.769951007619157E-4
-google	328	knowledge discovery	8.76072306380941E-4
-google	222	factor analysis	8.73390868335806E-4
-google	355	machine learning	8.664428846406743E-4
-google	351	mit	8.646150707014186E-4
-google	37	association rule	8.638558920769139E-4
-google	38	association rule learning	8.638558920769139E-4
-google	39	association rule mining	8.638558920769139E-4
-google	40	association rules	8.638558920769139E-4
-google	412	object-oriented programming	8.584368343346458E-4
-google	346	logic programming	8.572211570629226E-4
-google	257	html	8.568274097256389E-4
-google	173	digital object identifier	8.537525582876352E-4
-google	226	first amendment to the united states constitution	8.525634395197717E-4
-google	486	requirements analysis	8.501386233315508E-4
-google	438	people's republic of china	8.475420503008448E-4
-google	402	netscape	8.472157178855934E-4
-google	12	advertising	8.466313470017558E-4
-google	301	intellectual property	8.426435624680358E-4
-google	266	human rights	8.365771834135984E-4
-google	253	graph theory	8.331175398828524E-4
-google	548	spreadsheets	8.297957901019017E-4
-google	113	computer music	8.267038767950283E-4
-google	30	argonne national laboratory	8.265192937801886E-4
-google	417	ontology (information science)	8.133931303194921E-4
-google	416	ontologies	8.133724872140953E-4
-google	74	carnegie mellon university	8.133003023545272E-4
-google	556	statistical inference	8.117477815498352E-4
-google	131	cultural studies	8.106410672565095E-4
-google	91	collaborative information seeking	8.095585907419971E-4
-google	404	neural networks	8.095012695624863E-4
-google	44	automatic summarization	8.051584471622083E-4
-google	572	telecommunication	8.019672226759007E-4
-google	524	semantic web	8.018454024438407E-4
-google	615	virtual reality	7.996457869935898E-4
-google	608	vannevar bush	7.985782533187738E-4
-google	370	metadata	7.960195714861518E-4
-google	88	cluster analysis	7.925501625841764E-4
-google	143	data clustering	7.925501625841764E-4
-google	116	computer science	7.922512351410411E-4
-google	570	tablebase	7.86115103151E-4
-google	454	privacy	7.787849516744156E-4
-google	468	quantum computer	7.782771272583603E-4
-google	497	russian federation	7.700401927406987E-4
-google	364	mcgill university	7.682689855505845E-4
-google	439	perl	7.660059394881346E-4
-google	170	deepwater horizon oil spill	7.649001513646031E-4
-google	540	software testing	7.647090187315078E-4
-google	491	robotics	7.621402328271289E-4
-google	16	algorithm	7.48956959728103E-4
-google	82	chess	7.463970269945935E-4
-google	31	artificial intelligence	7.419901213399837E-4
+google drive	420	open drive	6.23951911489315E-4
+google drive	249	google drive	1.530168489722614E-4
+google drive	656	yebol	2.7218980957461684E-6
+google drive	343	list of search engines	2.477448148438568E-6
+google drive	250	google search	2.231500020614338E-6
+google drive	248	google bombing	2.1629426724336003E-6
+google drive	359	market basket analysis	2.080903319543622E-6
+google drive	637	web search engine	1.9479918706751405E-6
+google drive	87	cloud storage	1.6396492760268397E-6
+google drive	433	pagerank	1.6383223944886893E-6
+google drive	247	google	1.5538225172879545E-6
+google drive	263	hotbot	1.3855278498276438E-6
+google drive	132	customer analytics	9.196339989306244E-7
+google drive	230	forrester research	7.769196599719813E-7
+google drive	111	computer data storage	6.926430029692175E-7
+google drive	210	experian hitwise	6.308793512494714E-7
+google drive	262	hitwise	6.308793512494714E-7
+google drive	653	yahoo!	5.093976384046031E-7
+google drive	1	a9.com	4.854650843461631E-7
+google drive	93	column-oriented dbms	4.728149498926587E-7
+google drive	268	ibm	4.654979675452835E-7
+google drive	35	ask.com	4.6358812507640524E-7
+google drive	421	operating system	4.159866026399007E-7
+google drive	98	comparison of web search engines	4.1569464743856804E-7
+google drive	326	keyword (internet search)	3.813405692109832E-7
+google drive	519	search engine optimization	3.813405692109832E-7
+google drive	619	volunia	3.59512718535985E-7
+google drive	345	local search (internet)	2.8257480174068957E-7
+google drive	427	organic search	2.8118944619013745E-7
+google drive	228	forestle	2.6415958119038497E-7
+google drive	225	filter bubble	2.621977469458419E-7
+google drive	56	blackle.com	2.31834699496309E-7
+google drive	533	social search	2.1981766854951993E-7
+google drive	571	tabulating machine	2.1303077771937374E-7
+google drive	611	veronica lodge	2.1245332788360965E-7
+google drive	277	info.com	2.1103295000746176E-7
+google drive	19	alltheweb	2.0245839459599184E-7
+google drive	4	aol	1.9708968430056246E-7
+google drive	5	aol search	1.9708968430056246E-7
+google drive	251	google effect	1.9285242611258222E-7
+google drive	566	surrogate key	1.8848902923174664E-7
+google drive	491	robotics	1.831293002808474E-7
+google drive	621	wearable computer	1.8116193023627272E-7
+google drive	194	duckduckgo	1.7207159718684507E-7
+google drive	267	hypertext	1.7146488863228315E-7
+google drive	644	wikia search	1.710717634499992E-7
+google drive	130	cuil	1.6664360783412104E-7
+google drive	440	personal information management	1.5957964092024504E-7
+google drive	108	computer accessibility	1.560119274200339E-7
+google drive	276	index (search engine)	1.5446411198930587E-7
+google drive	517	search engine indexing	1.5446411198930587E-7
+google drive	110	computer architecture	1.5150162914408616E-7
+google drive	12	advertising	1.4707396832344242E-7
+google drive	537	software development process	1.468968118555592E-7
+google drive	369	meta tags	1.4431316727128136E-7
+google drive	336	leapfish	1.4385705645936175E-7
+google drive	618	voice search	1.4067251052192947E-7
+google drive	535	software	1.4040105062539445E-7
+google drive	461	proximity search (text)	1.3330274116870178E-7
+google drive	52	bing	1.3221278113482887E-7
+google drive	344	live search	1.3221278113482887E-7
+google drive	354	msn search	1.3221278113482887E-7
+google drive	57	blekko	1.3152874579767037E-7
+google drive	30	argonne national laboratory	1.2695716962321227E-7
+google drive	172	desktop search	1.2485207231033403E-7
+google drive	492	robots.txt	1.2310246574636753E-7
+google drive	493	robots exclusion standard	1.2310246574636753E-7
+google drive	518	search engine marketing	1.2300884270649776E-7
+google drive	15	alan emtage	1.2156570108763545E-7
+google drive	620	w3catalog	1.20667171703439E-7
+google drive	655	yandex	1.1958068846752743E-7
+google drive	115	computer programming	1.1754157305984128E-7
+google drive	123	contextual advertising	1.166237894745549E-7
+google drive	339	linkrot	1.1565733143161654E-7
+google drive	76	case western reserve university	1.1459998199702283E-7
+google drive	513	search aggregator	1.141500851076069E-7
+google drive	199	eli pariser	1.1405399543575301E-7
+google drive	648	world wide web	1.1174531211642707E-7
+google drive	404	neural networks	1.105670105261654E-7
+google drive	319	jughead jones	1.0771748722680532E-7
+google drive	63	business intelligence	1.0593942283587551E-7
+google drive	73	cancer	1.047122494654676E-7
+google drive	245	goby inc.	1.032979344244972E-7
+google drive	525	semantic search	1.0225318080075424E-7
+google drive	615	virtual reality	1.0133998874538505E-7
+google drive	325	keypunch	1.0055364887615506E-7
+google drive	647	wolfram alpha	9.935785761474646E-8
+google drive	208	exalead	9.783738901038945E-8
+google drive	434	paid inclusion	9.733439253317594E-8
+google drive	240	genres	9.677498874553519E-8
+google drive	22	alvin weinberg	9.584383983667003E-8
+google drive	165	daum communications	9.507934011857016E-8
+google drive	116	computer science	9.454452623002314E-8
+google drive	657	yummly	9.446160852929671E-8
+google drive	635	web robot	9.370518465511561E-8
+google drive	453	principle of least astonishment	9.303890411930385E-8
+google drive	612	vertical search	9.289266357415797E-8
+google drive	81	chemicalize.org	9.256600272373199E-8
+google drive	520	search engine results pages	9.224259762929034E-8
+google drive	466	quaero	9.103217872515482E-8
+google drive	45	baidu	9.048045597526733E-8
+google drive	446	power transformer	9.041870687515508E-8
+google drive	402	netscape	9.030222655114279E-8
+google drive	360	mass surveillance	8.97669471299861E-8
+google drive	252	gopher (protocol)	8.880258546916841E-8
+google drive	539	software release life cycle	8.74741138983228E-8
+google drive	391	nltk	8.729066379568715E-8
+google drive	397	natural language toolkit	8.729066379568715E-8
+google drive	447	powerset (company)	8.628379049412847E-8
+google drive	645	wikiseek	8.136147539558505E-8
+google drive	255	guruji.com	8.121356328826693E-8
+google drive	654	yahoo! search	8.121356328826693E-8
+google drive	235	general architecture for text engineering	7.875095303896249E-8
+google drive	320	jumpstation	7.700069610977954E-8
+google drive	187	dogpile	7.530795488578581E-8
+google drive	512	search engine watch	7.507557159580199E-8
+google drive	508	scalability	7.359692858240785E-8
+google drive	21	altavista	7.351027283119406E-8
+google drive	506	sql	7.34788646427496E-8
+google drive	574	teoma	7.214658495682986E-8
+google drive	622	webcrawler	7.184333128966355E-8
+google drive	624	web cache	7.115156919580692E-8
+google drive	48	bibliometrics	7.024668246373974E-8
+google drive	152	data mining	7.016924702354672E-8
+google drive	114	computer networking	6.959350374904903E-8
+google drive	401	naver	6.824670481122558E-8
+google drive	614	viewzi	6.782751757597641E-8
+google drive	572	telecommunication	6.733541778119538E-8
+google drive	311	jhepwork	6.685594974201983E-8
+google drive	9	actuate corporation	6.654245718759651E-8
+google drive	522	selection-based search	6.589266141107304E-8
+google drive	511	searchme	6.555736947272246E-8
+google drive	465	python (programming language)	6.49477705015902E-8
+google drive	83	chess endgame	6.442009117620896E-8
+google drive	613	video search engine	6.339831127411556E-8
+google drive	408	number theory	6.322836026758239E-8
+google drive	27	anomaly detection	6.313751615853153E-8
+google drive	373	microsoft	6.229287838685196E-8
+google drive	473	r (programming language)	6.226276173066875E-8
+google drive	297	inktomi (company)	6.092265396219436E-8
+google drive	209	excite	6.037705965533678E-8
+google drive	356	magellan (search engine)	6.037705965533678E-8
+google drive	282	information architecture	6.03084037375865E-8
+google drive	514	search directory	6.022639614135916E-8
+google drive	627	web directories	6.022639614135916E-8
+google drive	628	web directory	6.022639614135916E-8
+google drive	223	federated search	5.982246294406073E-8
+google drive	399	natural language search engine	5.861928230892304E-8
+google drive	546	spell checker	5.769879469054684E-8
+google drive	7	academic journal	5.7633211437428317E-8
+google drive	18	aliweb	5.7525814193706736E-8
+google drive	23	analysis of algorithms	5.63897917789583E-8
+google drive	487	rexer's annual data miner survey	5.565575678791093E-8
+google drive	156	data set	5.500628391905678E-8
+google drive	592	true knowledge	5.382892064670354E-8
+google drive	313	java (programming language)	5.379375997438149E-8
+google drive	485	representational state transfer	5.3472949472288815E-8
+google drive	567	surveillance	5.3064764222533836E-8
+google drive	184	distributed web crawling	5.2977373113904095E-8
+google drive	200	emanuel goldberg	5.252428884606882E-8
+google drive	305	internet search engines and libraries	5.24428270195347E-8
+google drive	596	us congress	5.173194729053886E-8
+google drive	59	boolean algebra	5.153986048116297E-8
+google drive	219	facebook	5.067280235237267E-8
+google drive	239	genieknows	5.034912183262389E-8
+google drive	309	j. c. r. licklider	4.948367715543013E-8
+google drive	584	tim berners-lee	4.929757595940806E-8
+google drive	577	text corpora	4.9122513302510825E-8
+google drive	428	orthogonality	4.8353883852633565E-8
+google drive	419	open directory project	4.829389059853377E-8
+google drive	418	opensearch	4.8064488911555864E-8
+google drive	337	learning to rank	4.7289035594803855E-8
+google drive	651	xml-retrieval	4.720358986045743E-8
+google drive	484	relevance feedback	4.698999512523389E-8
+google drive	641	website mirroring software	4.6558144651199915E-8
+google drive	271	image processing	4.6233409449845834E-8
+google drive	496	rule of inference	4.532291211416916E-8
+google drive	460	programming paradigm	4.4915643415365554E-8
+google drive	497	russian federation	4.488606826407908E-8
+google drive	312	jacquard loom	4.4748939643187285E-8
+google drive	623	web archiving	4.4614923921446444E-8
+google drive	430	outline of information science	4.356188933055686E-8
+google drive	299	insulator (electrical)	4.325601907121858E-8
+google drive	204	europe	4.300625442181778E-8
+google drive	133	customer relationship management	4.2937674527279094E-8
+google drive	75	carrot2	4.2889849017214334E-8
+google drive	348	lycos	4.2889849017214334E-8
+google drive	296	initial public offering	4.2877939417387964E-8
+google drive	636	web scraping	4.2877939417387964E-8
+google drive	61	bram stoker	4.256327957645796E-8
+google drive	411	olap cube	4.255187536578618E-8
+google drive	414	online analytical processing	4.23274033457759E-8
+google drive	576	text retrieval conference	4.191904200380119E-8
+google drive	287	information overload	4.173344583291513E-8
+google drive	24	analytics	4.16324108803734E-8
+google drive	190	dot-com bubble	4.130267834014236E-8
+google drive	43	automated reasoning	4.0882526852596224E-8
+google drive	62	british petroleum	3.9804215314213723E-8
+google drive	233	gnu project	3.972304764793946E-8
+google drive	79	censorship	3.939461975596338E-8
+google drive	581	theodor nelson	3.9301061093949737E-8
+google drive	293	information technology	3.893367390432989E-8
+google drive	625	web crawler	3.8920632754153075E-8
+google drive	626	web crawling	3.8920632754153075E-8
+google drive	294	information theory	3.8356626612627105E-8
+google drive	192	dracula	3.812287902690287E-8
+google drive	363	mathematics	3.807437956878675E-8
+google drive	471	quora	3.800796468072496E-8
+google drive	112	computer graphics	3.743157952210124E-8
+google drive	80	chacha (search engine)	3.722990103637283E-8
+google drive	639	webserver	3.7077191849678807E-8
+google drive	410	oclc	3.7031874839030574E-8
+google drive	46	bayes' theorem	3.694253806040532E-8
+google drive	631	web mining	3.6894125751988475E-8
+google drive	8	accuracy and precision	3.6663613837645244E-8
+google drive	437	pattern	3.654856653971965E-8
+google drive	117	computer vision	3.638727161391794E-8
+google drive	94	combinatorial game	3.5596190542793997E-8
+google drive	538	software engineering	3.511775689982368E-8
+google drive	470	question answering	3.5107780123087164E-8
+google drive	462	pubmed identifier	3.5034495397136596E-8
+google drive	361	massachusetts institute of technology	3.4601805213369626E-8
+google drive	452	preservation (library and archival science)	3.440881815555623E-8
+google drive	95	combinatorics	3.439017517432123E-8
+google drive	241	geographic information systems	3.428644979030065E-8
+google drive	510	scientific american magazine	3.427595364585052E-8
+google drive	28	archie comics	3.4261389384075436E-8
+google drive	582	theory of forms	3.419061458580701E-8
+google drive	565	supreme court of the united states	3.413045859891397E-8
+google drive	379	montreal	3.409149785996914E-8
+google drive	328	knowledge discovery	3.405562600317443E-8
+google drive	222	factor analysis	3.395139025624957E-8
+google drive	355	machine learning	3.3681300752821455E-8
+google drive	351	mit	3.36102480012788E-8
+google drive	37	association rule	3.3580736392342614E-8
+google drive	38	association rule learning	3.3580736392342614E-8
+google drive	39	association rule mining	3.3580736392342614E-8
+google drive	40	association rules	3.3580736392342614E-8
+google drive	412	object-oriented programming	3.337008094482292E-8
+google drive	346	logic programming	3.332282382893783E-8
+google drive	257	html	3.3307517658476085E-8
+google drive	173	digital object identifier	3.318798872253636E-8
+google drive	226	first amendment to the united states constitution	3.3141764017410124E-8
+google drive	486	requirements analysis	3.304750395162443E-8
+google drive	438	people's republic of china	3.294656716891873E-8
+google drive	301	intellectual property	3.2756147875442395E-8
+google drive	266	human rights	3.252032905687381E-8
+google drive	253	graph theory	3.23858420683807E-8
+google drive	548	spreadsheets	3.225671543420651E-8
+google drive	113	computer music	3.213652325092874E-8
+google drive	417	ontology (information science)	3.1619093581605505E-8
+google drive	416	ontologies	3.161829112058509E-8
+google drive	74	carnegie mellon university	3.161548507299902E-8
+google drive	556	statistical inference	3.15551338126046E-8
+google drive	131	cultural studies	3.151211242294149E-8
+google drive	91	collaborative information seeking	3.1470033230314416E-8
+google drive	44	automatic summarization	3.1298986111232906E-8
+google drive	524	semantic web	3.1170197869624613E-8
+google drive	608	vannevar bush	3.1043193730937123E-8
+google drive	370	metadata	3.0943729895682634E-8
+google drive	88	cluster analysis	3.0808863297164245E-8
+google drive	143	data clustering	3.0808863297164245E-8
+google drive	570	tablebase	3.055871273793727E-8
+google drive	454	privacy	3.0273767197009936E-8
+google drive	468	quantum computer	3.0254026499509863E-8
+google drive	364	mcgill university	2.9864979238793715E-8
+google drive	439	perl	2.9777007675522726E-8
+google drive	170	deepwater horizon oil spill	2.9734022288929116E-8
+google drive	540	software testing	2.9726592375413662E-8
+google drive	16	algorithm	2.9114261376827537E-8
+google drive	82	chess	2.9014748915206845E-8
+google drive	31	artificial intelligence	2.884343893347184E-8
+google drive	0	1890 us census	2.766938043910483E-8
+google drive	2	acm computing classification system	2.766938043910483E-8
+google drive	3	advise	2.766938043910483E-8
+google drive	6	academic press	2.766938043910483E-8
+google drive	10	adversarial information retrieval	2.766938043910483E-8
+google drive	11	adverse drug reaction	2.766938043910483E-8
+google drive	13	aggregate (data warehouse)	2.766938043910483E-8
+google drive	14	aggregate function	2.766938043910483E-8
+google drive	17	algorithm design	2.766938043910483E-8
+google drive	20	alpha consumer	2.766938043910483E-8
+google drive	25	anchor modeling	2.766938043910483E-8
+google drive	26	angoss	2.766938043910483E-8
+google drive	29	archie search engine	2.766938043910483E-8
+google drive	32	artificial life	2.766938043910483E-8
+google drive	33	artificial neural network	2.766938043910483E-8
+google drive	34	as we may think	2.766938043910483E-8
+google drive	36	association for computing machinery	2.766938043910483E-8
+google drive	41	atlantic monthly	2.766938043910483E-8
+google drive	42	automata theory	2.766938043910483E-8
+google drive	47	berlekamp	2.766938043910483E-8
+google drive	49	bill inmon	2.766938043910483E-8
+google drive	50	binary independence model	2.766938043910483E-8
+google drive	51	binary classification	2.766938043910483E-8
+google drive	53	bioinformatic	2.766938043910483E-8
+google drive	54	bioinformatics	2.766938043910483E-8
+google drive	55	biomedical	2.766938043910483E-8
+google drive	58	boogami	2.766938043910483E-8
+google drive	60	boolean operators	2.766938043910483E-8
+google drive	64	business intelligence tools	2.766938043910483E-8
+google drive	65	buzzword	2.766938043910483E-8
+google drive	66	c. j. van rijsbergen	2.766938043910483E-8
+google drive	67	capps ii	2.766938043910483E-8
+google drive	68	cern	2.766938043910483E-8
+google drive	69	cikm conference	2.766938043910483E-8
+google drive	70	crisp-dm	2.766938043910483E-8
+google drive	71	calvin mooers	2.766938043910483E-8
+google drive	72	cambridge university press	2.766938043910483E-8
+google drive	77	categorization	2.766938043910483E-8
+google drive	78	category theory	2.766938043910483E-8
+google drive	84	churn rate	2.766938043910483E-8
+google drive	85	clarabridge	2.766938043910483E-8
+google drive	86	classification of the sciences (peirce)	2.766938043910483E-8
+google drive	89	co-occurrence	2.766938043910483E-8
+google drive	90	cognitive science	2.766938043910483E-8
+google drive	92	collaborative search engine	2.766938043910483E-8
+google drive	96	communications of the acm	2.766938043910483E-8
+google drive	97	comparison of olap servers	2.766938043910483E-8
+google drive	99	compiler	2.766938043910483E-8
+google drive	100	computability theory	2.766938043910483E-8
+google drive	101	computational chemistry	2.766938043910483E-8
+google drive	102	computational complexity theory	2.766938043910483E-8
+google drive	103	computational geometry	2.766938043910483E-8
+google drive	104	computational linguistics	2.766938043910483E-8
+google drive	105	computational neuroscience	2.766938043910483E-8
+google drive	106	computational physics	2.766938043910483E-8
+google drive	107	computational science	2.766938043910483E-8
+google drive	109	computer animation	2.766938043910483E-8
+google drive	118	concurrency (computer science)	2.766938043910483E-8
+google drive	119	concurrency control	2.766938043910483E-8
+google drive	120	condition monitoring	2.766938043910483E-8
+google drive	121	conference on information and knowledge management	2.766938043910483E-8
+google drive	122	conference on knowledge discovery and data mining	2.766938043910483E-8
+google drive	124	controlled vocabulary	2.766938043910483E-8
+google drive	125	cornelis j. van rijsbergen	2.766938043910483E-8
+google drive	126	cross-language information retrieval	2.766938043910483E-8
+google drive	127	cross-platform	2.766938043910483E-8
+google drive	128	cross industry standard process for data mining	2.766938043910483E-8
+google drive	129	cryptography	2.766938043910483E-8
+google drive	134	cyril w. cleverdon	2.766938043910483E-8
+google drive	135	dna	2.766938043910483E-8
+google drive	136	dashboard (business)	2.766938043910483E-8
+google drive	137	data	2.766938043910483E-8
+google drive	138	data mining extensions	2.766938043910483E-8
+google drive	139	data pre-processing	2.766938043910483E-8
+google drive	140	data vault modeling	2.766938043910483E-8
+google drive	141	data analysis	2.766938043910483E-8
+google drive	142	data cleaning	2.766938043910483E-8
+google drive	144	data collection	2.766938043910483E-8
+google drive	145	data dictionary	2.766938043910483E-8
+google drive	146	data dredging	2.766938043910483E-8
+google drive	147	data extraction	2.766938043910483E-8
+google drive	148	data integration	2.766938043910483E-8
+google drive	149	data loading	2.766938043910483E-8
+google drive	150	data management	2.766938043910483E-8
+google drive	151	data mart	2.766938043910483E-8
+google drive	153	data mining in agriculture	2.766938043910483E-8
+google drive	154	data mining in meteorology	2.766938043910483E-8
+google drive	155	data modeling	2.766938043910483E-8
+google drive	157	data snooping	2.766938043910483E-8
+google drive	158	data structure	2.766938043910483E-8
+google drive	159	data transformation	2.766938043910483E-8
+google drive	160	data visualization	2.766938043910483E-8
+google drive	161	data warehouse	2.766938043910483E-8
+google drive	162	database	2.766938043910483E-8
+google drive	163	database management system	2.766938043910483E-8
+google drive	164	database system	2.766938043910483E-8
+google drive	166	decision making	2.766938043910483E-8
+google drive	167	decision support system	2.766938043910483E-8
+google drive	168	decision tree learning	2.766938043910483E-8
+google drive	169	decision trees	2.766938043910483E-8
+google drive	171	degenerate dimension	2.766938043910483E-8
+google drive	174	digital obsolescence	2.766938043910483E-8
+google drive	175	dimension (data warehouse)	2.766938043910483E-8
+google drive	176	dimension reduction	2.766938043910483E-8
+google drive	177	dimension table	2.766938043910483E-8
+google drive	178	dimensional modeling	2.766938043910483E-8
+google drive	179	discounted cumulative gain	2.766938043910483E-8
+google drive	180	discovery (observation)	2.766938043910483E-8
+google drive	181	discovery net	2.766938043910483E-8
+google drive	182	dissolved gas analysis	2.766938043910483E-8
+google drive	183	distributed computing	2.766938043910483E-8
+google drive	185	divergence-from-randomness model	2.766938043910483E-8
+google drive	186	document retrieval	2.766938043910483E-8
+google drive	188	don swanson	2.766938043910483E-8
+google drive	189	donald b. crouch	2.766938043910483E-8
+google drive	191	dots-and-boxes	2.766938043910483E-8
+google drive	193	drug discovery	2.766938043910483E-8
+google drive	195	early-arriving fact	2.766938043910483E-8
+google drive	196	educational data mining	2.766938043910483E-8
+google drive	197	electrical power	2.766938043910483E-8
+google drive	198	electronic health records	2.766938043910483E-8
+google drive	201	enterprise search	2.766938043910483E-8
+google drive	202	environment for developing kdd-applications supported by index-structures	2.766938043910483E-8
+google drive	203	eugene garfield	2.766938043910483E-8
+google drive	205	european conference on machine learning and principles and practice of knowledge discovery in databases	2.766938043910483E-8
+google drive	206	european summer school in information retrieval	2.766938043910483E-8
+google drive	207	evolutionary computation	2.766938043910483E-8
+google drive	211	expert system	2.766938043910483E-8
+google drive	212	expertise finding	2.766938043910483E-8
+google drive	213	exploratory data analysis	2.766938043910483E-8
+google drive	214	extended boolean model	2.766938043910483E-8
+google drive	215	extract, transform, load	2.766938043910483E-8
+google drive	216	f-score	2.766938043910483E-8
+google drive	217	f. wilfrid lancaster	2.766938043910483E-8
+google drive	218	fico	2.766938043910483E-8
+google drive	220	fact (data warehouse)	2.766938043910483E-8
+google drive	221	fact table	2.766938043910483E-8
+google drive	224	file transfer protocol	2.766938043910483E-8
+google drive	227	focused crawler	2.766938043910483E-8
+google drive	229	formal methods	2.766938043910483E-8
+google drive	231	functional programming	2.766938043910483E-8
+google drive	232	fuzzy retrieval	2.766938043910483E-8
+google drive	234	gartner	2.766938043910483E-8
+google drive	236	generalized vector space model	2.766938043910483E-8
+google drive	237	genetic algorithms	2.766938043910483E-8
+google drive	238	genetics	2.766938043910483E-8
+google drive	242	gerard salton	2.766938043910483E-8
+google drive	243	gerard salton award	2.766938043910483E-8
+google drive	244	go.com	2.766938043910483E-8
+google drive	246	goodsearch	2.766938043910483E-8
+google drive	254	grid computing	2.766938043910483E-8
+google drive	256	holap	2.766938043910483E-8
+google drive	258	hans peter luhn	2.766938043910483E-8
+google drive	259	harmonic mean	2.766938043910483E-8
+google drive	260	health insurance portability and accountability act	2.766938043910483E-8
+google drive	261	herman hollerith	2.766938043910483E-8
+google drive	264	human%e2%80%93computer information retrieval	2.766938043910483E-8
+google drive	265	human%e2%80%93computer interaction	2.766938043910483E-8
+google drive	269	ieee	2.766938043910483E-8
+google drive	270	ill-posed	2.766938043910483E-8
+google drive	272	image retrieval	2.766938043910483E-8
+google drive	273	imperial college london	2.766938043910483E-8
+google drive	274	independency	2.766938043910483E-8
+google drive	275	index (database)	2.766938043910483E-8
+google drive	278	informatics (academic field)	2.766938043910483E-8
+google drive	279	informationweek	2.766938043910483E-8
+google drive	280	information retrieval facility	2.766938043910483E-8
+google drive	281	information access	2.766938043910483E-8
+google drive	283	information extraction	2.766938043910483E-8
+google drive	284	information integration	2.766938043910483E-8
+google drive	285	information management	2.766938043910483E-8
+google drive	286	information need	2.766938043910483E-8
+google drive	288	information retrieval	2.766938043910483E-8
+google drive	289	information retrieval applications	2.766938043910483E-8
+google drive	290	information science	2.766938043910483E-8
+google drive	291	information seeking	2.766938043910483E-8
+google drive	292	information society	2.766938043910483E-8
+google drive	295	infoseek	2.766938043910483E-8
+google drive	298	institutional memory	2.766938043910483E-8
+google drive	300	intellectual freedom	2.766938043910483E-8
+google drive	302	interactive visualization	2.766938043910483E-8
+google drive	303	international conference on very large data bases	2.766938043910483E-8
+google drive	304	international standard book number	2.766938043910483E-8
+google drive	306	interpreter (computing)	2.766938043910483E-8
+google drive	307	inverted index	2.766938043910483E-8
+google drive	308	iterative algorithm	2.766938043910483E-8
+google drive	310	jasis	2.766938043910483E-8
+google drive	314	java data mining	2.766938043910483E-8
+google drive	315	john nunn	2.766938043910483E-8
+google drive	316	john seward	2.766938043910483E-8
+google drive	317	joseph marie jacquard	2.766938043910483E-8
+google drive	318	jughead (computer)	2.766938043910483E-8
+google drive	321	kdd conference	2.766938043910483E-8
+google drive	322	knime	2.766938043910483E-8
+google drive	323	kxen inc.	2.766938043910483E-8
+google drive	324	karen spaìˆrck jones	2.766938043910483E-8
+google drive	327	kluwer academic publishers	2.766938043910483E-8
+google drive	329	knowledge organization	2.766938043910483E-8
+google drive	330	knowledge visualization	2.766938043910483E-8
+google drive	331	lionsolver	2.766938043910483E-8
+google drive	332	language model	2.766938043910483E-8
+google drive	333	latent dirichlet allocation	2.766938043910483E-8
+google drive	334	latent semantic analysis	2.766938043910483E-8
+google drive	335	latent semantic indexing	2.766938043910483E-8
+google drive	338	library and information science	2.766938043910483E-8
+google drive	340	list of computer science conferences	2.766938043910483E-8
+google drive	341	list of information retrieval libraries	2.766938043910483E-8
+google drive	342	list of reporting software	2.766938043910483E-8
+google drive	347	looksmart	2.766938043910483E-8
+google drive	349	matrix	2.766938043910483E-8
+google drive	350	medlars	2.766938043910483E-8
+google drive	352	ml-flex	2.766938043910483E-8
+google drive	353	molap	2.766938043910483E-8
+google drive	357	main page	2.766938043910483E-8
+google drive	358	mark mccahill	2.766938043910483E-8
+google drive	362	mathematical logic	2.766938043910483E-8
+google drive	365	mean reciprocal rank	2.766938043910483E-8
+google drive	366	measure (data warehouse)	2.766938043910483E-8
+google drive	367	medicine	2.766938043910483E-8
+google drive	368	memory	2.766938043910483E-8
+google drive	371	metasearch engine	2.766938043910483E-8
+google drive	372	microarchitecture	2.766938043910483E-8
+google drive	374	microsoft analysis services	2.766938043910483E-8
+google drive	375	mind maps	2.766938043910483E-8
+google drive	376	mining software repositories	2.766938043910483E-8
+google drive	377	missing data	2.766938043910483E-8
+google drive	378	modeling and simulation	2.766938043910483E-8
+google drive	380	morgan kaufmann	2.766938043910483E-8
+google drive	381	msnbot	2.766938043910483E-8
+google drive	382	mugurdy	2.766938043910483E-8
+google drive	383	multidimensional expressions	2.766938043910483E-8
+google drive	384	multifactor dimensionality reduction	2.766938043910483E-8
+google drive	385	multilinear subspace learning	2.766938043910483E-8
+google drive	386	multimedia information retrieval	2.766938043910483E-8
+google drive	387	multiprocessing	2.766938043910483E-8
+google drive	388	multisearch	2.766938043910483E-8
+google drive	389	multivariate statistics	2.766938043910483E-8
+google drive	390	music information retrieval	2.766938043910483E-8
+google drive	392	named-entity recognition	2.766938043910483E-8
+google drive	393	national bureau of standards	2.766938043910483E-8
+google drive	394	national center for supercomputing applications	2.766938043910483E-8
+google drive	395	national institute of standards and technology	2.766938043910483E-8
+google drive	396	national security agency	2.766938043910483E-8
+google drive	398	natural language processing	2.766938043910483E-8
+google drive	400	nature (journal)	2.766938043910483E-8
+google drive	403	network topology	2.766938043910483E-8
+google drive	405	nicholas j. belkin	2.766938043910483E-8
+google drive	406	nicholas jardine	2.766938043910483E-8
+google drive	407	northern light group	2.766938043910483E-8
+google drive	409	numerical analysis	2.766938043910483E-8
+google drive	413	online algorithm	2.766938043910483E-8
+google drive	415	online search	2.766938043910483E-8
+google drive	422	operational data store	2.766938043910483E-8
+google drive	423	oracle	2.766938043910483E-8
+google drive	424	oracle data mining	2.766938043910483E-8
+google drive	425	oracle machine	2.766938043910483E-8
+google drive	426	orange (software)	2.766938043910483E-8
+google drive	429	oscar nierstrasz	2.766938043910483E-8
+google drive	431	overfitting	2.766938043910483E-8
+google drive	432	overture	2.766938043910483E-8
+google drive	435	parallel computing	2.766938043910483E-8
+google drive	436	parsing	2.766938043910483E-8
+google drive	441	pharmacy	2.766938043910483E-8
+google drive	442	philosophy of information	2.766938043910483E-8
+google drive	443	picollator	2.766938043910483E-8
+google drive	444	police-enforced anpr in the uk	2.766938043910483E-8
+google drive	445	positive predictive value	2.766938043910483E-8
+google drive	448	precision and recall	2.766938043910483E-8
+google drive	449	predictive model markup language	2.766938043910483E-8
+google drive	450	predictive analytics	2.766938043910483E-8
+google drive	451	prentice hall	2.766938043910483E-8
+google drive	455	probabilistic relevance model	2.766938043910483E-8
+google drive	456	probabilistic relevance model (bm25)	2.766938043910483E-8
+google drive	457	procedural programming	2.766938043910483E-8
+google drive	458	profiling practices	2.766938043910483E-8
+google drive	459	programming language	2.766938043910483E-8
+google drive	463	public library	2.766938043910483E-8
+google drive	464	punched cards	2.766938043910483E-8
+google drive	467	quantitative structure%e2%80%93activity relationship	2.766938043910483E-8
+google drive	469	query string	2.766938043910483E-8
+google drive	472	rolap	2.766938043910483E-8
+google drive	474	ralph kimball	2.766938043910483E-8
+google drive	475	rank order	2.766938043910483E-8
+google drive	476	rapidminer	2.766938043910483E-8
+google drive	477	reactive business intelligence	2.766938043910483E-8
+google drive	478	real-time computing	2.766938043910483E-8
+google drive	479	receiver operating characteristic	2.766938043910483E-8
+google drive	480	regression analysis	2.766938043910483E-8
+google drive	481	relational database	2.766938043910483E-8
+google drive	482	relevance	2.766938043910483E-8
+google drive	483	relevance (information retrieval)	2.766938043910483E-8
+google drive	488	robert m. hayes	2.766938043910483E-8
+google drive	489	robert r. korfhage	2.766938043910483E-8
+google drive	490	robert tibshirani	2.766938043910483E-8
+google drive	494	rocchio classification	2.766938043910483E-8
+google drive	495	routing	2.766938043910483E-8
+google drive	498	sapo (company)	2.766938043910483E-8
+google drive	499	sas (software)	2.766938043910483E-8
+google drive	500	sas institute	2.766938043910483E-8
+google drive	501	semma	2.766938043910483E-8
+google drive	502	sigkdd	2.766938043910483E-8
+google drive	503	sigmod	2.766938043910483E-8
+google drive	504	smart information retrieval system	2.766938043910483E-8
+google drive	505	spss modeler	2.766938043910483E-8
+google drive	507	statistica	2.766938043910483E-8
+google drive	509	science, technology and society	2.766938043910483E-8
+google drive	515	search engine (computing)	2.766938043910483E-8
+google drive	516	search engine (disambiguation)	2.766938043910483E-8
+google drive	521	search oriented architecture	2.766938043910483E-8
+google drive	523	self-organizing map	2.766938043910483E-8
+google drive	526	sensitivity and specificity	2.766938043910483E-8
+google drive	527	sequence mining	2.766938043910483E-8
+google drive	528	set theory	2.766938043910483E-8
+google drive	529	sixth normal form	2.766938043910483E-8
+google drive	530	slowly changing dimension	2.766938043910483E-8
+google drive	531	social science research network	2.766938043910483E-8
+google drive	532	social information seeking	2.766938043910483E-8
+google drive	534	society for industrial and applied mathematics	2.766938043910483E-8
+google drive	536	software design	2.766938043910483E-8
+google drive	541	sogou.com	2.766938043910483E-8
+google drive	542	sorrell v. ims health, inc.	2.766938043910483E-8
+google drive	543	spatial index	2.766938043910483E-8
+google drive	544	spearman's rank correlation coefficient	2.766938043910483E-8
+google drive	545	special interest group on information retrieval	2.766938043910483E-8
+google drive	547	spider trap	2.766938043910483E-8
+google drive	549	springer verlag	2.766938043910483E-8
+google drive	550	sproose	2.766938043910483E-8
+google drive	551	standard boolean model	2.766938043910483E-8
+google drive	552	star schema	2.766938043910483E-8
+google drive	553	statcounter	2.766938043910483E-8
+google drive	554	statsoft	2.766938043910483E-8
+google drive	555	statistical classification	2.766938043910483E-8
+google drive	557	statistical model	2.766938043910483E-8
+google drive	558	statistical noise	2.766938043910483E-8
+google drive	559	statistics	2.766938043910483E-8
+google drive	560	stellar wind (code name)	2.766938043910483E-8
+google drive	561	structured data analysis (statistics)	2.766938043910483E-8
+google drive	562	subject indexing	2.766938043910483E-8
+google drive	563	subspace clustering	2.766938043910483E-8
+google drive	564	support vector machines	2.766938043910483E-8
+google drive	568	symbolic computation	2.766938043910483E-8
+google drive	569	systems architecture	2.766938043910483E-8
+google drive	573	temporal information retrieval	2.766938043910483E-8
+google drive	575	test set	2.766938043910483E-8
+google drive	578	text mining	2.766938043910483E-8
+google drive	579	tf-idf	2.766938043910483E-8
+google drive	580	the american statistician	2.766938043910483E-8
+google drive	583	theory of computation	2.766938043910483E-8
+google drive	585	tony kent strix award	2.766938043910483E-8
+google drive	586	topic-based vector space model	2.766938043910483E-8
+google drive	587	total information awareness	2.766938043910483E-8
+google drive	588	traffic analysis	2.766938043910483E-8
+google drive	589	training set	2.766938043910483E-8
+google drive	590	transaction processing	2.766938043910483E-8
+google drive	591	trevor hastie	2.766938043910483E-8
+google drive	593	type theory	2.766938043910483E-8
+google drive	594	ubm plc	2.766938043910483E-8
+google drive	595	uima	2.766938043910483E-8
+google drive	597	ubiquitous computing	2.766938043910483E-8
+google drive	598	uncertain inference	2.766938043910483E-8
+google drive	599	united states national research council	2.766938043910483E-8
+google drive	600	university of calabria	2.766938043910483E-8
+google drive	601	university of geneva	2.766938043910483E-8
+google drive	602	university of minnesota	2.766938043910483E-8
+google drive	603	uplift modelling	2.766938043910483E-8
+google drive	604	uppsala monitoring centre	2.766938043910483E-8
+google drive	605	usability	2.766938043910483E-8
+google drive	606	user expectations	2.766938043910483E-8
+google drive	607	user interface	2.766938043910483E-8
+google drive	609	vector space model	2.766938043910483E-8
+google drive	610	veronica (computer)	2.766938043910483E-8
+google drive	616	visualization (computer graphics)	2.766938043910483E-8
+google drive	617	vivisimo	2.766938043910483E-8
+google drive	629	web form	2.766938043910483E-8
+google drive	630	web indexing	2.766938043910483E-8
+google drive	632	web page	2.766938043910483E-8
+google drive	633	web portal	2.766938043910483E-8
+google drive	634	web query classification	2.766938043910483E-8
+google drive	638	web search query	2.766938043910483E-8
+google drive	640	website parse template	2.766938043910483E-8
+google drive	642	weka (machine learning)	2.766938043910483E-8
+google drive	643	wide area information server	2.766938043910483E-8
+google drive	646	wireless sensor network	2.766938043910483E-8
+google drive	649	world wide web wanderer	2.766938043910483E-8
+google drive	650	xml	2.766938043910483E-8
+google drive	652	xml for analysis	2.766938043910483E-8
+google drive	658	z39.50	2.766938043910483E-8
+google drive	420	open drive	6.23951911489315E-4
+google drive	249	google drive	1.530168489722614E-4
+google drive	656	yebol	2.7218980957461684E-6
+google drive	343	list of search engines	2.477448148438568E-6
+google drive	250	google search	2.231500020614338E-6
+google drive	248	google bombing	2.1629426724336003E-6
+google drive	359	market basket analysis	2.080903319543622E-6
+google drive	637	web search engine	1.9479918706751405E-6
+google drive	87	cloud storage	1.6396492760268397E-6
+google drive	433	pagerank	1.6383223944886893E-6
+google drive	247	google	1.5538225172879545E-6
+google drive	263	hotbot	1.3855278498276438E-6
+google drive	132	customer analytics	9.196339989306244E-7
+google drive	230	forrester research	7.769196599719813E-7
+google drive	111	computer data storage	6.926430029692175E-7
+google drive	210	experian hitwise	6.308793512494714E-7
+google drive	262	hitwise	6.308793512494714E-7
+google drive	653	yahoo!	5.093976384046031E-7
+google drive	1	a9.com	4.854650843461631E-7
+google drive	93	column-oriented dbms	4.728149498926587E-7
+google drive	268	ibm	4.654979675452835E-7
+google drive	35	ask.com	4.6358812507640524E-7
+google drive	421	operating system	4.159866026399007E-7
+google drive	98	comparison of web search engines	4.1569464743856804E-7
+google drive	326	keyword (internet search)	3.813405692109832E-7
+google drive	519	search engine optimization	3.813405692109832E-7
+google drive	619	volunia	3.59512718535985E-7
+google drive	345	local search (internet)	2.8257480174068957E-7
+google drive	427	organic search	2.8118944619013745E-7
+google drive	228	forestle	2.6415958119038497E-7
+google drive	225	filter bubble	2.621977469458419E-7
+google drive	56	blackle.com	2.31834699496309E-7
+google drive	533	social search	2.1981766854951993E-7
+google drive	571	tabulating machine	2.1303077771937374E-7
+google drive	611	veronica lodge	2.1245332788360965E-7
+google drive	277	info.com	2.1103295000746176E-7
+google drive	19	alltheweb	2.0245839459599184E-7
+google drive	4	aol	1.9708968430056246E-7
+google drive	5	aol search	1.9708968430056246E-7
+google drive	251	google effect	1.9285242611258222E-7
+google drive	566	surrogate key	1.8848902923174664E-7
+google drive	491	robotics	1.831293002808474E-7
+google drive	621	wearable computer	1.8116193023627272E-7
+google drive	194	duckduckgo	1.7207159718684507E-7
+google drive	267	hypertext	1.7146488863228315E-7
+google drive	644	wikia search	1.710717634499992E-7
+google drive	130	cuil	1.6664360783412104E-7
+google drive	440	personal information management	1.5957964092024504E-7
+google drive	108	computer accessibility	1.560119274200339E-7
+google drive	276	index (search engine)	1.5446411198930587E-7
+google drive	517	search engine indexing	1.5446411198930587E-7
+google drive	110	computer architecture	1.5150162914408616E-7
+google drive	12	advertising	1.4707396832344242E-7
+google drive	537	software development process	1.468968118555592E-7
+google drive	369	meta tags	1.4431316727128136E-7
+google drive	336	leapfish	1.4385705645936175E-7
+google drive	618	voice search	1.4067251052192947E-7
+google drive	535	software	1.4040105062539445E-7
+google drive	461	proximity search (text)	1.3330274116870178E-7
+google drive	52	bing	1.3221278113482887E-7
+google drive	344	live search	1.3221278113482887E-7
+google drive	354	msn search	1.3221278113482887E-7
+google drive	57	blekko	1.3152874579767037E-7
+google drive	30	argonne national laboratory	1.2695716962321227E-7
+google drive	172	desktop search	1.2485207231033403E-7
+google drive	492	robots.txt	1.2310246574636753E-7
+google drive	493	robots exclusion standard	1.2310246574636753E-7
+google drive	518	search engine marketing	1.2300884270649776E-7
+google drive	15	alan emtage	1.2156570108763545E-7
+google drive	620	w3catalog	1.20667171703439E-7
+google drive	655	yandex	1.1958068846752743E-7
+google drive	115	computer programming	1.1754157305984128E-7
+google drive	123	contextual advertising	1.166237894745549E-7
+google drive	339	linkrot	1.1565733143161654E-7
+google drive	76	case western reserve university	1.1459998199702283E-7
+google drive	513	search aggregator	1.141500851076069E-7
+google drive	199	eli pariser	1.1405399543575301E-7
+google drive	648	world wide web	1.1174531211642707E-7
+google drive	404	neural networks	1.105670105261654E-7
+google drive	319	jughead jones	1.0771748722680532E-7
+google drive	63	business intelligence	1.0593942283587551E-7
+google drive	73	cancer	1.047122494654676E-7
+google drive	245	goby inc.	1.032979344244972E-7
+google drive	525	semantic search	1.0225318080075424E-7
+google drive	615	virtual reality	1.0133998874538505E-7
+google drive	325	keypunch	1.0055364887615506E-7
+google drive	647	wolfram alpha	9.935785761474646E-8
+google drive	208	exalead	9.783738901038945E-8
+google drive	434	paid inclusion	9.733439253317594E-8
+google drive	240	genres	9.677498874553519E-8
+google drive	22	alvin weinberg	9.584383983667003E-8
+google drive	165	daum communications	9.507934011857016E-8
+google drive	116	computer science	9.454452623002314E-8
+google drive	657	yummly	9.446160852929671E-8
+google drive	635	web robot	9.370518465511561E-8
+google drive	453	principle of least astonishment	9.303890411930385E-8
+google drive	612	vertical search	9.289266357415797E-8
+google drive	81	chemicalize.org	9.256600272373199E-8
+google drive	520	search engine results pages	9.224259762929034E-8
+google drive	466	quaero	9.103217872515482E-8
+google drive	45	baidu	9.048045597526733E-8
+google drive	446	power transformer	9.041870687515508E-8
+google drive	402	netscape	9.030222655114279E-8
+google drive	360	mass surveillance	8.97669471299861E-8
+google drive	252	gopher (protocol)	8.880258546916841E-8
+google drive	539	software release life cycle	8.74741138983228E-8
+google drive	391	nltk	8.729066379568715E-8
+google drive	397	natural language toolkit	8.729066379568715E-8
+google drive	447	powerset (company)	8.628379049412847E-8
+google drive	645	wikiseek	8.136147539558505E-8
+google drive	255	guruji.com	8.121356328826693E-8
+google drive	654	yahoo! search	8.121356328826693E-8
+google drive	235	general architecture for text engineering	7.875095303896249E-8
+google drive	320	jumpstation	7.700069610977954E-8
+google drive	187	dogpile	7.530795488578581E-8
+google drive	512	search engine watch	7.507557159580199E-8
+google drive	508	scalability	7.359692858240785E-8
+google drive	21	altavista	7.351027283119406E-8
+google drive	506	sql	7.34788646427496E-8
+google drive	574	teoma	7.214658495682986E-8
+google drive	622	webcrawler	7.184333128966355E-8
+google drive	624	web cache	7.115156919580692E-8
+google drive	48	bibliometrics	7.024668246373974E-8
+google drive	152	data mining	7.016924702354672E-8
+google drive	114	computer networking	6.959350374904903E-8
+google drive	401	naver	6.824670481122558E-8
+google drive	614	viewzi	6.782751757597641E-8
+google drive	572	telecommunication	6.733541778119538E-8
+google drive	311	jhepwork	6.685594974201983E-8
+google drive	9	actuate corporation	6.654245718759651E-8
+google drive	522	selection-based search	6.589266141107304E-8
+google drive	511	searchme	6.555736947272246E-8
+google drive	465	python (programming language)	6.49477705015902E-8
+google drive	83	chess endgame	6.442009117620896E-8
+google drive	613	video search engine	6.339831127411556E-8
+google drive	408	number theory	6.322836026758239E-8
+google drive	27	anomaly detection	6.313751615853153E-8
+google drive	373	microsoft	6.229287838685196E-8
+google drive	473	r (programming language)	6.226276173066875E-8
+google drive	297	inktomi (company)	6.092265396219436E-8
+google drive	209	excite	6.037705965533678E-8
+google drive	356	magellan (search engine)	6.037705965533678E-8
+google drive	282	information architecture	6.03084037375865E-8
+google drive	514	search directory	6.022639614135916E-8
+google drive	627	web directories	6.022639614135916E-8
+google drive	628	web directory	6.022639614135916E-8
+google drive	223	federated search	5.982246294406073E-8
+google drive	399	natural language search engine	5.861928230892304E-8
+google drive	546	spell checker	5.769879469054684E-8
+google drive	7	academic journal	5.7633211437428317E-8
+google drive	18	aliweb	5.7525814193706736E-8
+google drive	23	analysis of algorithms	5.63897917789583E-8
+google drive	487	rexer's annual data miner survey	5.565575678791093E-8
+google drive	156	data set	5.500628391905678E-8
+google drive	592	true knowledge	5.382892064670354E-8
+google drive	313	java (programming language)	5.379375997438149E-8
+google drive	485	representational state transfer	5.3472949472288815E-8
+google drive	567	surveillance	5.3064764222533836E-8
+google drive	184	distributed web crawling	5.2977373113904095E-8
+google drive	200	emanuel goldberg	5.252428884606882E-8
+google drive	305	internet search engines and libraries	5.24428270195347E-8
+google drive	596	us congress	5.173194729053886E-8
+google drive	59	boolean algebra	5.153986048116297E-8
+google drive	219	facebook	5.067280235237267E-8
+google drive	239	genieknows	5.034912183262389E-8
+google drive	309	j. c. r. licklider	4.948367715543013E-8
+google drive	584	tim berners-lee	4.929757595940806E-8
+google drive	577	text corpora	4.9122513302510825E-8
+google drive	428	orthogonality	4.8353883852633565E-8
+google drive	419	open directory project	4.829389059853377E-8
+google drive	418	opensearch	4.8064488911555864E-8
+google drive	337	learning to rank	4.7289035594803855E-8
+google drive	651	xml-retrieval	4.720358986045743E-8
+google drive	484	relevance feedback	4.698999512523389E-8
+google drive	641	website mirroring software	4.6558144651199915E-8
+google drive	271	image processing	4.6233409449845834E-8
+google drive	496	rule of inference	4.532291211416916E-8
+google drive	460	programming paradigm	4.4915643415365554E-8
+google drive	497	russian federation	4.488606826407908E-8
+google drive	312	jacquard loom	4.4748939643187285E-8
+google drive	623	web archiving	4.4614923921446444E-8
+google drive	430	outline of information science	4.356188933055686E-8
+google drive	299	insulator (electrical)	4.325601907121858E-8
+google drive	204	europe	4.300625442181778E-8
+google drive	133	customer relationship management	4.2937674527279094E-8
+google drive	75	carrot2	4.2889849017214334E-8
+google drive	348	lycos	4.2889849017214334E-8
+google drive	296	initial public offering	4.2877939417387964E-8
+google drive	636	web scraping	4.2877939417387964E-8
+google drive	61	bram stoker	4.256327957645796E-8
+google drive	411	olap cube	4.255187536578618E-8
+google drive	414	online analytical processing	4.23274033457759E-8
+google drive	576	text retrieval conference	4.191904200380119E-8
+google drive	287	information overload	4.173344583291513E-8
+google drive	24	analytics	4.16324108803734E-8
+google drive	190	dot-com bubble	4.130267834014236E-8
+google drive	43	automated reasoning	4.0882526852596224E-8
+google drive	62	british petroleum	3.9804215314213723E-8
+google drive	233	gnu project	3.972304764793946E-8
+google drive	79	censorship	3.939461975596338E-8
+google drive	581	theodor nelson	3.9301061093949737E-8
+google drive	293	information technology	3.893367390432989E-8
+google drive	625	web crawler	3.8920632754153075E-8
+google drive	626	web crawling	3.8920632754153075E-8
+google drive	294	information theory	3.8356626612627105E-8
+google drive	192	dracula	3.812287902690287E-8
+google drive	363	mathematics	3.807437956878675E-8
+google drive	471	quora	3.800796468072496E-8
+google drive	112	computer graphics	3.743157952210124E-8
+google drive	80	chacha (search engine)	3.722990103637283E-8
+google drive	639	webserver	3.7077191849678807E-8
+google drive	410	oclc	3.7031874839030574E-8
+google drive	46	bayes' theorem	3.694253806040532E-8
+google drive	631	web mining	3.6894125751988475E-8
+google drive	8	accuracy and precision	3.6663613837645244E-8
+google drive	437	pattern	3.654856653971965E-8
+google drive	117	computer vision	3.638727161391794E-8
+google drive	94	combinatorial game	3.5596190542793997E-8
+google drive	538	software engineering	3.511775689982368E-8
+google drive	470	question answering	3.5107780123087164E-8
+google drive	462	pubmed identifier	3.5034495397136596E-8
+google drive	361	massachusetts institute of technology	3.4601805213369626E-8
+google drive	452	preservation (library and archival science)	3.440881815555623E-8
+google drive	95	combinatorics	3.439017517432123E-8
+google drive	241	geographic information systems	3.428644979030065E-8
+google drive	510	scientific american magazine	3.427595364585052E-8
+google drive	28	archie comics	3.4261389384075436E-8
+google drive	582	theory of forms	3.419061458580701E-8
+google drive	565	supreme court of the united states	3.413045859891397E-8
+google drive	379	montreal	3.409149785996914E-8
+google drive	328	knowledge discovery	3.405562600317443E-8
+google drive	222	factor analysis	3.395139025624957E-8
+google drive	355	machine learning	3.3681300752821455E-8
+google drive	351	mit	3.36102480012788E-8
+google drive	37	association rule	3.3580736392342614E-8
+google drive	38	association rule learning	3.3580736392342614E-8
+google drive	39	association rule mining	3.3580736392342614E-8
+google drive	40	association rules	3.3580736392342614E-8
+google drive	412	object-oriented programming	3.337008094482292E-8
+google drive	346	logic programming	3.332282382893783E-8
+google drive	257	html	3.3307517658476085E-8
+google drive	173	digital object identifier	3.318798872253636E-8
+google drive	226	first amendment to the united states constitution	3.3141764017410124E-8
+google drive	486	requirements analysis	3.304750395162443E-8
+google drive	438	people's republic of china	3.294656716891873E-8
+google drive	301	intellectual property	3.2756147875442395E-8
+google drive	266	human rights	3.252032905687381E-8
+google drive	253	graph theory	3.23858420683807E-8
+google drive	548	spreadsheets	3.225671543420651E-8
+google drive	113	computer music	3.213652325092874E-8
+google drive	417	ontology (information science)	3.1619093581605505E-8
+google drive	416	ontologies	3.161829112058509E-8
+google drive	74	carnegie mellon university	3.161548507299902E-8
+google drive	556	statistical inference	3.15551338126046E-8
+google drive	131	cultural studies	3.151211242294149E-8
+google drive	91	collaborative information seeking	3.1470033230314416E-8
+google drive	44	automatic summarization	3.1298986111232906E-8
+google drive	524	semantic web	3.1170197869624613E-8
+google drive	608	vannevar bush	3.1043193730937123E-8
+google drive	370	metadata	3.0943729895682634E-8
+google drive	88	cluster analysis	3.0808863297164245E-8
+google drive	143	data clustering	3.0808863297164245E-8
+google drive	570	tablebase	3.055871273793727E-8
+google drive	454	privacy	3.0273767197009936E-8
+google drive	468	quantum computer	3.0254026499509863E-8
+google drive	364	mcgill university	2.9864979238793715E-8
+google drive	439	perl	2.9777007675522726E-8
+google drive	170	deepwater horizon oil spill	2.9734022288929116E-8
+google drive	540	software testing	2.9726592375413662E-8
+google drive	16	algorithm	2.9114261376827537E-8
+google drive	82	chess	2.9014748915206845E-8
+google drive	31	artificial intelligence	2.884343893347184E-8
+google drive	0	1890 us census	2.766938043910483E-8
+google drive	2	acm computing classification system	2.766938043910483E-8
+google drive	3	advise	2.766938043910483E-8
+google drive	6	academic press	2.766938043910483E-8
+google drive	10	adversarial information retrieval	2.766938043910483E-8
+google drive	11	adverse drug reaction	2.766938043910483E-8
+google drive	13	aggregate (data warehouse)	2.766938043910483E-8
+google drive	14	aggregate function	2.766938043910483E-8
+google drive	17	algorithm design	2.766938043910483E-8
+google drive	20	alpha consumer	2.766938043910483E-8
+google drive	25	anchor modeling	2.766938043910483E-8
+google drive	26	angoss	2.766938043910483E-8
+google drive	29	archie search engine	2.766938043910483E-8
+google drive	32	artificial life	2.766938043910483E-8
+google drive	33	artificial neural network	2.766938043910483E-8
+google drive	34	as we may think	2.766938043910483E-8
+google drive	36	association for computing machinery	2.766938043910483E-8
+google drive	41	atlantic monthly	2.766938043910483E-8
+google drive	42	automata theory	2.766938043910483E-8
+google drive	47	berlekamp	2.766938043910483E-8
+google drive	49	bill inmon	2.766938043910483E-8
+google drive	50	binary independence model	2.766938043910483E-8
+google drive	51	binary classification	2.766938043910483E-8
+google drive	53	bioinformatic	2.766938043910483E-8
+google drive	54	bioinformatics	2.766938043910483E-8
+google drive	55	biomedical	2.766938043910483E-8
+google drive	58	boogami	2.766938043910483E-8
+google drive	60	boolean operators	2.766938043910483E-8
+google drive	64	business intelligence tools	2.766938043910483E-8
+google drive	65	buzzword	2.766938043910483E-8
+google drive	66	c. j. van rijsbergen	2.766938043910483E-8
+google drive	67	capps ii	2.766938043910483E-8
+google drive	68	cern	2.766938043910483E-8
+google drive	69	cikm conference	2.766938043910483E-8
+google drive	70	crisp-dm	2.766938043910483E-8
+google drive	71	calvin mooers	2.766938043910483E-8
+google drive	72	cambridge university press	2.766938043910483E-8
+google drive	77	categorization	2.766938043910483E-8
+google drive	78	category theory	2.766938043910483E-8
+google drive	84	churn rate	2.766938043910483E-8
+google drive	85	clarabridge	2.766938043910483E-8
+google drive	86	classification of the sciences (peirce)	2.766938043910483E-8
+google drive	89	co-occurrence	2.766938043910483E-8
+google drive	90	cognitive science	2.766938043910483E-8
+google drive	92	collaborative search engine	2.766938043910483E-8
+google drive	96	communications of the acm	2.766938043910483E-8
+google drive	97	comparison of olap servers	2.766938043910483E-8
+google drive	99	compiler	2.766938043910483E-8
+google drive	100	computability theory	2.766938043910483E-8
+google drive	101	computational chemistry	2.766938043910483E-8
+google drive	102	computational complexity theory	2.766938043910483E-8
+google drive	103	computational geometry	2.766938043910483E-8
+google drive	104	computational linguistics	2.766938043910483E-8
+google drive	105	computational neuroscience	2.766938043910483E-8
+google drive	106	computational physics	2.766938043910483E-8
+google drive	107	computational science	2.766938043910483E-8
+google drive	109	computer animation	2.766938043910483E-8
+google drive	118	concurrency (computer science)	2.766938043910483E-8
+google drive	119	concurrency control	2.766938043910483E-8
+google drive	120	condition monitoring	2.766938043910483E-8
+google drive	121	conference on information and knowledge management	2.766938043910483E-8
+google drive	122	conference on knowledge discovery and data mining	2.766938043910483E-8
+google drive	124	controlled vocabulary	2.766938043910483E-8
+google drive	125	cornelis j. van rijsbergen	2.766938043910483E-8
+google drive	126	cross-language information retrieval	2.766938043910483E-8
+google drive	127	cross-platform	2.766938043910483E-8
+google drive	128	cross industry standard process for data mining	2.766938043910483E-8
+google drive	129	cryptography	2.766938043910483E-8
+google drive	134	cyril w. cleverdon	2.766938043910483E-8
+google drive	135	dna	2.766938043910483E-8
+google drive	136	dashboard (business)	2.766938043910483E-8
+google drive	137	data	2.766938043910483E-8
+google drive	138	data mining extensions	2.766938043910483E-8
+google drive	139	data pre-processing	2.766938043910483E-8
+google drive	140	data vault modeling	2.766938043910483E-8
+google drive	141	data analysis	2.766938043910483E-8
+google drive	142	data cleaning	2.766938043910483E-8
+google drive	144	data collection	2.766938043910483E-8
+google drive	145	data dictionary	2.766938043910483E-8
+google drive	146	data dredging	2.766938043910483E-8
+google drive	147	data extraction	2.766938043910483E-8
+google drive	148	data integration	2.766938043910483E-8
+google drive	149	data loading	2.766938043910483E-8
+google drive	150	data management	2.766938043910483E-8
+google drive	151	data mart	2.766938043910483E-8
+google drive	153	data mining in agriculture	2.766938043910483E-8
+google drive	154	data mining in meteorology	2.766938043910483E-8
+google drive	155	data modeling	2.766938043910483E-8
+google drive	157	data snooping	2.766938043910483E-8
+google drive	158	data structure	2.766938043910483E-8
+google drive	159	data transformation	2.766938043910483E-8
+google drive	160	data visualization	2.766938043910483E-8
+google drive	161	data warehouse	2.766938043910483E-8
+google drive	162	database	2.766938043910483E-8
+google drive	163	database management system	2.766938043910483E-8
+google drive	164	database system	2.766938043910483E-8
+google drive	166	decision making	2.766938043910483E-8
+google drive	167	decision support system	2.766938043910483E-8
+google drive	168	decision tree learning	2.766938043910483E-8
+google drive	169	decision trees	2.766938043910483E-8
+google drive	171	degenerate dimension	2.766938043910483E-8
+google drive	174	digital obsolescence	2.766938043910483E-8
+google drive	175	dimension (data warehouse)	2.766938043910483E-8
+google drive	176	dimension reduction	2.766938043910483E-8
+google drive	177	dimension table	2.766938043910483E-8
+google drive	178	dimensional modeling	2.766938043910483E-8
+google drive	179	discounted cumulative gain	2.766938043910483E-8
+google drive	180	discovery (observation)	2.766938043910483E-8
+google drive	181	discovery net	2.766938043910483E-8
+google drive	182	dissolved gas analysis	2.766938043910483E-8
+google drive	183	distributed computing	2.766938043910483E-8
+google drive	185	divergence-from-randomness model	2.766938043910483E-8
+google drive	186	document retrieval	2.766938043910483E-8
+google drive	188	don swanson	2.766938043910483E-8
+google drive	189	donald b. crouch	2.766938043910483E-8
+google drive	191	dots-and-boxes	2.766938043910483E-8
+google drive	193	drug discovery	2.766938043910483E-8
+google drive	195	early-arriving fact	2.766938043910483E-8
+google drive	196	educational data mining	2.766938043910483E-8
+google drive	197	electrical power	2.766938043910483E-8
+google drive	198	electronic health records	2.766938043910483E-8
+google drive	201	enterprise search	2.766938043910483E-8
+google drive	202	environment for developing kdd-applications supported by index-structures	2.766938043910483E-8
+google drive	203	eugene garfield	2.766938043910483E-8
+google drive	205	european conference on machine learning and principles and practice of knowledge discovery in databases	2.766938043910483E-8
+google drive	206	european summer school in information retrieval	2.766938043910483E-8
+google drive	207	evolutionary computation	2.766938043910483E-8
+google drive	211	expert system	2.766938043910483E-8
+google drive	212	expertise finding	2.766938043910483E-8
+google drive	213	exploratory data analysis	2.766938043910483E-8
+google drive	214	extended boolean model	2.766938043910483E-8
+google drive	215	extract, transform, load	2.766938043910483E-8
+google drive	216	f-score	2.766938043910483E-8
+google drive	217	f. wilfrid lancaster	2.766938043910483E-8
+google drive	218	fico	2.766938043910483E-8
+google drive	220	fact (data warehouse)	2.766938043910483E-8
+google drive	221	fact table	2.766938043910483E-8
+google drive	224	file transfer protocol	2.766938043910483E-8
+google drive	227	focused crawler	2.766938043910483E-8
+google drive	229	formal methods	2.766938043910483E-8
+google drive	231	functional programming	2.766938043910483E-8
+google drive	232	fuzzy retrieval	2.766938043910483E-8
+google drive	234	gartner	2.766938043910483E-8
+google drive	236	generalized vector space model	2.766938043910483E-8
+google drive	237	genetic algorithms	2.766938043910483E-8
+google drive	238	genetics	2.766938043910483E-8
+google drive	242	gerard salton	2.766938043910483E-8
+google drive	243	gerard salton award	2.766938043910483E-8
+google drive	244	go.com	2.766938043910483E-8
+google drive	246	goodsearch	2.766938043910483E-8
+google drive	254	grid computing	2.766938043910483E-8
+google drive	256	holap	2.766938043910483E-8
+google drive	258	hans peter luhn	2.766938043910483E-8
+google drive	259	harmonic mean	2.766938043910483E-8
+google drive	260	health insurance portability and accountability act	2.766938043910483E-8
+google drive	261	herman hollerith	2.766938043910483E-8
+google drive	264	human%e2%80%93computer information retrieval	2.766938043910483E-8
+google drive	265	human%e2%80%93computer interaction	2.766938043910483E-8
+google drive	269	ieee	2.766938043910483E-8
+google drive	270	ill-posed	2.766938043910483E-8
+google drive	272	image retrieval	2.766938043910483E-8
+google drive	273	imperial college london	2.766938043910483E-8
+google drive	274	independency	2.766938043910483E-8
+google drive	275	index (database)	2.766938043910483E-8
+google drive	278	informatics (academic field)	2.766938043910483E-8
+google drive	279	informationweek	2.766938043910483E-8
+google drive	280	information retrieval facility	2.766938043910483E-8
+google drive	281	information access	2.766938043910483E-8
+google drive	283	information extraction	2.766938043910483E-8
+google drive	284	information integration	2.766938043910483E-8
+google drive	285	information management	2.766938043910483E-8
+google drive	286	information need	2.766938043910483E-8
+google drive	288	information retrieval	2.766938043910483E-8
+google drive	289	information retrieval applications	2.766938043910483E-8
+google drive	290	information science	2.766938043910483E-8
+google drive	291	information seeking	2.766938043910483E-8
+google drive	292	information society	2.766938043910483E-8
+google drive	295	infoseek	2.766938043910483E-8
+google drive	298	institutional memory	2.766938043910483E-8
+google drive	300	intellectual freedom	2.766938043910483E-8
+google drive	302	interactive visualization	2.766938043910483E-8
+google drive	303	international conference on very large data bases	2.766938043910483E-8
+google drive	304	international standard book number	2.766938043910483E-8
+google drive	306	interpreter (computing)	2.766938043910483E-8
+google drive	307	inverted index	2.766938043910483E-8
+google drive	308	iterative algorithm	2.766938043910483E-8
+google drive	310	jasis	2.766938043910483E-8
+google drive	314	java data mining	2.766938043910483E-8
+google drive	315	john nunn	2.766938043910483E-8
+google drive	316	john seward	2.766938043910483E-8
+google drive	317	joseph marie jacquard	2.766938043910483E-8
+google drive	318	jughead (computer)	2.766938043910483E-8
+google drive	321	kdd conference	2.766938043910483E-8
+google drive	322	knime	2.766938043910483E-8
+google drive	323	kxen inc.	2.766938043910483E-8
+google drive	324	karen spaìˆrck jones	2.766938043910483E-8
+google drive	327	kluwer academic publishers	2.766938043910483E-8
+google drive	329	knowledge organization	2.766938043910483E-8
+google drive	330	knowledge visualization	2.766938043910483E-8
+google drive	331	lionsolver	2.766938043910483E-8
+google drive	332	language model	2.766938043910483E-8
+google drive	333	latent dirichlet allocation	2.766938043910483E-8
+google drive	334	latent semantic analysis	2.766938043910483E-8
+google drive	335	latent semantic indexing	2.766938043910483E-8
+google drive	338	library and information science	2.766938043910483E-8
+google drive	340	list of computer science conferences	2.766938043910483E-8
+google drive	341	list of information retrieval libraries	2.766938043910483E-8
+google drive	342	list of reporting software	2.766938043910483E-8
+google drive	347	looksmart	2.766938043910483E-8
+google drive	349	matrix	2.766938043910483E-8
+google drive	350	medlars	2.766938043910483E-8
+google drive	352	ml-flex	2.766938043910483E-8
+google drive	353	molap	2.766938043910483E-8
+google drive	357	main page	2.766938043910483E-8
+google drive	358	mark mccahill	2.766938043910483E-8
+google drive	362	mathematical logic	2.766938043910483E-8
+google drive	365	mean reciprocal rank	2.766938043910483E-8
+google drive	366	measure (data warehouse)	2.766938043910483E-8
+google drive	367	medicine	2.766938043910483E-8
+google drive	368	memory	2.766938043910483E-8
+google drive	371	metasearch engine	2.766938043910483E-8
+google drive	372	microarchitecture	2.766938043910483E-8
+google drive	374	microsoft analysis services	2.766938043910483E-8
+google drive	375	mind maps	2.766938043910483E-8
+google drive	376	mining software repositories	2.766938043910483E-8
+google drive	377	missing data	2.766938043910483E-8
+google drive	378	modeling and simulation	2.766938043910483E-8
+google drive	380	morgan kaufmann	2.766938043910483E-8
+google drive	381	msnbot	2.766938043910483E-8
+google drive	382	mugurdy	2.766938043910483E-8
+google drive	383	multidimensional expressions	2.766938043910483E-8
+google drive	384	multifactor dimensionality reduction	2.766938043910483E-8
+google drive	385	multilinear subspace learning	2.766938043910483E-8
+google drive	386	multimedia information retrieval	2.766938043910483E-8
+google drive	387	multiprocessing	2.766938043910483E-8
+google drive	388	multisearch	2.766938043910483E-8
+google drive	389	multivariate statistics	2.766938043910483E-8
+google drive	390	music information retrieval	2.766938043910483E-8
+google drive	392	named-entity recognition	2.766938043910483E-8
+google drive	393	national bureau of standards	2.766938043910483E-8
+google drive	394	national center for supercomputing applications	2.766938043910483E-8
+google drive	395	national institute of standards and technology	2.766938043910483E-8
+google drive	396	national security agency	2.766938043910483E-8
+google drive	398	natural language processing	2.766938043910483E-8
+google drive	400	nature (journal)	2.766938043910483E-8
+google drive	403	network topology	2.766938043910483E-8
+google drive	405	nicholas j. belkin	2.766938043910483E-8
+google drive	406	nicholas jardine	2.766938043910483E-8
+google drive	407	northern light group	2.766938043910483E-8
+google drive	409	numerical analysis	2.766938043910483E-8
+google drive	413	online algorithm	2.766938043910483E-8
+google drive	415	online search	2.766938043910483E-8
+google drive	422	operational data store	2.766938043910483E-8
+google drive	423	oracle	2.766938043910483E-8
+google drive	424	oracle data mining	2.766938043910483E-8
+google drive	425	oracle machine	2.766938043910483E-8
+google drive	426	orange (software)	2.766938043910483E-8
+google drive	429	oscar nierstrasz	2.766938043910483E-8
+google drive	431	overfitting	2.766938043910483E-8
+google drive	432	overture	2.766938043910483E-8
+google drive	435	parallel computing	2.766938043910483E-8
+google drive	436	parsing	2.766938043910483E-8
+google drive	441	pharmacy	2.766938043910483E-8
+google drive	442	philosophy of information	2.766938043910483E-8
+google drive	443	picollator	2.766938043910483E-8
+google drive	444	police-enforced anpr in the uk	2.766938043910483E-8
+google drive	445	positive predictive value	2.766938043910483E-8
+google drive	448	precision and recall	2.766938043910483E-8
+google drive	449	predictive model markup language	2.766938043910483E-8
+google drive	450	predictive analytics	2.766938043910483E-8
+google drive	451	prentice hall	2.766938043910483E-8
+google drive	455	probabilistic relevance model	2.766938043910483E-8
+google drive	456	probabilistic relevance model (bm25)	2.766938043910483E-8
+google drive	457	procedural programming	2.766938043910483E-8
+google drive	458	profiling practices	2.766938043910483E-8
+google drive	459	programming language	2.766938043910483E-8
+google drive	463	public library	2.766938043910483E-8
+google drive	464	punched cards	2.766938043910483E-8
+google drive	467	quantitative structure%e2%80%93activity relationship	2.766938043910483E-8
+google drive	469	query string	2.766938043910483E-8
+google drive	472	rolap	2.766938043910483E-8
+google drive	474	ralph kimball	2.766938043910483E-8
+google drive	475	rank order	2.766938043910483E-8
+google drive	476	rapidminer	2.766938043910483E-8
+google drive	477	reactive business intelligence	2.766938043910483E-8
+google drive	478	real-time computing	2.766938043910483E-8
+google drive	479	receiver operating characteristic	2.766938043910483E-8
+google drive	480	regression analysis	2.766938043910483E-8
+google drive	481	relational database	2.766938043910483E-8
+google drive	482	relevance	2.766938043910483E-8
+google drive	483	relevance (information retrieval)	2.766938043910483E-8
+google drive	488	robert m. hayes	2.766938043910483E-8
+google drive	489	robert r. korfhage	2.766938043910483E-8
+google drive	490	robert tibshirani	2.766938043910483E-8
+google drive	494	rocchio classification	2.766938043910483E-8
+google drive	495	routing	2.766938043910483E-8
+google drive	498	sapo (company)	2.766938043910483E-8
+google drive	499	sas (software)	2.766938043910483E-8
+google drive	500	sas institute	2.766938043910483E-8
+google drive	501	semma	2.766938043910483E-8
+google drive	502	sigkdd	2.766938043910483E-8
+google drive	503	sigmod	2.766938043910483E-8
+google drive	504	smart information retrieval system	2.766938043910483E-8
+google drive	505	spss modeler	2.766938043910483E-8
+google drive	507	statistica	2.766938043910483E-8
+google drive	509	science, technology and society	2.766938043910483E-8
+google drive	515	search engine (computing)	2.766938043910483E-8
+google drive	516	search engine (disambiguation)	2.766938043910483E-8
+google drive	521	search oriented architecture	2.766938043910483E-8
+google drive	523	self-organizing map	2.766938043910483E-8
+google drive	526	sensitivity and specificity	2.766938043910483E-8
+google drive	527	sequence mining	2.766938043910483E-8
+google drive	528	set theory	2.766938043910483E-8
+google drive	529	sixth normal form	2.766938043910483E-8
+google drive	530	slowly changing dimension	2.766938043910483E-8
+google drive	531	social science research network	2.766938043910483E-8
+google drive	532	social information seeking	2.766938043910483E-8
+google drive	534	society for industrial and applied mathematics	2.766938043910483E-8
+google drive	536	software design	2.766938043910483E-8
+google drive	541	sogou.com	2.766938043910483E-8
+google drive	542	sorrell v. ims health, inc.	2.766938043910483E-8
+google drive	543	spatial index	2.766938043910483E-8
+google drive	544	spearman's rank correlation coefficient	2.766938043910483E-8
+google drive	545	special interest group on information retrieval	2.766938043910483E-8
+google drive	547	spider trap	2.766938043910483E-8
+google drive	549	springer verlag	2.766938043910483E-8
+google drive	550	sproose	2.766938043910483E-8
+google drive	551	standard boolean model	2.766938043910483E-8
+google drive	552	star schema	2.766938043910483E-8
+google drive	553	statcounter	2.766938043910483E-8
+google drive	554	statsoft	2.766938043910483E-8
+google drive	555	statistical classification	2.766938043910483E-8
+google drive	557	statistical model	2.766938043910483E-8
+google drive	558	statistical noise	2.766938043910483E-8
+google drive	559	statistics	2.766938043910483E-8
+google drive	560	stellar wind (code name)	2.766938043910483E-8
+google drive	561	structured data analysis (statistics)	2.766938043910483E-8
+google drive	562	subject indexing	2.766938043910483E-8
+google drive	563	subspace clustering	2.766938043910483E-8
+google drive	564	support vector machines	2.766938043910483E-8
+google drive	568	symbolic computation	2.766938043910483E-8
+google drive	569	systems architecture	2.766938043910483E-8
+google drive	573	temporal information retrieval	2.766938043910483E-8
+google drive	575	test set	2.766938043910483E-8
+google drive	578	text mining	2.766938043910483E-8
+google drive	579	tf-idf	2.766938043910483E-8
+google drive	580	the american statistician	2.766938043910483E-8
+google drive	583	theory of computation	2.766938043910483E-8
+google drive	585	tony kent strix award	2.766938043910483E-8
+google drive	586	topic-based vector space model	2.766938043910483E-8
+google drive	587	total information awareness	2.766938043910483E-8
+google drive	588	traffic analysis	2.766938043910483E-8
+google drive	589	training set	2.766938043910483E-8
+google drive	590	transaction processing	2.766938043910483E-8
+google drive	591	trevor hastie	2.766938043910483E-8
+google drive	593	type theory	2.766938043910483E-8
+google drive	594	ubm plc	2.766938043910483E-8
+google drive	595	uima	2.766938043910483E-8
+google drive	597	ubiquitous computing	2.766938043910483E-8
+google drive	598	uncertain inference	2.766938043910483E-8
+google drive	599	united states national research council	2.766938043910483E-8
+google drive	600	university of calabria	2.766938043910483E-8
+google drive	601	university of geneva	2.766938043910483E-8
+google drive	602	university of minnesota	2.766938043910483E-8
+google drive	603	uplift modelling	2.766938043910483E-8
+google drive	604	uppsala monitoring centre	2.766938043910483E-8
+google drive	605	usability	2.766938043910483E-8
+google drive	606	user expectations	2.766938043910483E-8
+google drive	607	user interface	2.766938043910483E-8
+google drive	609	vector space model	2.766938043910483E-8
+google drive	610	veronica (computer)	2.766938043910483E-8
+google drive	616	visualization (computer graphics)	2.766938043910483E-8
+google drive	617	vivisimo	2.766938043910483E-8
+google drive	629	web form	2.766938043910483E-8
+google drive	630	web indexing	2.766938043910483E-8
+google drive	632	web page	2.766938043910483E-8
+google drive	633	web portal	2.766938043910483E-8
+google drive	634	web query classification	2.766938043910483E-8
+google drive	638	web search query	2.766938043910483E-8
+google drive	640	website parse template	2.766938043910483E-8
+google drive	642	weka (machine learning)	2.766938043910483E-8
+google drive	643	wide area information server	2.766938043910483E-8
+google drive	646	wireless sensor network	2.766938043910483E-8
+google drive	649	world wide web wanderer	2.766938043910483E-8
+google drive	650	xml	2.766938043910483E-8
+google drive	652	xml for analysis	2.766938043910483E-8
+google drive	658	z39.50	2.766938043910483E-8
+google	249	google drive	0.02821178776555623
+google	247	google	0.022244226244303434
+google	250	google search	0.02098022594343042
+google	420	open drive	0.018893605947374412
+google	248	google bombing	0.016539259072479592
+google	98	comparison of web search engines	0.010603874096491484
+google	326	keyword (internet search)	0.009804493833949195
+google	519	search engine optimization	0.009804493833949195
+google	619	volunia	0.009237975341682908
+google	433	pagerank	0.008838892758966689
+google	345	local search (internet)	0.007256290383357279
+google	427	organic search	0.007205294259062726
+google	228	forestle	0.006790815121179333
+google	225	filter bubble	0.006738909814777729
+google	343	list of search engines	0.006668108083226649
+google	56	blackle.com	0.005952877912306757
+google	251	google effect	0.00565529059041499
+google	533	social search	0.005647247142929049
+google	277	info.com	0.005384684961817914
+google	19	alltheweb	0.005200118106669338
+google	637	web search engine	0.004956069774516383
+google	194	duckduckgo	0.004424659052684945
+google	644	wikia search	0.00439659502179206
+google	130	cuil	0.004285039424565931
+google	369	meta tags	0.0037105251392936063
+google	336	leapfish	0.003698135888423127
+google	618	voice search	0.003601961175960857
+google	656	yebol	0.0035853509839470373
+google	461	proximity search (text)	0.0034203468121434483
+google	52	bing	0.003400844949180423
+google	344	live search	0.003400549837549209
+google	354	msn search	0.003400549837549209
+google	57	blekko	0.003381505538248834
+google	172	desktop search	0.003206797745596153
+google	492	robots.txt	0.0031654409825682284
+google	493	robots exclusion standard	0.0031627681577130955
+google	518	search engine marketing	0.0031619674453994212
+google	15	alan emtage	0.0031194924204518987
+google	620	w3catalog	0.003092740146508614
+google	655	yandex	0.0030755252516518946
+google	123	contextual advertising	0.002994892788387283
+google	339	linkrot	0.00297423120447026
+google	513	search aggregator	0.0029315435924152783
+google	199	eli pariser	0.0029290826657779622
+google	245	goby inc.	0.0026422896960581633
+google	525	semantic search	0.002627496577816769
+google	647	wolfram alpha	0.0025542566738934046
+google	208	exalead	0.0025135895673580344
+google	434	paid inclusion	0.002497502051270518
+google	22	alvin weinberg	0.0024643289502740734
+google	165	daum communications	0.0024418915717846065
+google	657	yummly	0.0024241165326795203
+google	635	web robot	0.0024067030197935206
+google	453	principle of least astonishment	0.0023858949084133753
+google	81	chemicalize.org	0.0023784544322228993
+google	612	vertical search	0.0023784544322228993
+google	520	search engine results pages	0.002361952782057883
+google	466	quaero	0.002340452260670239
+google	45	baidu	0.002327296650855102
+google	360	mass surveillance	0.0023088393626078296
+google	252	gopher (protocol)	0.002283805843764132
+google	539	software release life cycle	0.0022475490643715026
+google	391	nltk	0.0022408397533238166
+google	397	natural language toolkit	0.0022315446044620076
+google	447	powerset (company)	0.002217811861941775
+google	645	wikiseek	0.002089198233875792
+google	654	yahoo! search	0.0020873035839881447
+google	255	guruji.com	0.0020854141391826063
+google	235	general architecture for text engineering	0.0020172707942768594
+google	320	jumpstation	0.001977610550366359
+google	187	dogpile	0.001934281653086795
+google	512	search engine watch	0.0019224415185828672
+google	508	scalability	0.0018927041566757412
+google	21	altavista	0.0018901066972137346
+google	574	teoma	0.0018533402769717578
+google	622	webcrawler	0.001845574613628795
+google	87	cloud storage	0.0018436496784028653
+google	653	yahoo!	0.00184112680502366
+google	624	web cache	0.0018278591941276612
+google	48	bibliometrics	0.0018058796692761452
+google	35	ask.com	0.0018025382018564073
+google	401	naver	0.0017545406331266186
+google	614	viewzi	0.001742715600607779
+google	311	jhepwork	0.0017191752739511286
+google	9	actuate corporation	0.0017078037018112128
+google	522	selection-based search	0.0016931420344473021
+google	511	searchme	0.0016854976000255607
+google	465	python (programming language)	0.0016704584089307533
+google	613	video search engine	0.0016298927967718037
+google	408	number theory	0.0016263661449233443
+google	27	anomaly detection	0.0016225345779423894
+google	373	microsoft	0.0016023849343947065
+google	473	r (programming language)	0.0016010154078326554
+google	297	inktomi (company)	0.001565758730543423
+google	263	hotbot	0.0015592453926748767
+google	209	excite	0.001552830658743785
+google	356	magellan (search engine)	0.0015521239000100143
+google	282	information architecture	0.001550010732865537
+google	514	search directory	0.0015479081668940253
+google	627	web directories	0.0015479081668940253
+google	628	web directory	0.0015479081668940253
+google	223	federated search	0.001537551597100411
+google	399	natural language search engine	0.0015067003251746747
+google	546	spell checker	0.0014836905058109606
+google	7	academic journal	0.0014818082994371362
+google	18	aliweb	0.0014786589312004044
+google	23	analysis of algorithms	0.0014497951456300335
+google	487	rexer's annual data miner survey	0.001429147880333851
+google	156	data set	0.0014130500376459943
+google	592	true knowledge	0.0013838307763089207
+google	313	java (programming language)	0.0013835845165028554
+google	485	representational state transfer	0.0013749177390310337
+google	268	ibm	0.0013723690771104003
+google	567	surveillance	0.0013650165822788902
+google	184	distributed web crawling	0.0013602961961658305
+google	200	emanuel goldberg	0.0013503573696430782
+google	305	internet search engines and libraries	0.0013487884025568696
+google	596	us congress	0.0013307273157934928
+google	59	boolean algebra	0.001325724120820737
+google	219	facebook	0.0013035037418875936
+google	239	genieknows	0.0012945383483068153
+google	309	j. c. r. licklider	0.0012721164917422617
+google	584	tim berners-lee	0.0012679612916963884
+google	577	text corpora	0.0012624485585077745
+google	4	aol	0.0012476296326674496
+google	5	aol search	0.001247565834373949
+google	428	orthogonality	0.001243702659173254
+google	419	open directory project	0.0012420104590875158
+google	418	opensearch	0.0012358967802312852
+google	337	learning to rank	0.0012159894462285014
+google	651	xml-retrieval	0.0012137957976847465
+google	484	relevance feedback	0.0012078195115879787
+google	641	website mirroring software	0.0011962838895872405
+google	271	image processing	0.0011884321888164804
+google	648	world wide web	0.001166746819241401
+google	496	rule of inference	0.0011653025047852577
+google	460	programming paradigm	0.0011550501769037502
+google	312	jacquard loom	0.0011503842567843028
+google	623	web archiving	0.0011473278352426438
+google	446	power transformer	0.0011259693427596786
+google	430	outline of information science	0.0011192857280664201
+google	299	insulator (electrical)	0.0011125358286072611
+google	276	index (search engine)	0.0011117077815530332
+google	517	search engine indexing	0.0011117077815530332
+google	1	a9.com	0.001109876937530755
+google	204	europe	0.0011063009969230692
+google	133	customer relationship management	0.0011036372953367969
+google	75	carrot2	0.0011030240722854972
+google	348	lycos	0.0011030240722854972
+google	296	initial public offering	0.0011027946081759786
+google	636	web scraping	0.0011027181799424719
+google	61	bram stoker	0.0010947338978002969
+google	411	olap cube	0.0010940507624981287
+google	621	wearable computer	0.001092401822902084
+google	414	online analytical processing	0.0010884355998311856
+google	576	text retrieval conference	0.0010775522132519166
+google	287	information overload	0.001073407823415442
+google	24	analytics	0.0010707253104234257
+google	190	dot-com bubble	0.001062336959293087
+google	43	automated reasoning	0.0010512310785229671
+google	62	british petroleum	0.0010239254628718485
+google	233	gnu project	0.001021673107979536
+google	79	censorship	0.0010133559199591276
+google	581	theodor nelson	0.00101065208115695
+google	293	information technology	0.0010013910091125604
+google	625	web crawler	0.0010011396174080846
+google	626	web crawling	0.0010011396174080846
+google	421	operating system	9.95851774646281E-4
+google	294	information theory	9.866137091253057E-4
+google	192	dracula	9.806531536186093E-4
+google	363	mathematics	9.794179007094508E-4
+google	471	quora	9.776038208459722E-4
+google	112	computer graphics	9.628337906608352E-4
+google	80	chacha (search engine)	9.573673333361933E-4
+google	639	webserver	9.536842338677952E-4
+google	410	oclc	9.525195903034642E-4
+google	46	bayes' theorem	9.501099771863566E-4
+google	631	web mining	9.488669500038381E-4
+google	8	accuracy and precision	9.428413699924618E-4
+google	437	pattern	9.400982678393376E-4
+google	117	computer vision	9.359527509855086E-4
+google	73	cancer	9.321491582402345E-4
+google	94	combinatorial game	9.155367468113263E-4
+google	538	software engineering	9.033219544089428E-4
+google	470	question answering	9.029923544663664E-4
+google	462	pubmed identifier	9.011099919856154E-4
+google	361	massachusetts institute of technology	8.900862882256162E-4
+google	452	preservation (library and archival science)	8.850579515328989E-4
+google	95	combinatorics	8.846187368662914E-4
+google	241	geographic information systems	8.819522578988304E-4
+google	510	scientific american magazine	8.815670524832276E-4
+google	28	archie comics	8.813080232270243E-4
+google	582	theory of forms	8.794604684402032E-4
+google	565	supreme court of the united states	8.779559277363589E-4
+google	379	montreal	8.769860034416952E-4
+google	328	knowledge discovery	8.760183452901792E-4
+google	222	factor analysis	8.733386540861196E-4
+google	355	machine learning	8.663472709658153E-4
+google	351	mit	8.646072857029394E-4
+google	37	association rule	8.637634494468101E-4
+google	40	association rules	8.637634494468101E-4
+google	38	association rule learning	8.637172702660472E-4
+google	39	association rule mining	8.637172702660472E-4
+google	412	object-oriented programming	8.583938350475096E-4
+google	346	logic programming	8.57136602765535E-4
+google	257	html	8.568133867493101E-4
+google	173	digital object identifier	8.536317371874384E-4
+google	226	first amendment to the united states constitution	8.524941114124308E-4
+google	486	requirements analysis	8.500621018394185E-4
+google	438	people's republic of china	8.475236235765251E-4
+google	402	netscape	8.471973796388325E-4
+google	12	advertising	8.4661922623039E-4
+google	301	intellectual property	8.426093249492205E-4
+google	266	human rights	8.365616129578173E-4
+google	253	graph theory	8.330586847898004E-4
+google	548	spreadsheets	8.297818658512179E-4
+google	113	computer music	8.266510782141697E-4
+google	30	argonne national laboratory	8.26440368170312E-4
+google	416	ontologies	8.13351852495091E-4
+google	417	ontology (information science)	8.133312261573699E-4
+google	74	carnegie mellon university	8.132693973808724E-4
+google	556	statistical inference	8.117078295050735E-4
+google	131	cultural studies	8.106019948052445E-4
+google	91	collaborative information seeking	8.095012695624863E-4
+google	404	neural networks	8.094630927685788E-4
+google	44	automatic summarization	8.05123587844827E-4
+google	572	telecommunication	8.019590910747177E-4
+google	524	semantic web	8.018129726142088E-4
+google	615	virtual reality	7.996149217129163E-4
+google	608	vannevar bush	7.985631907558161E-4
+google	370	metadata	7.960053838819863E-4
+google	88	cluster analysis	7.925240807508072E-4
+google	143	data clustering	7.925240807508072E-4
+google	116	computer science	7.92225345993813E-4
+google	570	tablebase	7.861040556870293E-4
+google	454	privacy	7.787759756312594E-4
+google	468	quantum computer	7.782594486192478E-4
+google	497	russian federation	7.700356686317219E-4
+google	364	mcgill university	7.682626060148083E-4
+google	439	perl	7.660000609048177E-4
+google	170	deepwater horizon oil spill	7.648926299618122E-4
+google	540	software testing	7.646978184662856E-4
+google	491	robotics	7.621351625958057E-4
+google	16	algorithm	7.489541968355012E-4
+google	82	chess	7.463946315584475E-4
+google	31	artificial intelligence	7.419864730515518E-4
 google	0	1890 us census	7.117877655562326E-4
 google	2	acm computing classification system	7.117877655562326E-4
 google	3	advise	7.117877655562326E-4

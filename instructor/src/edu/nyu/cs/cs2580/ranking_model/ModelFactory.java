@@ -12,21 +12,21 @@ public class ModelFactory
 		{
 			model = new CosineModel(_index);
 		}
-		else if (ranker_type.equalsIgnoreCase("QL"))
+		else if (ranker_type.equalsIgnoreCase("ql"))
 		{
 			model = new QLModel(_index);
 		} 
-		else if (ranker_type.equals("phrase"))
+		else if (ranker_type.equalsIgnoreCase("phrase"))
 		{
 			model = new PhraseModel(_index);	
 		} 
-		else if (ranker_type.equals("numviews"))
+		else if (ranker_type.equalsIgnoreCase("numviews"))
 		{
 			model = new NumViewsModel(_index);	
 		}
-		else if (ranker_type.equals("linear"))
+		else if (ranker_type.equalsIgnoreCase("linear"))
 		{
-			//TODO need to implement linear model as sum
+			model = new SimpleLinearModel(_index);
 		} 
 		else{
 			//if no model is specified , use the default model
