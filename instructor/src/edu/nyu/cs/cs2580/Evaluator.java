@@ -6,12 +6,17 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.Vector;
 
 class Evaluator {
@@ -58,7 +63,7 @@ class Evaluator {
 						rel = 1.0;
 					else if (grade.equals("Bad"))
 						rel = 0.0;
-					
+
 					if (relevance_judgments.containsKey(query) == false){
 						HashMap < Integer , Double > qr = new HashMap < Integer , Double >();
 						relevance_judgments.put(query,qr);
@@ -73,9 +78,9 @@ class Evaluator {
 			System.err.println("Oops " + ioe.getMessage());
 		}
 	}
-	
-	
-	
+
+
+
 
 
 	public static void evaluateStdin(
@@ -145,20 +150,20 @@ class Evaluator {
 				Double recall_1 = calculateRecall(results, 1, relevance_judgments);
 				Double recall_5 = calculateRecall(results, 5, relevance_judgments);
 				Double recall_10 = calculateRecall(results, 10, relevance_judgments);
-				
+
 				Double f0_50_1 = calculateF(results, 1, relevance_judgments, 0.5);
 				Double f0_50_5 = calculateF(results, 5, relevance_judgments, 0.5);
 				Double f0_50_10 = calculateF(results, 10, relevance_judgments, 0.5);
-				
-				
+
+
 				Double averagePrecision = calculateAveragePrecision(results, relevance_judgments);
-				
+
 				Double ndcg_1 = calculateDCG(results, 1, relevance_judgments);
 				Double ndcg_5 = calculateDCG(results, 5, relevance_judgments);
 				Double ndcg_10 = calculateDCG(results, 10, relevance_judgments);
-				
+
 				Double reciprocalRank = calculateReciprocalRank(results, relevance_judgments);
-				
+
 				String output = query+"\t" + 
 						Double.toString(precision_1) + "\t" + 
 						Double.toString(precision_5) + "\t" + 
@@ -177,9 +182,9 @@ class Evaluator {
 
 
 				writeResultToFile(output, outputFileName);
-				
+
 				System.out.println(output);
-				
+
 			} finally {
 				reader.close();
 			}
@@ -199,13 +204,13 @@ class Evaluator {
 			HashMap < String , HashMap < Integer , Double > > relevance_judgments){
 
 		if(k == 0 || results.size() == 0) return 0.0;
-		
+
 		double precision = 0.0;
 
 		try{
 			double RR = 0.0;
 			String line = null;
-			
+
 			for(int i=0; i<k; i++){
 				line = results.get(i);
 				Scanner s = new Scanner(line).useDelimiter("\t");
@@ -221,13 +226,13 @@ class Evaluator {
 					RR += (qr.get(did).compareTo(5.0) >= 0) ? 1.0 : 0.0;					
 				}
 			}
-			
+
 			precision = RR/k;
-			
+
 		}catch (Exception e){
 			System.err.println("Error:" + e.getMessage());
 		}
-		
+
 		return precision;
 	}
 
@@ -246,7 +251,7 @@ class Evaluator {
 
 			double RR = 0.0;
 			double R = 0.0;
-			
+
 			String line = results.get(0);
 
 			Scanner s = new Scanner(line).useDelimiter("\t");
@@ -269,19 +274,19 @@ class Evaluator {
 				int did = Integer.parseInt(s.next());
 				String title = s.next();
 				double rel = Double.parseDouble(s.next());
-				
+
 				if (relevance_judgments.containsKey(query) == false){
 					throw new IOException("query not found");
 				}
-				
+
 				HashMap < Integer , Double > qr = relevance_judgments.get(query);
 				if (qr.containsKey(did) != false){
 					RR += (qr.get(did).compareTo(5.0) >= 0) ? 1.0 : 0.0;			
 				}
 			}
-			
+
 			recall = RR/R;
-			
+
 		}catch (Exception e){
 			System.err.println("Error:" + e.getMessage());
 		}
@@ -293,31 +298,31 @@ class Evaluator {
 	 * */
 	private static Double calculateF(Vector<String> results, int k, 
 			HashMap < String , HashMap < Integer , Double > > relevance_judgments, Double alpha){
-		
+
 		Double precision = calculatePrecision(results, k, relevance_judgments);
 		Double recall = calculateRecall(results, k, relevance_judgments);
-		
+
 		Double temp = (alpha*(1/precision) + (1-alpha)*(1/recall));
-		
+
 		return Math.pow(temp,-1);
 	}
-	
-	
+
+
 	/**
 	 * Calculates Average Precision
 	 * */
 	private static Double calculateAveragePrecision(Vector<String> results, 
 			HashMap < String , HashMap < Integer , Double > > relevance_judgments){
-		
+
 		if(results.size() == 0) return 0.0;
 		double AP = 0.0;
 		double RR = 0.0;
-		
+
 		try{
 			String line = null;
-			
+
 			for(int i=0; i<results.size(); i++){
-				
+
 				line = results.get(i);
 				Scanner s = new Scanner(line).useDelimiter("\t");
 				String query = s.next();
@@ -334,30 +339,30 @@ class Evaluator {
 						AP += RR/(i+1); //+1 To avoid divide by 0 error;
 					}
 				}
-				
+
 			}
-			
+
 		}catch(Exception e){
 			System.err.println("Error:" + e.getMessage());
 		}
-		
+
 		return (AP/RR);
 	}
-	
-	
+
+
 	/**
 	 * Calculates Reciprocal Rank
 	 * */
 	private static Double calculateReciprocalRank(Vector<String> results, 
 			HashMap < String , HashMap < Integer , Double > > relevance_judgments){
-		
+
 		if(results.size() == 0) return 0.0;
-		
+
 		try{
 			String line = null;
-			
+
 			for(int i=0; i<results.size(); i++){
-				
+
 				line = results.get(i);
 				Scanner s = new Scanner(line).useDelimiter("\t");
 				String query = s.next();
@@ -373,17 +378,17 @@ class Evaluator {
 						return 1.0/(i+1);
 					}
 				}
-				
+
 			}
-			
+
 		}catch(Exception e){
 			System.err.println("Error:" + e.getMessage());
 		}
-		
+
 		return 0.0;
 	}
-	
-	
+
+
 	/**
 	 * Calculates DCG
 	 * */
@@ -392,75 +397,13 @@ class Evaluator {
 
 		if(k == 0 || results.size() == 0) return 0.0;
 		
-		class VectorComparator implements Comparator<String>
-		{
-		    public int compare(String s1, String s2)
-		    {	
-		    	try{
-			    	Scanner s11 = new Scanner(s1).useDelimiter("\t");
-					String query1 = s11.next();
-					int did1 = Integer.parseInt(s11.next());
-					String title1 = s11.next();
-					double rel1 = Double.parseDouble(s11.next());
-					
-					Scanner s22 = new Scanner(s2).useDelimiter("\t");
-					String query2 = s22.next();
-					int did2 = Integer.parseInt(s22.next());
-					String title2 = s22.next();
-					double rel2 = Double.parseDouble(s22.next());
-					
-					if (rel1 <= rel2) {
-			            return -1;
-			        } else {
-			            return 1;
-			        }
-		    		}catch (Exception e){
-		    			System.err.println("Error:" + e.getMessage());
-		    		}
-				return 0;
-		        //return o1.message.compareTo(o2.message);
-		    }
-		}
-		
-		Vector<String> sortedResults = new Vector<String>(results);
-		Comparator<String> comparator = new VectorComparator();
-		Collections.sort(sortedResults, comparator);
-		
-		
 		double DCGMax = 0.0;
-
-		try{
-			
-			String line = null;
-			
-			for(int i=0; i<k; i++){
-				line = sortedResults.get(i);
-				Scanner s = new Scanner(line).useDelimiter("\t");
-				String query = s.next();
-				int did = Integer.parseInt(s.next());
-				String title = s.next();
-				double rel = Double.parseDouble(s.next());
-				if (relevance_judgments.containsKey(query) == false){
-					throw new IOException("query not found");
-				}
-				HashMap < Integer , Double > qr = relevance_judgments.get(query);
-				if (qr.containsKey(did) != false){
-					DCGMax += (qr.get(did))/(Math.log(i+2)/Math.log(2));					
-				}
-			}
-			
-			
-		}catch (Exception e){
-			System.err.println("Error:" + e.getMessage());
-		}
-		
-		
-		
 		double DCG = 0.0;
 
 		try{
-			
+
 			String line = null;
+
 			
 			for(int i=0; i<k; i++){
 				line = results.get(i);
@@ -473,25 +416,31 @@ class Evaluator {
 					throw new IOException("query not found");
 				}
 				HashMap < Integer , Double > qr = relevance_judgments.get(query);
-				if (qr.containsKey(did) != false){
-					DCG += (qr.get(did))/(Math.log(i+2)/Math.log(2));					
+				List<Double> sortedRelevance = new ArrayList<Double>(qr.values());
 
+				Collections.sort(sortedRelevance, Collections.reverseOrder());
+
+				if (qr.containsKey(did) != false){
+					DCG += (qr.get(did))/(Math.log(i+2)/Math.log(2));		
+					DCGMax += (sortedRelevance.get(i))/(Math.log(i+2)/Math.log(2));	
 				}
 			}
-			
-			
+
+
 		}catch (Exception e){
 			System.err.println("Error:" + e.getMessage());
 		}
-		
+
+
 		if(new Double(DCGMax).compareTo(0.0) != 0)
 			return DCG/DCGMax;
 		else
 			return 0.0;
+
 	}
 
-	
-	
+
+
 	/**
 	 * Writes the evaluator results to the appropriate file in the results folder
 	 * @throws IOException 
@@ -516,6 +465,6 @@ class Evaluator {
 		}
 
 	}
-	
-	
+
+
 }
