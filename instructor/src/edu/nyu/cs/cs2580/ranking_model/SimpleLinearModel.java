@@ -28,8 +28,7 @@ public class SimpleLinearModel extends Model
 		double numviewsScore = numviewsBeta * ModelFactory.getModel(_index, "numviews").getScore(qv,d);
 		
 		
-//		return cosineScore + qlScore + phraseScore + numviewsScore;
-		return 0.0;
+		return cosineScore + qlScore + phraseScore + numviewsScore;
 	}
 
 }
