@@ -474,11 +474,8 @@ class Evaluator {
 				}
 				HashMap < Integer , Double > qr = relevance_judgments.get(query);
 				if (qr.containsKey(did) != false){
-<<<<<<< HEAD
 					DCG += (qr.get(did))/(Math.log(i+2)/Math.log(2));					
-=======
-					DCG += (qr.get(did))/(Math.log(i+2)/Math.log(2));//i+2 To avoid divide by 0 error;				
->>>>>>> c73aaafe782011dc06f6cb7f6649dbcf45c4ca75
+
 				}
 			}
 			
