@@ -402,6 +402,70 @@ class Evaluator {
 
 		if(k == 0 || results.size() == 0) return 0.0;
 		
+		class VectorComparator implements Comparator<String>
+		{
+		    public int compare(String s1, String s2)
+		    {	
+		    	try{
+			    	Scanner s11 = new Scanner(s1).useDelimiter("\t");
+					String query1 = s11.next();
+					int did1 = Integer.parseInt(s11.next());
+					String title1 = s11.next();
+					double rel1 = Double.parseDouble(s11.next());
+					
+					Scanner s22 = new Scanner(s2).useDelimiter("\t");
+					String query2 = s22.next();
+					int did2 = Integer.parseInt(s22.next());
+					String title2 = s22.next();
+					double rel2 = Double.parseDouble(s22.next());
+					
+					if (rel1 <= rel2) {
+			            return -1;
+			        } else {
+			            return 1;
+			        }
+		    		}catch (Exception e){
+		    			System.err.println("Error:" + e.getMessage());
+		    		}
+				return 0.0;
+		        //return o1.message.compareTo(o2.message);
+		    }
+		}
+		
+		Vector<String> sortedResults = new Vector<String>(results);
+		Comparator<String> comparator = new VectorComparator<String>();
+		Collections.sort(sortedResults, comparator);
+		
+		
+		double DCGMax = 0.0;
+
+		try{
+			
+			String line = null;
+			
+			for(int i=0; i<k; i++){
+				line = sortedResults.get(i);
+				Scanner s = new Scanner(line).useDelimiter("\t");
+				String query = s.next();
+				int did = Integer.parseInt(s.next());
+				String title = s.next();
+				double rel = Double.parseDouble(s.next());
+				if (relevance_judgments.containsKey(query) == false){
+					throw new IOException("query not found");
+				}
+				HashMap < Integer , Double > qr = relevance_judgments.get(query);
+				if (qr.containsKey(did) != false){
+					DCGMax += (qr.get(did))/(Math.log(i+2)/Math.log(2));					
+				}
+			}
+			
+			
+		}catch (Exception e){
+			System.err.println("Error:" + e.getMessage());
+		}
+		
+		
+		
 		double DCG = 0.0;
 
 		try{
@@ -420,7 +484,7 @@ class Evaluator {
 				}
 				HashMap < Integer , Double > qr = relevance_judgments.get(query);
 				if (qr.containsKey(did) != false){
-					DCG += (qr.get(did))/(Math.log(i+1)/Math.log(2));					
+					DCG += (qr.get(did))/(Math.log(i+2)/Math.log(2));					
 				}
 			}
 			
@@ -429,7 +493,10 @@ class Evaluator {
 			System.err.println("Error:" + e.getMessage());
 		}
 		
-		return DCG;
+		if(DCGMax!=0)
+			return DCG/DCGMax;
+		else
+			return 0.0;
 	}
 
 	
