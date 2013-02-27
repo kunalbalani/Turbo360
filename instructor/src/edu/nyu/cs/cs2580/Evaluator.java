@@ -312,39 +312,108 @@ class Evaluator {
 
 
 
-	/**
-
-	 * calculate recall frequency at point
-
-	 */
-
 	public static Vector<Double> calculatePrecisionAtRecall(Vector <String> results,
-			HashMap < String , HashMap < Integer , Double > > relevance_judgments){
+			HashMap < String , HashMap < Integer , Double > > relevance_judgments) {
 
-		Vector<Double> precisionList = new Vector<Double>();
+		Vector<Double> precisionList = new Vector<Double>(11);
+		Vector<Double> recallList = new Vector<Double>(11);
 
-		for (int i = 0; i < 10; i++) {
-			precisionList.add(0.0);
-		}
+		HashMap <Double,Integer> pointToRecall = new HashMap<Double, Integer>();
 
-		int max_results = results.size();
+		double r = 0.0;
 
-		for(int k = 0 ; k < max_results ;k++) {
+		int k_count = 0;
+
+		while(r < 1.0) {
 
 			//for k compute the recall
-			double r = calculateRecall(results,k,relevance_judgments);
+			r = calculateRecall(results,k_count,relevance_judgments);
+			r = Math.round(r * 100.0) / 100.0;
 
 			//convert double to integer
-			int r_int = (int)r*10;
 
-			if(r_int >= 0 && r_int < 10){
-				precisionList.add(r_int, 
-						calculatePrecision(results, k, relevance_judgments));
-			}
+			pointToRecall.put(r, k_count);
+			k_count++;
+
 		}
 
+
+
+		for(int i = 0 ; i < 11 ; i++)
+
+		{
+
+			Integer  k = pointToRecall.get((double)i/10);
+
+			if(k != null)
+
+			{
+
+				precisionList.add( 
+
+						calculatePrecision(results,k, relevance_judgments));
+
+
+				recallList.add( 
+
+						calculateRecall(results,k, relevance_judgments));
+
+			}
+
+			else
+
+			{
+
+				precisionList.add(0.0);
+
+				recallList.add(0.0);
+
+			}
+
+		}
+
+
+		System.out.println("precision "+precisionList);
+
+		System.out.println("recall "+recallList);
+
+
+
+		for(int i = 0 ; i < 10;i++)
+
+		{
+
+			double max = 0.0;
+
+			int f = 0;
+
+
+			for(int j = i  ; j < 11; j++)
+
+			{
+
+				if(max < precisionList.get(j))
+
+				{
+
+					max = precisionList.get(j);
+
+					f = j;
+
+				}
+
+			}
+
+
+			precisionList.set(i, precisionList.get(f));
+
+		}
+
+
+
 		return precisionList;
-	}
+
+			}
 
 
 	/**
@@ -443,7 +512,6 @@ class Evaluator {
 
 			String line = null;
 
-
 			for(int i=0; i<k; i++){
 				line = results.get(i);
 				Scanner s = new Scanner(line).useDelimiter("\t");
@@ -451,25 +519,44 @@ class Evaluator {
 				int did = Integer.parseInt(s.next());
 				String title = s.next();
 				double rel = Double.parseDouble(s.next());
+
 				if (relevance_judgments.containsKey(query) == false){
 					throw new IOException("query not found");
 				}
+
 				HashMap < Integer , Double > qr = relevance_judgments.get(query);
-				List<Double> sortedRelevance = new ArrayList<Double>(qr.values());
 
-				Collections.sort(sortedRelevance, Collections.reverseOrder());
-
-				if (qr.containsKey(did) != false){
-					DCG += (qr.get(did))/(Math.log(i+2)/Math.log(2));		
-					DCGMax += (sortedRelevance.get(i))/(Math.log(i+2)/Math.log(2));	
+				if(i==0){
+					if (qr.containsKey(did) != false){
+						DCG += qr.get(did);
+					}
+				}else{
+					if (qr.containsKey(did) != false){
+						DCG += (qr.get(did))/(Math.log(i+1)/Math.log(2));		
+					}
 				}
+
 			}
 
+			line = results.get(0);
+			Scanner s = new Scanner(line).useDelimiter("\t");
+			String query = s.next();
+			s.close();
+
+			List<Double> sortedRelevance = new ArrayList<Double>(relevance_judgments.get(query).values());
+			Collections.sort(sortedRelevance, Collections.reverseOrder());
+
+			for(int i=0; i<k; i++){
+				if(i==0)
+					DCGMax += sortedRelevance.get(i);
+				else
+					DCGMax += sortedRelevance.get(i)/(Math.log(i+1)/Math.log(2));
+			}
 
 		}catch (Exception e){
+			e.printStackTrace();
 			System.err.println("Error:" + e.getMessage());
 		}
-
 
 		if(new Double(DCGMax).compareTo(0.0) != 0)
 			return DCG/DCGMax;
