@@ -42,4 +42,5 @@ public class RankerConjunctive extends Ranker {
     Collections.sort(results, Collections.reverseOrder());
     return results;
   }
+  
 }

@@ -90,5 +90,17 @@ public class CosineModel extends Model
 	
 	}
 	
+	
+	/**
+	 * Computes the inverse document frequency.
+	 * 
+	 * @param term
+	 * @return
+	 */
+	private Double getIDF(String term)
+	{
+		return 1d + Math.log(_index.numDocs()/(_index.documentFrequency(term)))/Math.log(2);
+	}
+	
 
 }
