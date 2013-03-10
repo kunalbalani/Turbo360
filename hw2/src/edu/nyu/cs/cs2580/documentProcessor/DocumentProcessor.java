@@ -1,6 +1,5 @@
 package edu.nyu.cs.cs2580.documentProcessor;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 import java.util.Vector;
@@ -12,7 +11,7 @@ public class DocumentProcessor {
 
 	StemmingAndStopWordsWrapper stemmingAndStopWordsWrapper;
 
-	DocumentProcessor(){
+	public DocumentProcessor(){
 		stemmingAndStopWordsWrapper 
 		= new StemmingAndStopWordsWrapper(new PorterStemmer());
 	}
@@ -24,7 +23,7 @@ public class DocumentProcessor {
 	 * 
 	 * @param fileReader FileReader object
 	 * */
-	public Vector<String> process(FileReader fileReader) throws BoilerpipeProcessingException{
+	public Vector<String> process(FileReader fileReader) {
 
 		Scanner scan = new Scanner(fileReader);  
 		//reads all the text at once
@@ -42,7 +41,7 @@ public class DocumentProcessor {
 	 * 
 	 * @param text text to be process
 	 * */
-	public Vector<String> process(String text) throws BoilerpipeProcessingException{
+	public Vector<String> process(String text) {
 
 		Vector<String> processedTokens = null;
 
