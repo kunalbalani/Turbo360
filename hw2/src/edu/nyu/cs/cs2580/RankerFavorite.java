@@ -27,9 +27,11 @@ public class RankerFavorite extends Ranker {
 
 	@Override
 	public Vector<ScoredDocument> runQuery(Query query, int numResults) {
+		
 		Queue<ScoredDocument> rankQueue = new PriorityQueue<ScoredDocument>();
 		Document doc = null;
 		int docid = -1;
+		
 		while ((doc = _indexer.nextDoc(query, docid)) != null) {
 			//Scoring the document
 			rankQueue.add(new ScoredDocument(doc, this.getScore(query, doc)));

@@ -9,6 +9,10 @@ import java.util.Vector;
  */
 public class Postings extends Vector<Integer> 
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5790192283947925472L;
 	private Integer cachedIndex;
 
 	public Integer getCachedIndex() {
