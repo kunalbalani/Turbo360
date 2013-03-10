@@ -1,5 +1,7 @@
 package edu.nyu.cs.cs2580;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 /**
@@ -12,6 +14,7 @@ public class DocumentIndexed extends Document {
 	private Indexer _indexer = null;
 	
 	private Vector<Integer> _documentTokens = new Vector<Integer>();
+	private Map<Integer, Integer> _termFrequency = new HashMap<Integer, Integer>();
 
 	public <T extends Indexer> DocumentIndexed(int docid, T indexer) {
 		super(docid);
@@ -24,6 +27,10 @@ public class DocumentIndexed extends Document {
 
 	public Vector<Integer> getDocumentTokens() {
 		return _documentTokens;
+	}
+	
+	public int getTermFrequency(Integer term){
+		return _termFrequency.get(term);
 	}
 
 //	public Vector<String> getConvertedDocumentTokens() {

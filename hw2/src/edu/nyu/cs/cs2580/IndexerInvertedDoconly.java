@@ -19,11 +19,11 @@ public class IndexerInvertedDoconly extends Indexer
 
 	//Stores all Document in memory.
 	private Vector<Document> _documents = new Vector<Document>();
-	
-	 // Term frequency, key is the integer representation of the term and value is
-	  // the number of times the term appears in the corpus.
-	  private Map<Integer, Integer> _termCorpusFrequency =
-	      new HashMap<Integer, Integer>();
+
+	// Term frequency, key is the integer representation of the term and value is
+	// the number of times the term appears in the corpus.
+	private Map<Integer, Integer> _termCorpusFrequency =
+			new HashMap<Integer, Integer>();
 
 	public IndexerInvertedDoconly(Options options) 
 	{
@@ -34,7 +34,7 @@ public class IndexerInvertedDoconly extends Indexer
 	@Override
 	public void constructIndex() throws IOException 
 	{
-		
+
 	}
 
 	@Override
@@ -111,18 +111,18 @@ public class IndexerInvertedDoconly extends Indexer
 		{
 			return Integer.MAX_VALUE;
 		}
-		
+
 		if(postingList.get(1) > current)
 		{
 			postingList.setCachedIndex(1);
 			return postingList.get(ct);
 		}
-		
+
 		if(ct > 1 && postingList.get(ct-1) > current)
 		{
 			postingList.setCachedIndex(1);
 		}
-		
+
 		while(postingList.get(ct) <= current)
 		{
 			ct = ct + 1;

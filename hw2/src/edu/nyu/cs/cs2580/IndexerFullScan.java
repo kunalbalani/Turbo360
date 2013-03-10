@@ -27,21 +27,21 @@ class IndexerFullScan extends Indexer implements Serializable {
   private static final long serialVersionUID = 1077111905740085030L;
 
   // Maps each term to their integer representation
-  private Map<String, Integer> _dictionary = new HashMap<String, Integer>();
+  Map<String, Integer> _dictionary = new HashMap<String, Integer>();
   // All unique terms appeared in corpus. Offsets are integer representations.
-  private Vector<String> _terms = new Vector<String>();
+  Vector<String> _terms = new Vector<String>();
 
   // Term document frequency, key is the integer representation of the term and
   // value is the number of documents the term appears in.
-  private Map<Integer, Integer> _termDocFrequency =
+  Map<Integer, Integer> _termDocFrequency =
       new HashMap<Integer, Integer>();
   // Term frequency, key is the integer representation of the term and value is
   // the number of times the term appears in the corpus.
-  private Map<Integer, Integer> _termCorpusFrequency =
+  Map<Integer, Integer> _termCorpusFrequency =
       new HashMap<Integer, Integer>();
 
   // Stores all Document in memory.
-  private Vector<Document> _documents = new Vector<Document>();
+  Vector<Document> _documents = new Vector<Document>();
 
   // Provided for serialization
   public IndexerFullScan() { }

@@ -1,16 +1,17 @@
 package edu.nyu.cs.cs2580;
 
-import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.Set;
 import java.util.Vector;
 
@@ -23,10 +24,15 @@ import edu.nyu.cs.cs2580.documentProcessor.DocumentProcessor;
 public class IndexerInvertedOccurrence extends Indexer {
 
 	// Maps each term to their posting list
-	private Map<String, Postings> _invertedIndexWithOccurences = new HashMap<String, Postings>();
-		
+	private Map<Integer, PostingsWithOccurences> _invertedIndexWithOccurences 
+	= new HashMap<Integer, PostingsWithOccurences>();
+
 	// Maps each term to their integer representation
 	private Map<String, Integer> _dictionary = new HashMap<String, Integer>();
+
+	// Maps each url to its docid
+	private Map<String, Integer> _docIds = new HashMap<String, Integer>();
+
 	// All unique terms appeared in corpus. Offsets are integer representations.
 	private Vector<String> _terms = new Vector<String>();
 
@@ -41,7 +47,12 @@ public class IndexerInvertedOccurrence extends Indexer {
 			new HashMap<Integer, Integer>();
 
 	// Stores all Document in memory.
-	private Vector<Document> _documents = new Vector<Document>();
+	private Vector<DocumentIndexed> _documents = new Vector<DocumentIndexed>();
+
+
+	private final Integer INFINITY = Integer.MAX_VALUE;
+	private final String contentFolderName = "data/wiki";
+	private final String indexFileName = "invertedOccurenceIndex.idx";
 
 	public IndexerInvertedOccurrence(Options options) {
 		super(options);
@@ -53,17 +64,18 @@ public class IndexerInvertedOccurrence extends Indexer {
 
 		DocumentProcessor documentProcessor = new DocumentProcessor();
 
-		File contentFolder = new File("data/wiki");
+		File contentFolder = new File(contentFolderName);
 
 		for(File file : contentFolder.listFiles()){
 			processDocument(file, documentProcessor);
 		}
 
+
 		System.out.println(
 				"Indexed " + Integer.toString(_numDocs) + " docs with " +
 						Long.toString(_totalTermFrequency) + " terms.");
 
-		String indexFile = _options._indexPrefix + "/invertedOccurence.idx";
+		String indexFile = _options._indexPrefix + "/"+indexFileName;
 		System.out.println("Store index to: " + indexFile);
 		ObjectOutputStream writer =
 				new ObjectOutputStream(new FileOutputStream(indexFile));
@@ -79,7 +91,7 @@ public class IndexerInvertedOccurrence extends Indexer {
 	 */
 	private void processDocument(File file, DocumentProcessor documentProcessor) {
 		try{
-			
+
 			Vector<String> titleTokens_Str = documentProcessor.process(file.getName());
 			Vector<String> bodyTokens_Str = documentProcessor.process(new FileReader(file));
 
@@ -93,18 +105,21 @@ public class IndexerInvertedOccurrence extends Indexer {
 			Vector<Integer> documentTokens = bodyTokens;
 			documentTokens.addAll(titleTokens);
 
+			String title = file.getName();
 			//no numViews for wiki docs
 			int numViews = 0;
-
-			DocumentIndexed doc = new DocumentIndexed(_documents.size(), this);
-			doc.setTitle(file.getName());
+			Integer documentID = _documents.size();
+			
+			DocumentIndexed doc = new DocumentIndexed(documentID, this);
+			doc.setTitle(title);
 			doc.setNumViews(numViews);
 			doc.setDocumentTokens(documentTokens);
 			_documents.add(doc);
+			_docIds.put(title, documentID);
 			++_numDocs;
 
 			Set<Integer> uniqueTerms = new HashSet<Integer>();
-			updateStatistics(doc.getDocumentTokens(), uniqueTerms);
+			updateStatistics(documentID, doc.getDocumentTokens(), uniqueTerms);
 
 			for (Integer idx : uniqueTerms) {
 				_termDocFrequency.put(idx, _termDocFrequency.get(idx) + 1);
@@ -147,23 +162,53 @@ public class IndexerInvertedOccurrence extends Indexer {
 	 * @param tokens
 	 * @param uniques
 	 */
-	private void updateStatistics(Vector<Integer> tokens, Set<Integer> uniques) {
-		for (int idx : tokens) {
+	private void updateStatistics(Integer documentID, Vector<Integer> tokens, Set<Integer> uniques) {
+
+		for(int i=0; i<tokens.size(); i++){
+
+			Integer idx = tokens.get(i);
 			uniques.add(idx);
+
+			//populates the inverted index
+			if(!_invertedIndexWithOccurences.containsKey(idx)){
+				_invertedIndexWithOccurences.put(idx, new PostingsWithOccurences());
+			}
+			_invertedIndexWithOccurences.get(idx).addEntry(documentID, i+1); //offset start from 1
+
 			_termCorpusFrequency.put(idx, _termCorpusFrequency.get(idx) + 1);
 			++_totalTermFrequency;
 		}
 	}
 
 
-
-
 	@Override
 	public void loadIndex() throws IOException, ClassNotFoundException {
+		String indexFile = _options._indexPrefix + "/"+indexFileName;
+	    System.out.println("Load index from: " + indexFile);
+
+	    ObjectInputStream reader =
+	        new ObjectInputStream(new FileInputStream(indexFile));
+	    IndexerInvertedOccurrence loaded = (IndexerInvertedOccurrence) reader.readObject();
+
+	    this._documents = loaded._documents;
+	    // Compute numDocs and totalTermFrequency b/c Indexer is not serializable.
+	    this._numDocs = _documents.size();
+	    for (Integer freq : loaded._termCorpusFrequency.values()) {
+	      this._totalTermFrequency += freq;
+	    }
+	    this._dictionary = loaded._dictionary;
+	    this._docIds = loaded._docIds;
+	    this._terms = loaded._terms;
+	    this._termCorpusFrequency = loaded._termCorpusFrequency;
+	    this._termDocFrequency = loaded._termDocFrequency;
+	    reader.close();
+
+	    System.out.println(Integer.toString(_numDocs) + " documents loaded " +
+	        "with " + Long.toString(_totalTermFrequency) + " terms!");
 	}
 
 	@Override
-	public Document getDoc(int docid) {
+	public DocumentIndexed getDoc(int docid) {
 		return (docid >= _documents.size() || docid < 0) ? null : _documents.get(docid);
 	}
 
@@ -171,23 +216,156 @@ public class IndexerInvertedOccurrence extends Indexer {
 	 * In HW2, you should be using {@link DocumentIndexed}.
 	 */
 	@Override
-	public Document nextDoc(Query query, int docid) {
-		return null;
+	public DocumentIndexed nextDoc(Query query, int docid) {
+
+		Vector<String> queryTerms = query._tokens;
+
+		//case 1 
+		Vector <Integer> docIds = new Vector<Integer>();
+		for(String token : queryTerms) {
+			Integer nextDocID = next(token,docid);
+			if(nextDocID == INFINITY) {
+				//value not found;
+				return null;
+			}
+			docIds.add(nextDocID);
+		}
+
+		//case 2 
+		boolean documentFound = true;
+
+		for(int i = 0 ; i < docIds.size()-1 ; i++) {
+			if(docIds.get(i) != docIds.get(i+1)){
+				documentFound = false;
+				break;
+			}
+		}
+
+		if(documentFound) {
+			return getDoc(docIds.get(0));
+		}
+
+		//case 3 
+		Integer maxDocID = Collections.max(docIds);
+
+		return nextDoc(query, maxDocID-1);
+	}
+
+
+	/**
+	 * Finds the next document containing the term.
+	 * If not found then it returns Integer.Maxvalue
+	 * @param term
+	 * @param docid 
+	 * @return
+	 */
+	private int next(String term , int current) {
+
+		PostingsWithOccurences postingList = _invertedIndexWithOccurences.get(term);
+
+		Integer lt = postingList.size();
+		Integer ct = postingList.getCachedIndex();
+
+		if(lt == 0 || postingList.get(lt-1).getDocID() <= current) {
+			return INFINITY;
+		}
+
+		if(postingList.get(0).getDocID() > current) {
+			postingList.setCachedIndex(0);
+			return postingList.get(0).getDocID();
+		}
+
+		if(ct > 0 && postingList.get(ct-1).getDocID() > current) {
+			ct = 0;
+		}
+
+		while(postingList.get(ct).getDocID() <= current) {
+			ct++;
+		}
+
+		return postingList.get(ct).getDocID();
+	}
+
+
+
+
+	/**
+	 *Finds the nex Phrase.
+	 */
+	public int nextPhrase(Query query, int docid, int position) {
+
+		Document document_verfiy = nextDoc(query, docid-1);
+		if(document_verfiy._docid != docid)
+			return INFINITY;
+
+		Vector<String> queryTerms = query._tokens;
+
+		//case 1 
+		Vector <Integer> positions = new Vector<Integer>();
+		for(String token : queryTerms) {
+			Integer nextPosition = nextPosition(token,docid, position);
+			if(nextPosition == INFINITY) {
+				//value not found;
+				return INFINITY;
+			}
+			positions.add(nextPosition);
+		}
+
+		//case 2 
+		boolean documentFound = true;
+
+		for(int i = 0 ; i < positions.size()-1 ; i++) {
+			if(positions.get(i) + 1 != positions.get(i+1)){
+				documentFound = false;
+				break;
+			}
+		}
+
+		if(documentFound) {
+			return positions.get(0);
+		}
+
+		//case 3 
+		return nextPhrase(query, docid, Collections.max(positions));
+	}
+
+
+	/**
+	 * Finds the next position of the term in document.
+	 * If not found then it returns Integer.MAXVALUE
+	 * @param term
+	 * @param docid 
+	 * @return
+	 */
+	private int nextPosition(String term ,int docId, int pos) {
+		PostingsWithOccurences postingList = _invertedIndexWithOccurences.get(term);
+
+		for(int i=0; i<postingList.size()-1; i++){
+			PostingEntry entry = postingList.get(i);
+			if(entry.getDocID() == docId && entry.getOffset() == pos){
+				PostingEntry nextEntry = postingList.get(i+1);
+
+				return (nextEntry.getDocID() == docId) ? 
+						nextEntry.getOffset() : INFINITY;
+			}
+		}
+
+		return INFINITY;
 	}
 
 	@Override
 	public int corpusDocFrequencyByTerm(String term) {
-		return 0;
+		return _termDocFrequency.get(_dictionary.get(term));
 	}
 
 	@Override
 	public int corpusTermFrequency(String term) {
-		return 0;
+		return _termCorpusFrequency.get(_dictionary.get(term));
 	}
 
 	@Override
 	public int documentTermFrequency(String term, String url) {
-		SearchEngine.Check(false, "Not implemented!");
+		SearchEngine.Check(false, "Posted By Samit : Implement this using inverted WordCount index");
 		return 0;
 	}
 }

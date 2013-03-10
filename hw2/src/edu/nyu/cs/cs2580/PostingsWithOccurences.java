@@ -25,13 +25,16 @@ class PostingEntry {
 	}
 }
 
-public class PostingsWithOccurences {
+public class PostingsWithOccurences extends Vector<PostingEntry>{
 
-	private Vector<PostingEntry> _postingList;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7865772446822434246L;
 	private Integer cachedIndex;
 
 	public PostingsWithOccurences() {
-		_postingList = new Vector<PostingEntry>();
+		super();
 		cachedIndex = -1;
 	}
 	
@@ -40,7 +43,7 @@ public class PostingsWithOccurences {
 	 * */
 	public void addEntry(Integer docid, Integer offset){
 		PostingEntry entry = new PostingEntry(docid, offset);
-		_postingList.addElement(entry);
+		super.addElement(entry);
 	}
 	
 	/**
@@ -62,6 +65,7 @@ public class PostingsWithOccurences {
 	 * Sorts the posting list
 	 * */
 	public void sortPostingList(){
+		
 		Comparator<PostingEntry> comparator = new Comparator<PostingEntry>() {
 
 			@Override
@@ -81,6 +85,6 @@ public class PostingsWithOccurences {
 			
 		};
 		
-		Collections.sort(_postingList, comparator);
+		Collections.sort(this, comparator);
 	}
 }
