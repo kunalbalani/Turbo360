@@ -8,6 +8,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,13 +20,21 @@ import edu.nyu.cs.cs2580.SearchEngine.Options;
 import edu.nyu.cs.cs2580.documentProcessor.DocumentProcessor;
 
 /**
- * @CS2580: Implement this class for HW2.
+ * This class extends {@link Indexer} and indexes terms with their occurrences 
+ * (i.e. offsets) in the documents.
+ * 
+ * @author samitpatel
  */
-public class IndexerInvertedOccurrence extends Indexer {
+public class IndexerInvertedOccurrence extends Indexer implements Serializable {
+	private static final long serialVersionUID = 5882841104467811379L;
 
 	// Maps each term to their posting list
 	private Map<Integer, PostingsWithOccurences> _invertedIndexWithOccurences 
-	= new HashMap<Integer, PostingsWithOccurences>();
+		= new HashMap<Integer, PostingsWithOccurences>();
+	
+	// Maps each term to their posting list
+	private Map<Integer, HashMap<Integer, Integer>> _docTermFrequencyInvertedIndex 
+		= new HashMap<Integer, HashMap<Integer, Integer>>();
 
 	// Maps each term to their integer representation
 	private Map<String, Integer> _dictionary = new HashMap<String, Integer>();
@@ -165,7 +174,7 @@ public class IndexerInvertedOccurrence extends Indexer {
 	private void updateStatistics(Integer documentID, Vector<Integer> tokens, Set<Integer> uniques) {
 
 		for(int i=0; i<tokens.size(); i++){
-
+			
 			Integer idx = tokens.get(i);
 			uniques.add(idx);
 
@@ -177,6 +186,18 @@ public class IndexerInvertedOccurrence extends Indexer {
 
 			_termCorpusFrequency.put(idx, _termCorpusFrequency.get(idx) + 1);
 			++_totalTermFrequency;
+			
+			//populating the docTermFrequency index
+			if(!_docTermFrequencyInvertedIndex.containsKey(idx)){
+				_docTermFrequencyInvertedIndex.put(idx, new HashMap<Integer, Integer>());
+			}
+			Map<Integer, Integer> termDocFrequencyList = _docTermFrequencyInvertedIndex.get(idx);
+			
+			if(!termDocFrequencyList.containsKey(documentID)){
+				termDocFrequencyList.put(documentID, new Integer(1));
+			}else{
+				termDocFrequencyList.put(documentID, termDocFrequencyList.get(documentID)+1);
+			}
 		}
 	}
 
@@ -365,7 +386,12 @@ public class IndexerInvertedOccurrence extends Indexer {
 
 	@Override
 	public int documentTermFrequency(String term, String url) {
-		SearchEngine.Check(false, "Posted By Samit : Implement this using inverted WordCount index");
-		return 0;
+		int term_idx = _dictionary.get(term);
+		int docid = _docIds.get(url);
+		if(!_docTermFrequencyInvertedIndex.containsKey(term_idx) || 
+				!_docTermFrequencyInvertedIndex.get(term_idx).containsKey(docid))
+			return 0;
+		
+		return _docTermFrequencyInvertedIndex.get(term_idx).get(docid);
 	}
 }
