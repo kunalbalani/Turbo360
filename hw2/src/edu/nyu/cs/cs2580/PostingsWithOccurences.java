@@ -1,30 +1,55 @@
 package edu.nyu.cs.cs2580;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Vector;
 
+/**
+ * This class represents a single entry in the {@link PostingsWithOccurences} 
+ * posting list. It stores the document ID and the term offset within the document.
+ * 
+ * @author samitpatel
+ * */
 class PostingEntry {
+	
 	private Integer _docid;
 	private Integer _offset;
 	
 	@SuppressWarnings("unused")
 	private PostingEntry(){}
 	
+	/**
+	 * Constructs the object with document ID and term offset within document.
+	 * 
+	 * @param docid Document ID
+	 * @param offset Term offset within document
+	 * */
 	PostingEntry (Integer docid, Integer offset){
 		_docid = docid;
 		_offset = offset;
 	}
 	
+	/**
+	 * Returns the Document ID.
+	 * @return Document ID
+	 * */
 	public Integer getDocID(){
 		return _docid;
 	}
 	
+	/**
+	 * Returns the offset of the term with the document.
+	 * @return Term offset within the document
+	 * */
 	public Integer getOffset(){
 		return _offset;
 	}
 }
 
+/**
+ * This class handles the Postings list for each term in the 
+ * {@link IndexerInvertedOccurrence} indexer.
+ * 
+ * @author samitpatel
+ * */
 public class PostingsWithOccurences extends Vector<PostingEntry>{
 
 	/**
@@ -60,31 +85,4 @@ public class PostingsWithOccurences extends Vector<PostingEntry>{
 		this.cachedIndex = cachedIndex;
 	}
 	
-	
-	/**
-	 * Sorts the posting list
-	 * */
-	public void sortPostingList(){
-		
-		Comparator<PostingEntry> comparator = new Comparator<PostingEntry>() {
-
-			@Override
-			public int compare(PostingEntry o1, PostingEntry o2) {
-				if(o1.getDocID() < o2.getDocID())
-					return 1;
-				else if (o1.getDocID() < o2.getDocID())
-					return -1;
-				else
-					if(o1.getOffset() < o2.getOffset())
-						return 1;
-					else if(o1.getOffset() > o2.getOffset())
-						return -1;
-				
-				return 0;
-			}
-			
-		};
-		
-		Collections.sort(this, comparator);
-	}
 }
