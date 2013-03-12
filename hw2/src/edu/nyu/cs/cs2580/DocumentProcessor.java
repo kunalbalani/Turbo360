@@ -1,4 +1,4 @@
-package edu.nyu.cs.cs2580.documentProcessor;
+package edu.nyu.cs.cs2580;
 
 import java.io.FileReader;
 import java.util.Scanner;

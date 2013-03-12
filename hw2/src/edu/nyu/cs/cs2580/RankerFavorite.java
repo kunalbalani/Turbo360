@@ -56,18 +56,19 @@ public class RankerFavorite extends Ranker {
 	 * */
 	private Double getScore(Query query, Document d) {
 
+		//NEED TO CHANGE THIS
 		Vector < String > dv =  new Vector<String>();
 
-		String title = d.getTitle();
+//		String title = d.getTitle();
 
-		Scanner s = new Scanner(title).useDelimiter("\t");
-		while(s.hasNext()){
-			dv.add(s.next());
-		}
+//		Scanner s = new Scanner(title).useDelimiter("\t");
+//		while(s.hasNext()){
+//			dv.add(s.next());
+//		}
 
 		Vector < String > qv =  query._tokens;
 
-		Map<String, Integer> documentTermFrequency = getTermFrequency(dv);
+//		Map<String, Integer> documentTermFrequency = getTermFrequency(dv);
 		Map<String, Integer> queryTermFrequency = getTermFrequency(qv);
 
 		//Document vector that stores all tf.idfs for the documents
@@ -84,7 +85,7 @@ public class RankerFavorite extends Ranker {
 			String documentTerm = dv.get(i);
 
 			//Calculating the tf.idfs Document vectors
-			double tf = (double) documentTermFrequency.get(documentTerm);
+			double tf = (double) _indexer.documentTermFrequency(documentTerm, d.getUrl());
 			double idf = getIDF(documentTerm);
 			double xi = tf*idf;
 
@@ -157,10 +158,10 @@ public class RankerFavorite extends Ranker {
 	 * @param documentVector
 	 * @return Mapping of term to frequency
 	 */
-	private Map<String, Integer> getTermFrequency(Vector<String> documentVector){
+	private Map<String, Integer> getTermFrequency(Vector<String> tokenVector){
 
 		Map<String, Integer> termFrequency = new HashMap<String, Integer>();
-		for(String dt : documentVector){
+		for(String dt : tokenVector){
 			if(termFrequency.containsKey(dt))
 				termFrequency.put(dt, termFrequency.get(dt)+1);
 			else

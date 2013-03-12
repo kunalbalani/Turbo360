@@ -17,7 +17,6 @@ import java.util.Set;
 import java.util.Vector;
 
 import edu.nyu.cs.cs2580.SearchEngine.Options;
-import edu.nyu.cs.cs2580.documentProcessor.DocumentProcessor;
 
 /**
  * This class extends {@link Indexer} and indexes terms with their occurrences 
@@ -30,11 +29,11 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 
 	// Maps each term to their posting list
 	private Map<Integer, PostingsWithOccurences> _invertedIndexWithOccurences 
-		= new HashMap<Integer, PostingsWithOccurences>();
-	
+	= new HashMap<Integer, PostingsWithOccurences>();
+
 	// Maps each term to their posting list
 	private Map<Integer, HashMap<Integer, Integer>> _docTermFrequencyInvertedIndex 
-		= new HashMap<Integer, HashMap<Integer, Integer>>();
+	= new HashMap<Integer, HashMap<Integer, Integer>>();
 
 	// Maps each term to their integer representation
 	private Map<String, Integer> _dictionary = new HashMap<String, Integer>();
@@ -101,6 +100,8 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 	private void processDocument(File file, DocumentProcessor documentProcessor) {
 		try{
 
+			System.out.println(file.getName());
+
 			Vector<String> titleTokens_Str = documentProcessor.process(file.getName());
 			Vector<String> bodyTokens_Str = documentProcessor.process(new FileReader(file));
 
@@ -118,7 +119,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 			//no numViews for wiki docs
 			int numViews = 0;
 			Integer documentID = _documents.size();
-			
+
 			DocumentIndexed doc = new DocumentIndexed(documentID, this);
 			doc.setTitle(title);
 			doc.setNumViews(numViews);
@@ -174,7 +175,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 	private void updateStatistics(Integer documentID, Vector<Integer> tokens, Set<Integer> uniques) {
 
 		for(int i=0; i<tokens.size(); i++){
-			
+
 			Integer idx = tokens.get(i);
 			uniques.add(idx);
 
@@ -186,13 +187,13 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 
 			_termCorpusFrequency.put(idx, _termCorpusFrequency.get(idx) + 1);
 			++_totalTermFrequency;
-			
+
 			//populating the docTermFrequency index
 			if(!_docTermFrequencyInvertedIndex.containsKey(idx)){
 				_docTermFrequencyInvertedIndex.put(idx, new HashMap<Integer, Integer>());
 			}
 			Map<Integer, Integer> termDocFrequencyList = _docTermFrequencyInvertedIndex.get(idx);
-			
+
 			if(!termDocFrequencyList.containsKey(documentID)){
 				termDocFrequencyList.put(documentID, new Integer(1));
 			}else{
@@ -205,33 +206,37 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 	@Override
 	public void loadIndex() throws IOException, ClassNotFoundException {
 		String indexFile = _options._indexPrefix + "/"+indexFileName;
-	    System.out.println("Load index from: " + indexFile);
+		System.out.println("Load index from: " + indexFile);
 
-	    ObjectInputStream reader =
-	        new ObjectInputStream(new FileInputStream(indexFile));
-	    IndexerInvertedOccurrence loaded = (IndexerInvertedOccurrence) reader.readObject();
+		ObjectInputStream reader =
+				new ObjectInputStream(new FileInputStream(indexFile));
+		IndexerInvertedOccurrence loaded = (IndexerInvertedOccurrence) reader.readObject();
 
-	    this._documents = loaded._documents;
-	    // Compute numDocs and totalTermFrequency b/c Indexer is not serializable.
-	    this._numDocs = _documents.size();
-	    for (Integer freq : loaded._termCorpusFrequency.values()) {
-	      this._totalTermFrequency += freq;
-	    }
-	    this._dictionary = loaded._dictionary;
-	    this._docIds = loaded._docIds;
-	    this._terms = loaded._terms;
-	    this._termCorpusFrequency = loaded._termCorpusFrequency;
-	    this._termDocFrequency = loaded._termDocFrequency;
-	    reader.close();
+		this._documents = loaded._documents;
+		// Compute numDocs and totalTermFrequency b/c Indexer is not serializable.
+		this._numDocs = _documents.size();
+		for (Integer freq : loaded._termCorpusFrequency.values()) {
+			this._totalTermFrequency += freq;
+		}
+		this._dictionary = loaded._dictionary;
+		this._docIds = loaded._docIds;
+		this._terms = loaded._terms;
+		this._termCorpusFrequency = loaded._termCorpusFrequency;
+		this._termDocFrequency = loaded._termDocFrequency;
+		reader.close();
 
-	    System.out.println(Integer.toString(_numDocs) + " documents loaded " +
-	        "with " + Long.toString(_totalTermFrequency) + " terms!");
+		System.out.println(Integer.toString(_numDocs) + " documents loaded " +
+				"with " + Long.toString(_totalTermFrequency) + " terms!");
 	}
+
+
 
 	@Override
 	public DocumentIndexed getDoc(int docid) {
 		return (docid >= _documents.size() || docid < 0) ? null : _documents.get(docid);
 	}
+
+
 
 	/**
 	 * In HW2, you should be using {@link DocumentIndexed}.
@@ -361,13 +366,14 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 	private int nextPosition(String term ,int docId, int pos) {
 		PostingsWithOccurences postingList = _invertedIndexWithOccurences.get(term);
 
-		for(int i=0; i<postingList.size()-1; i++){
-			PostingEntry entry = postingList.get(i);
-			if(entry.getDocID() == docId && entry.getOffset() == pos){
-				PostingEntry nextEntry = postingList.get(i+1);
+		PostingEntry documentEntry = postingList.searchDocumentID(docId);
 
-				return (nextEntry.getDocID() == docId) ? 
-						nextEntry.getOffset() : INFINITY;
+		if(documentEntry != null && documentEntry.getDocID() == docId){
+			Vector<Integer> offsets = documentEntry.getOffset();
+			for(int i=0; i<offsets.size()-1; i++){
+				if(offsets.get(i) == pos){
+					return offsets.get(i+1);
+				}
 			}
 		}
 
@@ -391,7 +397,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 		if(!_docTermFrequencyInvertedIndex.containsKey(term_idx) || 
 				!_docTermFrequencyInvertedIndex.get(term_idx).containsKey(docid))
 			return 0;
-		
+
 		return _docTermFrequencyInvertedIndex.get(term_idx).get(docid);
 	}
 }

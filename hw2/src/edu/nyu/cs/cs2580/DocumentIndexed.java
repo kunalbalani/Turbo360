@@ -14,7 +14,6 @@ public class DocumentIndexed extends Document {
 	private Indexer _indexer = null;
 	
 	private Vector<Integer> _documentTokens = new Vector<Integer>();
-	private Map<Integer, Integer> _termFrequency = new HashMap<Integer, Integer>();
 
 	public <T extends Indexer> DocumentIndexed(int docid, T indexer) {
 		super(docid);
@@ -29,9 +28,6 @@ public class DocumentIndexed extends Document {
 		return _documentTokens;
 	}
 	
-	public int getTermFrequency(Integer term){
-		return _termFrequency.get(term);
-	}
 
 //	public Vector<String> getConvertedDocumentTokens() {
 //		return _indexer.getTermVector(_documentTokens);

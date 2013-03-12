@@ -1,4 +1,4 @@
-package edu.nyu.cs.cs2580.documentProcessor;
+package edu.nyu.cs.cs2580;
 
 import java.util.HashSet;
 import java.util.Set;

@@ -1,5 +1,7 @@
 package edu.nyu.cs.cs2580;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Vector;
 
 /**
@@ -11,7 +13,7 @@ import java.util.Vector;
 class PostingEntry {
 	
 	private Integer _docid;
-	private Integer _offset;
+	private Vector<Integer> _offset;
 	
 	@SuppressWarnings("unused")
 	private PostingEntry(){}
@@ -24,7 +26,8 @@ class PostingEntry {
 	 * */
 	PostingEntry (Integer docid, Integer offset){
 		_docid = docid;
-		_offset = offset;
+		_offset = new Vector<Integer>();
+		_offset.add(offset);
 	}
 	
 	/**
@@ -39,8 +42,12 @@ class PostingEntry {
 	 * Returns the offset of the term with the document.
 	 * @return Term offset within the document
 	 * */
-	public Integer getOffset(){
+	public Vector<Integer> getOffset(){
 		return _offset;
+	}
+
+	public void addOffset(Integer offset) {
+		_offset.add(offset);
 	}
 }
 
@@ -67,8 +74,14 @@ public class PostingsWithOccurences extends Vector<PostingEntry>{
 	 * Adds an entry to Posting List
 	 * */
 	public void addEntry(Integer docid, Integer offset){
-		PostingEntry entry = new PostingEntry(docid, offset);
-		super.addElement(entry);
+		PostingEntry lastDocument = this.lastElement();
+		if(lastDocument.getDocID() != docid){
+			PostingEntry entry = new PostingEntry(docid, offset);
+			super.addElement(entry);
+		}else{
+			lastDocument.addOffset(offset);
+		}
+		
 	}
 	
 	/**
@@ -83,6 +96,24 @@ public class PostingsWithOccurences extends Vector<PostingEntry>{
 	 * */
 	public void setCachedIndex(Integer cachedIndex) {
 		this.cachedIndex = cachedIndex;
+	}
+	
+	
+	/**
+	 * Searchs the documentID in the Vector
+	 * */
+	public PostingEntry searchDocumentID(Integer docID) {
+		
+		int documentID = Collections.binarySearch(this, new PostingEntry(docID, 0), new Comparator<PostingEntry>() {
+
+			@Override
+			public int compare(PostingEntry o1, PostingEntry o2) {
+				return o1.getDocID().compareTo(o2.getDocID());
+			}
+		});
+		
+		return this.get(documentID);
+		
 	}
 	
 }
