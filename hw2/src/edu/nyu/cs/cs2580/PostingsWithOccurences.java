@@ -16,14 +16,14 @@ class PostingEntry<T> implements Serializable {
 
 	private static final long serialVersionUID = 3167577397839073790L;
 	private Integer _docid;
-	private Vector<T> _offset;
+	private Vector<T> _values;
 
 	@SuppressWarnings("unused")
 	private PostingEntry(){}
 
 	@Override
 	public String toString() {
-		return _docid+"->"+_offset;
+		return _docid+"->"+_values;
 	}
 
 	/**
@@ -34,8 +34,8 @@ class PostingEntry<T> implements Serializable {
 	 * */
 	PostingEntry (Integer docid, T value){
 		_docid = docid;
-		_offset = new Vector<T>();
-		_offset.add(value);
+		_values = new Vector<T>();
+		_values.add(value);
 	}
 
 	/**
@@ -51,11 +51,11 @@ class PostingEntry<T> implements Serializable {
 	 * @return Term offset within the document
 	 * */
 	public Vector<T> getOffset(){
-		return _offset;
+		return _values;
 	}
 
 	public void addOffset(T value) {
-		_offset.add(value);
+		_values.add(value);
 	}
 }
 

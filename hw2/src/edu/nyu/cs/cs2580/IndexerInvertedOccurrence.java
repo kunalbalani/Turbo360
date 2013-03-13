@@ -28,10 +28,6 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 {
 	private static final long serialVersionUID = 5882841104467811379L;
 
-	//	// Maps each term to their posting list
-	//	private Map<Integer, HashMap<Integer, Integer>> _docTermFrequencyInvertedIndex 
-	//	= new HashMap<Integer, HashMap<Integer, Integer>>();
-
 	// Maps each term to their integer representation
 	private Map<String, Integer> _dictionary = new HashMap<String, Integer>();
 
@@ -219,25 +215,12 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 
 				//populates the inverted index
 				if(!_invertedIndexWithOccurences.containsKey(idx)){
-					_invertedIndexWithOccurences.put(idx, new PostingsWithOccurences());
+					_invertedIndexWithOccurences.put(idx, new PostingsWithOccurences<Integer>());
 				}
 				_invertedIndexWithOccurences.get(idx).addEntry(documentID, i+1); //offset start from 1
 
 				_termCorpusFrequency.put(idx, _termCorpusFrequency.get(idx) + 1);
 				++_totalTermFrequency;
-
-				//			//populating the docTermFrequency index
-				//			if(!_docTermFrequencyInvertedIndex.containsKey(idx)){
-				//				_docTermFrequencyInvertedIndex.put(idx, new HashMap<Integer, Integer>());
-				//			}
-				//			
-				//			Map<Integer, Integer> termDocFrequencyList = _docTermFrequencyInvertedIndex.get(idx);
-				//
-				//			if(!termDocFrequencyList.containsKey(documentID)){
-				//				termDocFrequencyList.put(documentID, new Integer(1));
-				//			}else{
-				//				termDocFrequencyList.put(documentID, termDocFrequencyList.get(documentID)+1);
-				//			}
 			}
 		}catch (OutOfMemoryError oome){
 			throw new OutOfMemoryError(oome.getLocalizedMessage());
@@ -330,7 +313,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 	 */
 	private int next(String term , int current) {
 
-		PostingsWithOccurences postingList = _invertedIndexWithOccurences.get(term);
+		PostingsWithOccurences<Integer> postingList = _invertedIndexWithOccurences.get(term);
 
 		Integer lt = postingList.size();
 		Integer ct = postingList.getCachedIndex();
@@ -407,9 +390,9 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 	 * @return
 	 */
 	private int nextPosition(String term ,int docId, int pos) {
-		PostingsWithOccurences postingList = _invertedIndexWithOccurences.get(term);
+		PostingsWithOccurences<Integer> postingList = _invertedIndexWithOccurences.get(term);
 
-		PostingEntry documentEntry = postingList.searchDocumentID(docId);
+		PostingEntry<Integer> documentEntry = postingList.searchDocumentID(docId);
 
 		if(documentEntry != null && documentEntry.getDocID() == docId){
 			Vector<Integer> offsets = documentEntry.getOffset();
@@ -437,13 +420,8 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 	public int documentTermFrequency(String term, String url) {
 		int term_idx = _dictionary.get(term);
 		int docID = _docIds.get(url);
-		//		if(!_docTermFrequencyInvertedIndex.containsKey(term_idx) || 
-		//				!_docTermFrequencyInvertedIndex.get(term_idx).containsKey(docid))
-		//			return 0;
-		//
-		//		return _docTermFrequencyInvertedIndex.get(term_idx).get(docid);
-		PostingsWithOccurences list = _invertedIndexWithOccurences.get(term_idx);
-		PostingEntry entry = list.searchDocumentID(docID);
+		PostingsWithOccurences<Integer> list = _invertedIndexWithOccurences.get(term_idx);
+		PostingEntry<Integer> entry = list.searchDocumentID(docID);
 
 		return entry.getOffset().size();
 	}
@@ -473,8 +451,8 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 				Integer termID  = (Integer)t3R.read();
 				if(termID  != Integer.MIN_VALUE)
 				{
-					PostingsWithOccurences postingList = 
-						(PostingsWithOccurences)t3R.read();
+					PostingsWithOccurences<Integer> postingList = 
+						(PostingsWithOccurences<Integer>) t3R.read();
 
 					if(!indexReader.contains(termID))
 					{
