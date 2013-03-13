@@ -29,36 +29,36 @@ public class IndexWrapper extends HashMap<Integer, PostingsWithOccurences>{
 		FileOutputStream fileOutputStream = null;
 		ObjectOutputStream writer = null;
 		try{
-			
-			fileOutputStream = 
-					new FileOutputStream(_indexTempFolder + "/" + Integer.toString(_tempFileCount));
-			writer = new ObjectOutputStream(fileOutputStream);
-			
+			String fileName = _indexTempFolder + "/" + Integer.toString(_tempFileCount);
+
 			Set<Integer> terms = this.keySet();
 			Integer[] keys = terms.toArray(new Integer[terms.size()]);
 			Arrays.sort(keys);
-			
+
+			fileOutputStream = new FileOutputStream(fileName);
+			writer = new ObjectOutputStream(fileOutputStream);
+
 			for(int i=0; i<keys.length; i++){
 				writer.writeObject(keys[i]);
-//				writer.writeChar('\n');
 				writer.writeObject(this.get(keys[i]));
 			}
-			
-//			writer.writeObject(this);
+
 			writer.close();
 			fileOutputStream.close();
+
+
 			this.clear();
-			
+
 			System.out.println("Created " + Integer.toString(_tempFileCount));
 			_tempFileCount++;
 		}catch (Exception e) {
 			e.printStackTrace();
 		}finally{
 			try{
-			if(writer != null)
-				writer.close();
-			if(fileOutputStream != null)
-				fileOutputStream.close();
+				if(writer != null)
+					writer.close();
+				if(fileOutputStream != null)
+					fileOutputStream.close();
 			}catch (Exception e) {
 				e.printStackTrace();
 			}

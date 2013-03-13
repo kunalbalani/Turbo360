@@ -87,6 +87,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 			fileCount++;
 			if(fileCount == 1000){
 				_invertedIndexWithOccurences.writeToDisk();
+//				System.exit(1);
 				fileCount=0;
 			}
 		}
