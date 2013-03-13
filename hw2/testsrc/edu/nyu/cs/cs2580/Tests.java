@@ -1,5 +1,6 @@
 package edu.nyu.cs.cs2580;
 
+import java.io.File;
 import java.util.Vector;
 
 import org.junit.Assert;
@@ -21,9 +22,6 @@ public class Tests {
 	}
 	
 	
-	public void testDocumentProcessor(){
-		
-		
-	}
+	
 
 }

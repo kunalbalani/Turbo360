@@ -1,10 +1,10 @@
 package edu.nyu.cs.cs2580;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Scanner;
 import java.util.Vector;
-
-import org.jsoup.Jsoup;
 
 import de.l3s.boilerpipe.BoilerpipeProcessingException;
 import de.l3s.boilerpipe.extractors.ArticleExtractor;
@@ -15,7 +15,7 @@ public class DocumentProcessor {
 
 	public DocumentProcessor(){
 		stemmingAndStopWordsWrapper 
-			= new StemmingAndStopWordsWrapper(new PorterStemmer());
+		= new StemmingAndStopWordsWrapper(new PorterStemmer());
 	}
 
 	/**
@@ -43,37 +43,61 @@ public class DocumentProcessor {
 	 * 
 	 * @param text text to be process
 	 * */
-	public Vector<String> process(String text) {
+	public Vector<String> process(String htmlText) {
 
 		Vector<String> processedTokens = null;
 
-		try{
-			//removes HTML
-			Jsoup.parse(text);
-			String content = ArticleExtractor.getInstance().getText(text);
+		//		try{
+		//removes HTML
+		String content = htmlToText(htmlText);
 
-			//removes non-alphanumeric characters
-			content = content.replaceAll("\\W", " ");
+		//			
 
-			//splits based on whitespace
-			String[] tokens = content.split("\\s+");
-			
-			processedTokens = stemmingAndStopWordsWrapper.process(tokens);
-			
-		}catch(BoilerpipeProcessingException e){
-			e.printStackTrace();
-		}
+		//removes non-alphanumeric characters
+		content = content.replaceAll("\\W", " ");
+
+		//splits based on whitespace
+		String[] tokens = content.split("\\s+");
+
+		processedTokens = stemmingAndStopWordsWrapper.process(tokens);
+
+		//		}catch(BoilerpipeProcessingException e){
+		//			e.printStackTrace();
+		//		}
 
 		return processedTokens;
 	}
 
 
-//	public static void main(String args[]) throws FileNotFoundException, BoilerpipeProcessingException{
+	/**
+	 * Converts HTML to plain text. Removes everything in &lt;script&gt; tag.
+	 * @throws BoilerpipeProcessingException 
+	 * */
+	public static String htmlToText(String htmlText) {
+
+		String content = "";
+		try{
+			content = ArticleExtractor.getInstance().getText(htmlText);
+		}catch (BoilerpipeProcessingException e) {
+			e.printStackTrace();
+		}
+		return content;
+	}
+
+
+//	public static void main(String args[]) throws FileNotFoundException{
+//		File file = new File("data/wiki/'03_Bonnie_&_Clyde");
 //
-//		FileReader fileReader = new FileReader("data/wiki/(Shake,_Shake,_Shake)_Shake_Your_Booty");
+//		Scanner scan = new Scanner(file);  
+//		//reads all the text at once
+//		scan.useDelimiter("\\Z");  
+//		String content = scan.next();  
+//		scan.close();
 //
-//		DocumentProcessor dp = new DocumentProcessor();
+//		System.out.println(content+"\n\n\n\n-------------------------------------\n\n\n\n");
 //
-//		System.out.println(dp.process(fileReader));
+//		System.out.println(htmlToText(content));
+//
 //	}
+
 }
