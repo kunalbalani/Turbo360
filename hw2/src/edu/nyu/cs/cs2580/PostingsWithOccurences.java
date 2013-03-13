@@ -107,7 +107,7 @@ public class PostingsWithOccurences<T> extends Vector<PostingEntry<T>>{
 		return this.get(documentID);
 
 	}
-	
+
 
 	/**
 	 * Returns the Cached Index
