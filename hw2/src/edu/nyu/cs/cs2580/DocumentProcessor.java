@@ -29,7 +29,7 @@ public class DocumentProcessor {
 		//reads all the text at once
 		scan.useDelimiter("\\Z");  
 		String content = scan.next();  
-
+		scan.close();
 		return process(content);
 	}
 

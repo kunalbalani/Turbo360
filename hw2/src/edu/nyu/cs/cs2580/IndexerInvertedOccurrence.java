@@ -27,13 +27,10 @@ import edu.nyu.cs.cs2580.SearchEngine.Options;
 public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 	private static final long serialVersionUID = 5882841104467811379L;
 
-	// Maps each term to their posting list
-	private Map<Integer, PostingsWithOccurences> _invertedIndexWithOccurences 
-	= new HashMap<Integer, PostingsWithOccurences>();
 
-	// Maps each term to their posting list
-	private Map<Integer, HashMap<Integer, Integer>> _docTermFrequencyInvertedIndex 
-	= new HashMap<Integer, HashMap<Integer, Integer>>();
+	//	// Maps each term to their posting list
+	//	private Map<Integer, HashMap<Integer, Integer>> _docTermFrequencyInvertedIndex 
+	//	= new HashMap<Integer, HashMap<Integer, Integer>>();
 
 	// Maps each term to their integer representation
 	private Map<String, Integer> _dictionary = new HashMap<String, Integer>();
@@ -60,11 +57,22 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 
 	private final Integer INFINITY = Integer.MAX_VALUE;
 	private final String contentFolderName = "data/wiki";
+	private final String indexFolderName = "invertedOccurenceIndex";
+	private final String indexTempFolderName = 
+			_options._indexPrefix + "/" + indexFolderName + "/temp";
 	private final String indexFileName = "invertedOccurenceIndex.idx";
+
+	// Maps each term to their posting list
+	private IndexWrapper _invertedIndexWithOccurences = 
+			new IndexWrapper(indexTempFolderName);
 
 	public IndexerInvertedOccurrence(Options options) {
 		super(options);
 		System.out.println("Using Indexer: " + this.getClass().getSimpleName());
+		String indexFolder = _options._indexPrefix + "/"+indexFolderName;
+		File indexDirectory = new File(indexFolder);
+		if(!indexDirectory.exists())
+			indexDirectory.mkdir();
 	}
 
 	@Override
@@ -73,11 +81,20 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 		DocumentProcessor documentProcessor = new DocumentProcessor();
 
 		File contentFolder = new File(contentFolderName);
-
+		int fileCount = 0;
 		for(File file : contentFolder.listFiles()){
 			processDocument(file, documentProcessor);
+			fileCount++;
+			if(fileCount == 1000){
+				_invertedIndexWithOccurences.writeToDisk();
+				fileCount=0;
+			}
 		}
 
+		_invertedIndexWithOccurences.writeToDisk();
+
+		//Merges all the temp index.
+		mergeIndexes();
 
 		System.out.println(
 				"Indexed " + Integer.toString(_numDocs) + " docs with " +
@@ -89,6 +106,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 				new ObjectOutputStream(new FileOutputStream(indexFile));
 		writer.writeObject(this);
 		writer.close();
+
 	}
 
 
@@ -96,14 +114,18 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 	 * Process the raw content (i.e., one line in corpus.tsv) corresponding to a
 	 * document, and constructs the token vectors for both title and body.
 	 * @param content
+	 * @throws IOException 
 	 */
-	private void processDocument(File file, DocumentProcessor documentProcessor) {
+	private void processDocument(File file, DocumentProcessor documentProcessor) throws IOException {
+		FileReader fileReader = null;
 		try{
 
-			System.out.println(file.getName());
+			//System.out.println(file.getName());
 
+			fileReader = new FileReader(file);
 			Vector<String> titleTokens_Str = documentProcessor.process(file.getName());
-			Vector<String> bodyTokens_Str = documentProcessor.process(new FileReader(file));
+			Vector<String> bodyTokens_Str = documentProcessor.process(fileReader);
+
 
 			Vector<Integer> titleTokens = new Vector<Integer>();
 			readTermVector(titleTokens_Str, titleTokens);
@@ -135,8 +157,14 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 				_termDocFrequency.put(idx, _termDocFrequency.get(idx) + 1);
 			}
 
-		}catch(FileNotFoundException fnfe){
+
+		} catch(FileNotFoundException fnfe){
 			fnfe.printStackTrace();
+		} catch (OutOfMemoryError oome){
+			throw new OutOfMemoryError(oome.getLocalizedMessage());
+		} finally{
+			if(fileReader != null)
+				fileReader.close();
 		}
 
 	}
@@ -149,19 +177,23 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 	 * @param tokens
 	 */
 	private void readTermVector(Vector<String> tokens_str, Vector<Integer> tokens) {
-		for (String token : tokens_str) {
-			int idx = -1;
-			if (_dictionary.containsKey(token)) {
-				idx = _dictionary.get(token);
-			} else {
-				idx = _terms.size();
-				_terms.add(token);
-				_dictionary.put(token, idx);
-				_termCorpusFrequency.put(idx, 0);
-				_termDocFrequency.put(idx, 0);
+		try{
+			for (String token : tokens_str) {
+				int idx = -1;
+				if (_dictionary.containsKey(token)) {
+					idx = _dictionary.get(token);
+				} else {
+					idx = _terms.size();
+					_terms.add(token);
+					_dictionary.put(token, idx);
+					_termCorpusFrequency.put(idx, 0);
+					_termDocFrequency.put(idx, 0);
+				}
+				tokens.add(idx);
 			}
-			tokens.add(idx);
-		}
+		}catch (OutOfMemoryError oome){
+			throw new OutOfMemoryError(oome.getLocalizedMessage());
+		} 
 		return;
 	}
 
@@ -173,33 +205,37 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 	 * @param uniques
 	 */
 	private void updateStatistics(Integer documentID, Vector<Integer> tokens, Set<Integer> uniques) {
+		try{
+			for(int i=0; i<tokens.size(); i++){
 
-		for(int i=0; i<tokens.size(); i++){
+				Integer idx = tokens.get(i);
+				uniques.add(idx);
 
-			Integer idx = tokens.get(i);
-			uniques.add(idx);
+				//populates the inverted index
+				if(!_invertedIndexWithOccurences.containsKey(idx)){
+					_invertedIndexWithOccurences.put(idx, new PostingsWithOccurences());
+				}
+				_invertedIndexWithOccurences.get(idx).addEntry(documentID, i+1); //offset start from 1
 
-			//populates the inverted index
-			if(!_invertedIndexWithOccurences.containsKey(idx)){
-				_invertedIndexWithOccurences.put(idx, new PostingsWithOccurences());
+				_termCorpusFrequency.put(idx, _termCorpusFrequency.get(idx) + 1);
+				++_totalTermFrequency;
+
+				//			//populating the docTermFrequency index
+				//			if(!_docTermFrequencyInvertedIndex.containsKey(idx)){
+				//				_docTermFrequencyInvertedIndex.put(idx, new HashMap<Integer, Integer>());
+				//			}
+				//			
+				//			Map<Integer, Integer> termDocFrequencyList = _docTermFrequencyInvertedIndex.get(idx);
+				//
+				//			if(!termDocFrequencyList.containsKey(documentID)){
+				//				termDocFrequencyList.put(documentID, new Integer(1));
+				//			}else{
+				//				termDocFrequencyList.put(documentID, termDocFrequencyList.get(documentID)+1);
+				//			}
 			}
-			_invertedIndexWithOccurences.get(idx).addEntry(documentID, i+1); //offset start from 1
-
-			_termCorpusFrequency.put(idx, _termCorpusFrequency.get(idx) + 1);
-			++_totalTermFrequency;
-
-			//populating the docTermFrequency index
-			if(!_docTermFrequencyInvertedIndex.containsKey(idx)){
-				_docTermFrequencyInvertedIndex.put(idx, new HashMap<Integer, Integer>());
-			}
-			Map<Integer, Integer> termDocFrequencyList = _docTermFrequencyInvertedIndex.get(idx);
-
-			if(!termDocFrequencyList.containsKey(documentID)){
-				termDocFrequencyList.put(documentID, new Integer(1));
-			}else{
-				termDocFrequencyList.put(documentID, termDocFrequencyList.get(documentID)+1);
-			}
-		}
+		}catch (OutOfMemoryError oome){
+			throw new OutOfMemoryError(oome.getLocalizedMessage());
+		} 
 	}
 
 
@@ -393,11 +429,37 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 	@Override
 	public int documentTermFrequency(String term, String url) {
 		int term_idx = _dictionary.get(term);
-		int docid = _docIds.get(url);
-		if(!_docTermFrequencyInvertedIndex.containsKey(term_idx) || 
-				!_docTermFrequencyInvertedIndex.get(term_idx).containsKey(docid))
-			return 0;
+		int docID = _docIds.get(url);
+		//		if(!_docTermFrequencyInvertedIndex.containsKey(term_idx) || 
+		//				!_docTermFrequencyInvertedIndex.get(term_idx).containsKey(docid))
+		//			return 0;
+		//
+		//		return _docTermFrequencyInvertedIndex.get(term_idx).get(docid);
+		PostingsWithOccurences list = _invertedIndexWithOccurences.get(term_idx);
+		PostingEntry entry = list.searchDocumentID(docID);
 
-		return _docTermFrequencyInvertedIndex.get(term_idx).get(docid);
+		return entry.getOffset().size();
 	}
+
+
+
+	//Utility
+	private void mergeIndexes(){
+		try{
+			File tempFolder = new File(indexTempFolderName);
+			if(tempFolder.exists() && tempFolder.isDirectory()){
+				FileInputStream fileReader = new FileInputStream(indexTempFolderName+"/0");
+				ObjectInputStream reader = new ObjectInputStream(fileReader);
+				Integer termID = (Integer) reader.readObject();
+				PostingsWithOccurences postingList = (PostingsWithOccurences) reader.readObject();
+
+				System.out.println(termID);
+				System.out.println(postingList.get(0));
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
 }

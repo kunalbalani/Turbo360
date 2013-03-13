@@ -1,7 +1,9 @@
 package edu.nyu.cs.cs2580;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.NoSuchElementException;
 import java.util.Vector;
 
 /**
@@ -10,14 +12,20 @@ import java.util.Vector;
  * 
  * @author samitpatel
  * */
-class PostingEntry {
-	
+class PostingEntry implements Serializable {
+
+	private static final long serialVersionUID = 3167577397839073790L;
 	private Integer _docid;
 	private Vector<Integer> _offset;
-	
+
 	@SuppressWarnings("unused")
 	private PostingEntry(){}
-	
+
+	@Override
+	public String toString() {
+		return _docid+"->"+_offset;
+	}
+
 	/**
 	 * Constructs the object with document ID and term offset within document.
 	 * 
@@ -29,7 +37,7 @@ class PostingEntry {
 		_offset = new Vector<Integer>();
 		_offset.add(offset);
 	}
-	
+
 	/**
 	 * Returns the Document ID.
 	 * @return Document ID
@@ -37,7 +45,7 @@ class PostingEntry {
 	public Integer getDocID(){
 		return _docid;
 	}
-	
+
 	/**
 	 * Returns the offset of the term with the document.
 	 * @return Term offset within the document
@@ -69,21 +77,23 @@ public class PostingsWithOccurences extends Vector<PostingEntry>{
 		super();
 		cachedIndex = -1;
 	}
-	
+
 	/**
 	 * Adds an entry to Posting List
 	 * */
 	public void addEntry(Integer docid, Integer offset){
-		PostingEntry lastDocument = this.lastElement();
-		if(lastDocument.getDocID() != docid){
+		try{
+			PostingEntry lastDocument = this.lastElement();
+			if(lastDocument.getDocID() == docid){
+				lastDocument.addOffset(offset);
+			}
+		}catch (NoSuchElementException e) {
 			PostingEntry entry = new PostingEntry(docid, offset);
 			super.addElement(entry);
-		}else{
-			lastDocument.addOffset(offset);
 		}
-		
+
 	}
-	
+
 	/**
 	 * Returns the Cached Index
 	 * */
@@ -97,13 +107,13 @@ public class PostingsWithOccurences extends Vector<PostingEntry>{
 	public void setCachedIndex(Integer cachedIndex) {
 		this.cachedIndex = cachedIndex;
 	}
-	
-	
+
+
 	/**
 	 * Searchs the documentID in the Vector
 	 * */
 	public PostingEntry searchDocumentID(Integer docID) {
-		
+
 		int documentID = Collections.binarySearch(this, new PostingEntry(docID, 0), new Comparator<PostingEntry>() {
 
 			@Override
@@ -111,9 +121,9 @@ public class PostingsWithOccurences extends Vector<PostingEntry>{
 				return o1.getDocID().compareTo(o2.getDocID());
 			}
 		});
-		
+
 		return this.get(documentID);
-		
+
 	}
-	
+
 }

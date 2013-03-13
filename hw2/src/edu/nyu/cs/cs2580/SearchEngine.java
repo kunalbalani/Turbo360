@@ -176,7 +176,8 @@ public class SearchEngine {
         Check(false, "Wrong mode for SearchEngine!");
       }
     } catch (Exception e) {
-      System.err.println(e.getMessage());
+    	e.printStackTrace();
+    	System.err.println(e.getMessage());
     }
   }
 }
