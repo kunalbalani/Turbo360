@@ -102,7 +102,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 				"Indexed " + Integer.toString(_numDocs) + " docs with " +
 				Long.toString(_totalTermFrequency) + " terms.");
 
-		String indexFile = _options._indexPrefix + "/"+indexFileName;
+		String indexFile = _options._indexPrefix + "/"+indexFolderName+"/"+indexFileName;
 		System.out.println("Store index to: " + indexFile);
 		ObjectOutputStream writer =
 			new ObjectOutputStream(new FileOutputStream(indexFile));
@@ -275,7 +275,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 		//case 1 
 		Vector <Integer> docIds = new Vector<Integer>();
 		for(String token : queryTerms) {
-			Integer nextDocID = next(token,docid);
+			Integer nextDocID = next(token, docid);
 			if(nextDocID == INFINITY) {
 				//value not found;
 				return null;
@@ -342,7 +342,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 
 
 	/**
-	 *Finds the nex Phrase.
+	 *Finds the next Phrase.
 	 */
 	public int nextPhrase(Query query, int docid, int position) {
 
@@ -355,7 +355,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 		//case 1 
 		Vector <Integer> positions = new Vector<Integer>();
 		for(String token : queryTerms) {
-			Integer nextPosition = nextPosition(token,docid, position);
+			Integer nextPosition = nextPosition(token, docid, position);
 			if(nextPosition == INFINITY) {
 				//value not found;
 				return INFINITY;
