@@ -1,7 +1,5 @@
 package edu.nyu.cs.cs2580;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Vector;
 
 /**
@@ -27,11 +25,6 @@ public class DocumentIndexed extends Document {
 	public Vector<Integer> getDocumentTokens() {
 		return _documentTokens;
 	}
-	
 
-//	public Vector<String> getConvertedDocumentTokens() {
-//		return _indexer.getTermVector(_documentTokens);
-//	}
-	
 	
 }
