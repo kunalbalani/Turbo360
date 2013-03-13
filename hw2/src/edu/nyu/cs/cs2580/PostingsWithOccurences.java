@@ -12,11 +12,11 @@ import java.util.Vector;
  * 
  * @author samitpatel
  * */
-class PostingEntry implements Serializable {
+class PostingEntry<T> implements Serializable {
 
 	private static final long serialVersionUID = 3167577397839073790L;
 	private Integer _docid;
-	private Vector<Integer> _offset;
+	private Vector<T> _offset;
 
 	@SuppressWarnings("unused")
 	private PostingEntry(){}
@@ -32,10 +32,10 @@ class PostingEntry implements Serializable {
 	 * @param docid Document ID
 	 * @param offset Term offset within document
 	 * */
-	PostingEntry (Integer docid, Integer offset){
+	PostingEntry (Integer docid, T value){
 		_docid = docid;
-		_offset = new Vector<Integer>();
-		_offset.add(offset);
+		_offset = new Vector<T>();
+		_offset.add(value);
 	}
 
 	/**
@@ -50,12 +50,12 @@ class PostingEntry implements Serializable {
 	 * Returns the offset of the term with the document.
 	 * @return Term offset within the document
 	 * */
-	public Vector<Integer> getOffset(){
+	public Vector<T> getOffset(){
 		return _offset;
 	}
 
-	public void addOffset(Integer offset) {
-		_offset.add(offset);
+	public void addOffset(T value) {
+		_offset.add(value);
 	}
 }
 
