@@ -1,6 +1,7 @@
 package edu.nyu.cs.cs2580;
 
-import java.io.FileReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -22,10 +23,11 @@ public class DocumentProcessor {
 	 * removes the stopwords and stems the words)
 	 * 
 	 * @param fileReader FileReader object
+	 * @throws FileNotFoundException 
 	 * */
-	public Vector<String> process(FileReader fileReader) {
+	public Vector<String> process(File file) throws FileNotFoundException {
 
-		Scanner scan = new Scanner(fileReader);  
+		Scanner scan = new Scanner(file);  
 		//reads all the text at once
 		scan.useDelimiter("\\Z");  
 		String content = scan.next();  
@@ -45,11 +47,8 @@ public class DocumentProcessor {
 
 		Vector<String> processedTokens = null;
 
-		//		try{
 		//removes HTML
 		String content = htmlToText(htmlText);
-
-		//			
 
 		//removes non-alphanumeric characters
 		content = content.replaceAll("\\W", " ");
@@ -58,10 +57,6 @@ public class DocumentProcessor {
 		String[] tokens = content.split("\\s+");
 
 		processedTokens = stemmingAndStopWordsWrapper.process(tokens);
-
-		//		}catch(BoilerpipeProcessingException e){
-		//			e.printStackTrace();
-		//		}
 
 		return processedTokens;
 	}

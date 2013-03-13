@@ -21,10 +21,6 @@ class PostingEntry<T> implements Serializable {
 	@SuppressWarnings("unused")
 	private PostingEntry(){}
 
-	@Override
-	public String toString() {
-		return _docid+"->"+_values;
-	}
 
 	/**
 	 * Constructs the object with document ID and term offset within document.
@@ -57,6 +53,15 @@ class PostingEntry<T> implements Serializable {
 	public void addOffset(T value) {
 		_values.add(value);
 	}
+
+	@Override
+	public String toString() {
+		String str = _docid+" ";
+		for(T value : _values){
+			str = str + value.toString() + " ";
+		}
+		return str;
+	}
 }
 
 /**
@@ -78,15 +83,16 @@ public class PostingsWithOccurences<T> extends Vector<PostingEntry<T>>{
 	 * Adds an entry to Posting List
 	 * */
 	public void addEntry(Integer docid, T value){
-		try{
+		if(!this.isEmpty()){
 			PostingEntry<T> lastDocument = this.lastElement();
 			if(lastDocument.getDocID() == docid){
 				lastDocument.addOffset(value);
+				return;
 			}
-		}catch (NoSuchElementException e) {
-			PostingEntry<T> entry = new PostingEntry<T>(docid, value);
-			super.addElement(entry);
 		}
+		
+		PostingEntry<T> entry = new PostingEntry<T>(docid, value);
+		super.addElement(entry);
 
 	}
 
@@ -122,5 +128,17 @@ public class PostingsWithOccurences<T> extends Vector<PostingEntry<T>>{
 	public void setCachedIndex(Integer cachedIndex) {
 		this.cachedIndex = cachedIndex;
 	}
+
+
+	@Override
+	public synchronized String toString() {
+		String str = "";
+		for(PostingEntry<T> entry : this){
+			str = str + entry.toString() + ":";
+		}
+		return str;
+	}
+
+
 
 }
