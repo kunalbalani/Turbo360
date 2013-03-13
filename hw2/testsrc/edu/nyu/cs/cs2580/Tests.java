@@ -5,7 +5,7 @@ import java.util.Vector;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class PostingWithOccurenceTest {
+public class Tests {
 
 	@Test
 	public void testPhraseQueryTokens() {
@@ -18,6 +18,12 @@ public class PostingWithOccurenceTest {
 		Assert.assertEquals("y", v.get(1));
 		Assert.assertEquals("New york", v.get(2));
 		Assert.assertEquals(3, v.size());
+	}
+	
+	
+	public void testDocumentProcessor(){
+		
+		
 	}
 
 }

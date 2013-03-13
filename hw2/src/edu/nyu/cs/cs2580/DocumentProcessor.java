@@ -4,6 +4,8 @@ import java.io.FileReader;
 import java.util.Scanner;
 import java.util.Vector;
 
+import org.jsoup.Jsoup;
+
 import de.l3s.boilerpipe.BoilerpipeProcessingException;
 import de.l3s.boilerpipe.extractors.ArticleExtractor;
 
@@ -13,7 +15,7 @@ public class DocumentProcessor {
 
 	public DocumentProcessor(){
 		stemmingAndStopWordsWrapper 
-		= new StemmingAndStopWordsWrapper(new PorterStemmer());
+			= new StemmingAndStopWordsWrapper(new PorterStemmer());
 	}
 
 	/**
@@ -47,6 +49,7 @@ public class DocumentProcessor {
 
 		try{
 			//removes HTML
+			Jsoup.parse(text);
 			String content = ArticleExtractor.getInstance().getText(text);
 
 			//removes non-alphanumeric characters

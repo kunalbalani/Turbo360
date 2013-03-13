@@ -65,34 +65,49 @@ class PostingEntry<T> implements Serializable {
  * 
  * @author samitpatel
  * */
-public class PostingsWithOccurences extends Vector<PostingEntry>{
+public class PostingsWithOccurences<T> extends Vector<PostingEntry<T>>{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -7865772446822434246L;
-	private Integer cachedIndex;
+	private Integer cachedIndex = -1;
 
-	public PostingsWithOccurences() {
-		super();
-		cachedIndex = -1;
-	}
 
 	/**
 	 * Adds an entry to Posting List
 	 * */
-	public void addEntry(Integer docid, Integer offset){
+	public void addEntry(Integer docid, T value){
 		try{
-			PostingEntry lastDocument = this.lastElement();
+			PostingEntry<T> lastDocument = this.lastElement();
 			if(lastDocument.getDocID() == docid){
-				lastDocument.addOffset(offset);
+				lastDocument.addOffset(value);
 			}
 		}catch (NoSuchElementException e) {
-			PostingEntry entry = new PostingEntry(docid, offset);
+			PostingEntry<T> entry = new PostingEntry<T>(docid, value);
 			super.addElement(entry);
 		}
 
 	}
+
+
+	/**
+	 * Searchs the documentID in the Vector
+	 * */
+	public PostingEntry<T> searchDocumentID(Integer docID) {
+
+		int documentID = Collections.binarySearch(this, new PostingEntry<T>(docID, null), new Comparator<PostingEntry<T>>() {
+
+			@Override
+			public int compare(PostingEntry<T> o1, PostingEntry<T> o2) {
+				return o1.getDocID().compareTo(o2.getDocID());
+			}
+		});
+
+		return this.get(documentID);
+
+	}
+	
 
 	/**
 	 * Returns the Cached Index
@@ -106,24 +121,6 @@ public class PostingsWithOccurences extends Vector<PostingEntry>{
 	 * */
 	public void setCachedIndex(Integer cachedIndex) {
 		this.cachedIndex = cachedIndex;
-	}
-
-
-	/**
-	 * Searchs the documentID in the Vector
-	 * */
-	public PostingEntry searchDocumentID(Integer docID) {
-
-		int documentID = Collections.binarySearch(this, new PostingEntry(docID, 0), new Comparator<PostingEntry>() {
-
-			@Override
-			public int compare(PostingEntry o1, PostingEntry o2) {
-				return o1.getDocID().compareTo(o2.getDocID());
-			}
-		});
-
-		return this.get(documentID);
-
 	}
 
 }
