@@ -24,9 +24,9 @@ import edu.nyu.cs.cs2580.SearchEngine.Options;
  * 
  * @author samitpatel
  */
-public class IndexerInvertedOccurrence extends Indexer implements Serializable {
+public class IndexerInvertedOccurrence extends Indexer implements Serializable 
+{
 	private static final long serialVersionUID = 5882841104467811379L;
-
 
 	//	// Maps each term to their posting list
 	//	private Map<Integer, HashMap<Integer, Integer>> _docTermFrequencyInvertedIndex 
@@ -43,28 +43,28 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 
 	// Term document frequency, key is the integer representation of the term and
 	// value is the number of documents the term appears in.
-	private Map<Integer, Integer> _termDocFrequency =
-			new HashMap<Integer, Integer>();
+	private Map<Integer, Integer> _termDocFrequency = new HashMap<Integer, Integer>();
 
 	// Term frequency, key is the integer representation of the term and value is
 	// the number of times the term appears in the corpus.
-	private Map<Integer, Integer> _termCorpusFrequency =
-			new HashMap<Integer, Integer>();
+	private Map<Integer, Integer> _termCorpusFrequency = new HashMap<Integer, Integer>();
 
 	// Stores all Document in memory.
 	private Vector<DocumentIndexed> _documents = new Vector<DocumentIndexed>();
 
 
 	private final Integer INFINITY = Integer.MAX_VALUE;
-	private final String contentFolderName = "data/wiki";
+
+	private final String contentFolderName = "data/simple";
 	private final String indexFolderName = "invertedOccurenceIndex";
 	private final String indexTempFolderName = 
-			_options._indexPrefix + "/" + indexFolderName + "/temp";
+		_options._indexPrefix + "/" + indexFolderName + "/temp";
+
 	private final String indexFileName = "invertedOccurenceIndex.idx";
 
 	// Maps each term to their posting list
 	private IndexWrapper _invertedIndexWithOccurences = 
-			new IndexWrapper(indexTempFolderName);
+		new IndexWrapper(indexTempFolderName);
 
 	public IndexerInvertedOccurrence(Options options) {
 		super(options);
@@ -76,18 +76,23 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 	}
 
 	@Override
-	public void constructIndex() throws IOException {
+	public void constructIndex() throws IOException
+	{
 
 		DocumentProcessor documentProcessor = new DocumentProcessor();
 
 		File contentFolder = new File(contentFolderName);
 		int fileCount = 0;
+
 		for(File file : contentFolder.listFiles()){
+
 			processDocument(file, documentProcessor);
 			fileCount++;
-			if(fileCount == 1000){
+
+			if(fileCount == 1000)
+			{
 				_invertedIndexWithOccurences.writeToDisk();
-//				System.exit(1);
+				Runtime.getRuntime().gc();
 				fileCount=0;
 			}
 		}
@@ -99,12 +104,12 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 
 		System.out.println(
 				"Indexed " + Integer.toString(_numDocs) + " docs with " +
-						Long.toString(_totalTermFrequency) + " terms.");
+				Long.toString(_totalTermFrequency) + " terms.");
 
 		String indexFile = _options._indexPrefix + "/"+indexFileName;
 		System.out.println("Store index to: " + indexFile);
 		ObjectOutputStream writer =
-				new ObjectOutputStream(new FileOutputStream(indexFile));
+			new ObjectOutputStream(new FileOutputStream(indexFile));
 		writer.writeObject(this);
 		writer.close();
 
@@ -242,11 +247,12 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 
 	@Override
 	public void loadIndex() throws IOException, ClassNotFoundException {
+
 		String indexFile = _options._indexPrefix + "/"+indexFileName;
 		System.out.println("Load index from: " + indexFile);
 
 		ObjectInputStream reader =
-				new ObjectInputStream(new FileInputStream(indexFile));
+			new ObjectInputStream(new FileInputStream(indexFile));
 		IndexerInvertedOccurrence loaded = (IndexerInvertedOccurrence) reader.readObject();
 
 		this._documents = loaded._documents;
@@ -445,22 +451,43 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable {
 
 
 	//Utility
-	private void mergeIndexes(){
-		try{
-			File tempFolder = new File(indexTempFolderName);
-			if(tempFolder.exists() && tempFolder.isDirectory()){
-				FileInputStream fileReader = new FileInputStream(indexTempFolderName+"/0");
-				ObjectInputStream reader = new ObjectInputStream(fileReader);
-				Integer termID = (Integer) reader.readObject();
-				PostingsWithOccurences postingList = (PostingsWithOccurences) reader.readObject();
+	private void mergeIndexes()
+	{	
 
-				System.out.println(termID);
-				System.out.println(postingList.get(0));
+		T3FileReader t3R;
+
+		String indexFileName = "invertedOccurenceIndex";
+		T3IndexReader indexReader = new T3IndexReader(indexFileName);
+		T3IndexWriter indexWriter = new T3IndexWriter(indexFileName);
+
+		File tempFolder = new File(indexTempFolderName);
+
+		if(tempFolder.exists() && tempFolder.isDirectory())
+		{
+
+			for(File file : tempFolder.listFiles())
+			{
+
+				t3R = new T3FileReader(indexTempFolderName+"/"+file.getName());
+
+				Integer termID  = (Integer)t3R.read();
+				if(termID  != Integer.MIN_VALUE)
+				{
+					PostingsWithOccurences postingList = 
+						(PostingsWithOccurences)t3R.read();
+
+					if(!indexReader.contains(termID))
+					{
+						indexWriter.write(termID);
+						indexWriter.write(postingList);
+					}else
+					{
+						System.out.println("merging terms"+termID);
+						indexReader.merge(termID,postingList);
+					}
+				}
 			}
-		}catch (Exception e) {
-			e.printStackTrace();
 		}
+
 	}
-
-
 }

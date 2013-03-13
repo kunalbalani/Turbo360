@@ -9,6 +9,7 @@ import java.util.Set;
 
 
 public class IndexWrapper extends HashMap<Integer, PostingsWithOccurences>{
+
 	private static final long serialVersionUID = 6127445645999471161L;
 
 	private String _indexTempFolder;
@@ -17,7 +18,8 @@ public class IndexWrapper extends HashMap<Integer, PostingsWithOccurences>{
 	@SuppressWarnings("unused")
 	private IndexWrapper(){};
 
-	public IndexWrapper(String indexTempFolder){
+	public IndexWrapper(String indexTempFolder)
+	{
 		_indexTempFolder = indexTempFolder;
 		File tempdir = new File(indexTempFolder);
 		if(!tempdir.exists())
@@ -25,44 +27,29 @@ public class IndexWrapper extends HashMap<Integer, PostingsWithOccurences>{
 	}
 
 
-	public void writeToDisk() {
-		FileOutputStream fileOutputStream = null;
-		ObjectOutputStream writer = null;
-		try{
-			String fileName = _indexTempFolder + "/" + Integer.toString(_tempFileCount);
+	public void writeToDisk() 
+	{
+		T3FileWriter t3 = new T3FileWriter(_indexTempFolder + "/" + Integer.toString(_tempFileCount));
 
-			Set<Integer> terms = this.keySet();
-			Integer[] keys = terms.toArray(new Integer[terms.size()]);
-			Arrays.sort(keys);
+		Set<Integer> terms = this.keySet();
+		Integer[] keys = terms.toArray(new Integer[terms.size()]);
+		Arrays.sort(keys);
 
-			fileOutputStream = new FileOutputStream(fileName);
-			writer = new ObjectOutputStream(fileOutputStream);
-
-			for(int i=0; i<keys.length; i++){
-				writer.writeObject(keys[i]);
-				writer.writeObject(this.get(keys[i]));
-			}
-
-			writer.close();
-			fileOutputStream.close();
-
-
-			this.clear();
-
-			System.out.println("Created " + Integer.toString(_tempFileCount));
-			_tempFileCount++;
-		}catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			try{
-				if(writer != null)
-					writer.close();
-				if(fileOutputStream != null)
-					fileOutputStream.close();
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
+		System.out.println("have to write "+keys.length + "objects");
+		for(int i=0; i<keys.length; i++)
+		{
+			t3.write(keys[i]);
+			t3.write(this.get(keys[i]));
 		}
+
+		//To mark end of file
+		t3.write(Integer.MIN_VALUE);
+		t3.close();
+		this.clear();
+
+		System.out.println("Created " + Integer.toString(_tempFileCount));
+		_tempFileCount++;
+
 	}
 
 
