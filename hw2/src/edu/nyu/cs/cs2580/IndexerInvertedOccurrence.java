@@ -50,6 +50,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 
 
 	private final Integer INFINITY = Integer.MAX_VALUE;
+	private final Integer documentBlock = 1000;
 
 	private final String contentFolderName = "data/wiki";
 	private final String indexFolderName = "invertedOccurenceIndex";
@@ -85,7 +86,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 			processDocument(file, documentProcessor);
 			fileCount++;
 
-			if(fileCount == 1000)
+			if(fileCount == documentBlock)
 			{
 				_invertedIndexWithOccurences.writeToDisk();
 				Runtime.getRuntime().gc();
@@ -109,6 +110,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 		writer.writeObject(this);
 		writer.close();
 
+		
 	}
 
 
@@ -119,14 +121,10 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 	 * @throws IOException 
 	 */
 	private void processDocument(File file, DocumentProcessor documentProcessor) throws IOException {
-		FileReader fileReader = null;
 		try{
 
-			//System.out.println(file.getName());
-
-			fileReader = new FileReader(file);
 			Vector<String> titleTokens_Str = documentProcessor.process(file.getName());
-			Vector<String> bodyTokens_Str = documentProcessor.process(fileReader);
+			Vector<String> bodyTokens_Str = documentProcessor.process(file);
 
 
 			Vector<Integer> titleTokens = new Vector<Integer>();
@@ -164,11 +162,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 			fnfe.printStackTrace();
 		} catch (OutOfMemoryError oome){
 			throw new OutOfMemoryError(oome.getLocalizedMessage());
-		} finally{
-			if(fileReader != null)
-				fileReader.close();
 		}
-
 	}
 
 
