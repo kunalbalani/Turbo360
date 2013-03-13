@@ -318,7 +318,7 @@ public class IndexerInvertedCompressed extends Indexer {
 			int tempSum = _sumOfOffsets.get(idx).get(documentID);
 			String temp = hexOut(i+1-tempSum);
 			_invertedIndexWithCompresion.get(idx).addEntry(documentID, temp); //offset start from 1
-
+			_sumOfOffsets.get(idx).put(documentID, tempSum+i+1);
 			_termCorpusFrequency.put(idx, _termCorpusFrequency.get(idx) + 1);
 			++_totalTermFrequency;
 

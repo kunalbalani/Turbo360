@@ -20,3 +20,15 @@ instructor/results/hw1.4-log.tsv
 *.class
 
 *.class
+
+*.class
+
+hw2/data/index/invertedOccurenceIndex/temp/0
+
+hw2/data/index/invertedOccurenceIndex/temp/1
+
+hw2/data/index/invertedOccurenceIndex/temp/2
+
+hw2/data/index/invertedOccurenceompressionIndex/temp/0
+
+hw2/data/index/invertedOccurenceIndex/temp/3
