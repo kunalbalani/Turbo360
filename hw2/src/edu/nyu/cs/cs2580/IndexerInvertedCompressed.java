@@ -303,6 +303,9 @@ public class IndexerInvertedCompressed extends Indexer {
 				_invertedIndexWithCompresion.put(idx, new PostingsWithOccurences<String>());
 				_sumOfOffsets.put(idx, new HashMap<Integer,Integer>());
 			}
+			if(!_sumOfOffsets.get(idx).containsKey(documentID))
+				_sumOfOffsets.get(idx).put(documentID, 0);
+			
 			int tempSum = _sumOfOffsets.get(idx).get(documentID);
 			String temp = hexOut(i+1-tempSum);
 			_invertedIndexWithCompresion.get(idx).addEntry(documentID, temp); //offset start from 1
