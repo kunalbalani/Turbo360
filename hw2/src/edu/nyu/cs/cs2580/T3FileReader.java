@@ -1,14 +1,17 @@
 package edu.nyu.cs.cs2580;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.InputStreamReader;
 
 public class T3FileReader{
 
 
 	private FileInputStream fileInputStream ;
-	private ObjectInputStream reader;
+	private DataInputStream in;
+	private BufferedReader reader;
 	private String filePath;
 	
 	public T3FileReader(String filepath){
@@ -17,60 +20,57 @@ public class T3FileReader{
 		try 
 		{
 			fileInputStream = new FileInputStream(filepath);
-			reader = new ObjectInputStream(fileInputStream);
+			in = new DataInputStream(fileInputStream);
+			reader = new BufferedReader(new InputStreamReader(in));
+			
 		} catch (IOException e) 
 		{
 			e.printStackTrace();
 		}
 	}
 
-	public Object read(){
+	public String read(){
 
-		Object retVal = null;
+		String retVal = null;
 		try {
-			retVal =  reader.readObject();
+			retVal =  reader.readLine();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		} 
 		return retVal;
 	}
 
 	public void close(){
 		try {
 			reader.close();
+			in.close();
 			fileInputStream.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public boolean isObjectPresent(Integer term){
+	public boolean isStringPresent(String term){
 		
-		Integer termID;
+		String strLine;
 		try {
-			while((termID = (Integer)reader.readObject()) != Integer.MIN_VALUE){
-				if(termID == term){
-					return true;
-				}
-			}
+			  //Read File Line By Line
+			  while ((strLine = reader.readLine()) != null)   {
+				  if(term.equalsIgnoreCase(strLine)){
+					  return true;
+				  }
+			  }
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} 
 		return false;
 	}
 
 	public void merge(Integer termID, PostingsWithOccurences postingList) {
 		
-		close();
-		T3FileWriter t3W = new T3FileWriter(this.filePath);
-//		t3W.getWriter().
+//		close();
+//		T3FileWriter t3W = new T3FileWriter(this.filePath);
+////		t3W.getWriter().
 	}	
 }

@@ -17,7 +17,7 @@ public class T3IndexWriter
 	}
 
 
-	public void write(Object content){
+	public void write(String content){
 
 		if(currentFileWriter == null || totalObjectsWritten <= 0)
 		{

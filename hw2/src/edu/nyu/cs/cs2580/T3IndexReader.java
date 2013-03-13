@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class T3IndexReader {
+	
 	//split file after these many entries
 	public final Integer splitCount = 1000;
 	
@@ -18,17 +19,17 @@ public class T3IndexReader {
 		currentFileReader = new T3FileReader(rootFileName+currentReader+".idx");
 	}
 	
-	public boolean contains(Integer termId){
-		Integer fileToBeSearched = termId / 1000;
+	public boolean contains(String termId){
+		Integer fileToBeSearched = Integer.parseInt(termId) / 1000;
 		loadFile(fileToBeSearched);		
-		return 	currentFileReader.isObjectPresent(termId);
+		return 	currentFileReader.isStringPresent(termId);
 	}
 	
-	public void merge(Integer termID, PostingsWithOccurences postingList){
-		if(currentFileReader != null){
-			currentFileReader.merge(termID,postingList);
-		}
-	}
+//	public void merge(Integer termID, PostingsWithOccurences postingList){
+//		if(currentFileReader != null){
+//			currentFileReader.merge(termID,postingList);
+//		}
+//	}
 	
 	private void loadFile(Integer fileIndex){
 		currentFileReader = new T3FileReader(rootFileName+fileIndex+".idx");

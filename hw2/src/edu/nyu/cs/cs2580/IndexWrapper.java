@@ -35,15 +35,14 @@ public class IndexWrapper extends HashMap<Integer, PostingsWithOccurences>{
 		Integer[] keys = terms.toArray(new Integer[terms.size()]);
 		Arrays.sort(keys);
 
-		System.out.println("have to write "+keys.length + "objects");
+		System.out.println("have to write "+keys.length + " entries");
 		for(int i=0; i<keys.length; i++)
 		{
-			t3.write(keys[i]);
-			t3.write(this.get(keys[i]));
+			t3.write(keys[i]+":");
+			t3.write(this.get(keys[i])+"");
+			t3.write("\n");
 		}
-
-		//To mark end of file
-		t3.write(Integer.MIN_VALUE);
+		
 		t3.close();
 		this.clear();
 

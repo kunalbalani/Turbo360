@@ -51,7 +51,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 
 	private final Integer INFINITY = Integer.MAX_VALUE;
 
-	private final String contentFolderName = "data/simple";
+	private final String contentFolderName = "data/wiki";
 	private final String indexFolderName = "invertedOccurenceIndex";
 	private final String indexTempFolderName = 
 		_options._indexPrefix + "/" + indexFolderName + "/temp";
@@ -96,7 +96,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 		_invertedIndexWithOccurences.writeToDisk();
 
 		//Merges all the temp index.
-		mergeIndexes();
+		//mergeIndexes();
 
 		System.out.println(
 				"Indexed " + Integer.toString(_numDocs) + " docs with " +
@@ -429,43 +429,43 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 
 
 	//Utility
-	private void mergeIndexes()
-	{	
-
-		T3FileReader t3R;
-
-		String indexFileName = "invertedOccurenceIndex";
-		T3IndexReader indexReader = new T3IndexReader(indexFileName);
-		T3IndexWriter indexWriter = new T3IndexWriter(indexFileName);
-
-		File tempFolder = new File(indexTempFolderName);
-
-		if(tempFolder.exists() && tempFolder.isDirectory())
-		{
-
-			for(File file : tempFolder.listFiles())
-			{
-
-				t3R = new T3FileReader(indexTempFolderName+"/"+file.getName());
-
-				Integer termID  = (Integer)t3R.read();
-				if(termID  != Integer.MIN_VALUE)
-				{
-					PostingsWithOccurences<Integer> postingList = 
-						(PostingsWithOccurences<Integer>) t3R.read();
-
-					if(!indexReader.contains(termID))
-					{
-						indexWriter.write(termID);
-						indexWriter.write(postingList);
-					}else
-					{
-						System.out.println("merging terms"+termID);
-						indexReader.merge(termID,postingList);
-					}
-				}
-			}
-		}
-
-	}
+//	private void mergeIndexes()
+//	{	
+//
+//		T3FileReader t3R;
+//
+//		String indexFileName = "invertedOccurenceIndex";
+//		T3IndexReader indexReader = new T3IndexReader(indexFileName);
+//		T3IndexWriter indexWriter = new T3IndexWriter(indexFileName);
+//
+//		File tempFolder = new File(indexTempFolderName);
+//
+//		if(tempFolder.exists() && tempFolder.isDirectory())
+//		{
+//
+//			for(File file : tempFolder.listFiles())
+//			{
+//
+//				t3R = new T3FileReader(indexTempFolderName+"/"+file.getName());
+//
+//				Integer termID  = (Integer)t3R.read();
+//				if(termID  != Integer.MIN_VALUE)
+//				{
+//					PostingsWithOccurences<Integer> postingList = 
+//						(PostingsWithOccurences<Integer>) t3R.read();
+//
+//					if(!indexReader.contains(termID))
+//					{
+//						indexWriter.write(termID);
+//						indexWriter.write(postingList);
+//					}else
+//					{
+//						System.out.println("merging terms"+termID);
+//						indexReader.merge(termID,postingList);
+//					}
+//				}
+//			}
+//		}
+//
+//	}
 }

@@ -1,48 +1,44 @@
 package edu.nyu.cs.cs2580;
 
-import java.io.FileOutputStream;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 public class T3FileWriter {
 	
 	
-	private FileOutputStream fileOutputStream ;
-	private ObjectOutputStream writer ;
+	private FileWriter fileOutputStream ;
+	private BufferedWriter writer ;
 	
 	public T3FileWriter(String filepath){
 		
 		try 
 		{
-			fileOutputStream = new FileOutputStream(filepath);
-			writer = new ObjectOutputStream(fileOutputStream);
+			fileOutputStream = new FileWriter(filepath);
+			writer = new BufferedWriter(fileOutputStream);
 
-		} catch (IOException e) 
-		{
-			e.printStackTrace();
+		} catch (IOException e){
+			System.out.println("Creating new file");
+			File tmp = new File(filepath);
+			try {
+				tmp.getParentFile().mkdirs();
+				tmp.createNewFile();
+				
+				
+				fileOutputStream = new FileWriter(filepath);
+				writer = new BufferedWriter(fileOutputStream);
+			} catch (IOException e1) {
+				
+				e1.printStackTrace();
+			}
+			
 		}
 	}
 	
-	public FileOutputStream getFileOutputStream() {
-		return fileOutputStream;
-	}
-
-	public void setFileOutputStream(FileOutputStream fileOutputStream) {
-		this.fileOutputStream = fileOutputStream;
-	}
-
-	public ObjectOutputStream getWriter() {
-		return writer;
-	}
-
-	public void setWriter(ObjectOutputStream writer) {
-		this.writer = writer;
-	}
-
-	public void write(Object content){
-		
+	public void write(String content){
 		try {
-			writer.writeObject(content);
+			writer.write(content);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
