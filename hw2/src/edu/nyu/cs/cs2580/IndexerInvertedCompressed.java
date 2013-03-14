@@ -112,63 +112,10 @@ public class IndexerInvertedCompressed extends Indexer {
 	}
 
 
-	private static boolean getMore(String hexIn) {
-		int i = Integer.parseInt(hexIn.substring(0,1), 16);
-		String Bin = Integer.toBinaryString(i);
-		if(Bin.charAt(0) == '1')
-			return true;
-		else
-			return false;
-	}
-
-
-
-	private static int intOut(Vector<String> offsets) {
-		String temp = new String();
-		int length = offsets.size();
-
-		String comp = offsets.get(length-1);
-		String tempStr = new String();
-		System.out.println(comp);
-		do {
-			tempStr = temp;
-			int i = Integer.parseInt(comp, 16);
-			String Bin = Integer.toBinaryString(i);
-			int buffer = 0;
-			if(Bin.length() % 8 != 0)
-				buffer  = 8 - Bin.length() % 8;
-			StringBuilder eightAligned = new StringBuilder();
-			while(buffer != 0) {
-				eightAligned.append("0");
-				buffer--;
-			}
-			eightAligned.append(Bin);
-			temp = eightAligned.toString().substring(1) + tempStr;
-			System.out.println(temp);
-			length--;
-			if(length == 0)
-				break;
-			comp = offsets.get(length-1);
-		} while(!getMore(comp)) ;
-
-		System.out.println(temp);
-		return Integer.parseInt(temp, 2);
-	}
-
-	private static Vector<Integer> decode(Vector<String> encoded) {
-		Vector<String> temp = new Vector<String>();
+	public static Vector<Integer> decode(Vector<String> encoded) {
 		Vector<Integer> out = new Vector<Integer>();
-		int outValue = 0;
-		for(int i = 0; i < encoded.size(); i++) {
-			temp.add(encoded.elementAt(i));
-			if(!getMore(encoded.elementAt(i))) {
-				continue;
-			}
-			else {
-				outValue = intOut(temp);
-				out.add(outValue);
-				temp.removeAllElements();
-			}
+		for(String str : encoded) {
+			out.add(decodeCorrected(str));
 		}
 		return deltaDecode(out);
 	}
@@ -180,6 +127,48 @@ public class IndexerInvertedCompressed extends Indexer {
 			out.add(i, encoded.elementAt(i)+out.elementAt(i-1));
 		}
 		return out;
+	}
+	
+	private static int decodeCorrected(String hex) {
+		int buffer = 0;
+		int length = hex.length();
+		if(hex.length() % 2 != 0)
+			buffer  = 8 - hex.length() % 8;
+		StringBuilder twoAligned = new StringBuilder();
+		while(buffer != 0) {
+			twoAligned.append("0");
+			buffer--;
+		}
+		twoAligned.append(hex);
+		StringBuilder outBinary = new StringBuilder();
+		int index = 0;
+		while(length != 0) {
+			outBinary.append(hexToBinary(twoAligned.substring(index, index+2)));
+			length -=2;
+			index +=2;
+			if(length == 0)
+				break;
+		}
+		
+		return Integer.parseInt(outBinary.toString(),2);
+	}
+	
+	private static String hexToBinary(String hex) {
+		String tempStr = "";
+		//tempStr = temp;
+		int i = Integer.parseInt(hex, 16);
+		String Bin = Integer.toBinaryString(i);
+		int buffer = 0;
+		if(Bin.length() % 8 != 0)
+			buffer  = 8 - Bin.length() % 8;
+		StringBuilder eightAligned = new StringBuilder();
+		while(buffer != 0) {
+			eightAligned.append("0");
+			buffer--;
+		}
+		eightAligned.append(Bin);
+		tempStr = eightAligned.toString().substring(1);
+			return tempStr;
 	}
 
 
@@ -318,6 +307,10 @@ public class IndexerInvertedCompressed extends Indexer {
 			int tempSum = _sumOfOffsets.get(idx).get(documentID);
 			String temp = hexOut(i+1-tempSum);
 			_invertedIndexWithCompresion.get(idx).addEntry(documentID, temp); //offset start from 1
+<<<<<<< HEAD
+=======
+//			_sumOfOffsets.get(idx).put(documentID, tempSum+i+1);
+>>>>>>> eee2384bf3cea99e5b6ce6c8a3df8fc7d44775ba
 			_sumOfOffsets.get(idx).put(documentID, i+1);
 			_termCorpusFrequency.put(idx, _termCorpusFrequency.get(idx) + 1);
 			++_totalTermFrequency;
@@ -451,8 +444,9 @@ public class IndexerInvertedCompressed extends Indexer {
 
 
 	/**
-	 *Finds the nex Phrase.
+	 *Finds the next Phrase.
 	 */
+	@Override
 	public int nextPhrase(Query query, int docid, int position) {
 
 		Document document_verfiy = nextDoc(query, docid-1);

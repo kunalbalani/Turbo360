@@ -62,7 +62,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 
 	// Maps each term to their posting list
 	private IndexWrapper _invertedIndexWithOccurences = 
-		new IndexWrapper(indexTempFolderName);
+		new IndexWrapper(_options._indexPrefix + "/"+indexFolderName);
 
 	public IndexerInvertedOccurrence(Options options) {
 		super(options);
@@ -102,7 +102,12 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 		_invertedIndexWithOccurences.writeToDisk();
 
 		//Merges all the temp index.
+<<<<<<< HEAD
 		mergeIndexes();
+=======
+//		mergeIndexes();
+		Merge.merge(_options._indexPrefix + "/" + indexFolderName, _terms.size()/10);
+>>>>>>> eee2384bf3cea99e5b6ce6c8a3df8fc7d44775ba
 
 		System.out.println(
 				"Indexed " + Integer.toString(_numDocs) + " docs with " +
@@ -230,7 +235,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 	@Override
 	public void loadIndex() throws IOException, ClassNotFoundException {
 
-		String indexFile = _options._indexPrefix + "/"+indexFileName;
+		String indexFile = _options._indexPrefix + "/"+indexFolderName+"/"+indexFileName;
 		System.out.println("Load index from: " + indexFile);
 
 		ObjectInputStream reader =
@@ -312,7 +317,8 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 	 */
 	private int next(String term , int current) {
 
-		PostingsWithOccurences<Integer> postingList = _invertedIndexWithOccurences.get(term);
+		PostingsWithOccurences<Integer> postingList = 
+				_invertedIndexWithOccurences.getPostingList(_dictionary.get(term));
 
 		Integer lt = postingList.size();
 		Integer ct = postingList.getCachedIndex();
@@ -343,6 +349,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 	/**
 	 *Finds the next Phrase.
 	 */
+	@Override
 	public int nextPhrase(Query query, int docid, int position) {
 
 		Document document_verfiy = nextDoc(query, docid-1);
@@ -389,7 +396,8 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 	 * @return
 	 */
 	private int nextPosition(String term ,int docId, int pos) {
-		PostingsWithOccurences<Integer> postingList = _invertedIndexWithOccurences.get(term);
+		PostingsWithOccurences<Integer> postingList = 
+				_invertedIndexWithOccurences.getPostingList(_dictionary.get(term));
 
 		PostingEntry<Integer> documentEntry = postingList.searchDocumentID(docId);
 
@@ -420,7 +428,8 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 		
 		int term_idx = _dictionary.get(term);
 		int docID = _docIds.get(url);
-		PostingsWithOccurences<Integer> list = _invertedIndexWithOccurences.get(term_idx);
+		PostingsWithOccurences<Integer> list = 
+				_invertedIndexWithOccurences.getPostingList(_dictionary.get(term));
 		PostingEntry<Integer> entry = list.searchDocumentID(docID);
 
 		return entry.getOffset().size();
@@ -536,6 +545,15 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 		}
 
 
+<<<<<<< HEAD
 
 	}
+=======
+	}
+
+	public static void main(String args[]){
+		IndexerInvertedOccurrence.mergeIndexes();
+	}
+
+>>>>>>> eee2384bf3cea99e5b6ce6c8a3df8fc7d44775ba
 }

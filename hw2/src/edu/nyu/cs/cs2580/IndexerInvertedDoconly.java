@@ -331,4 +331,10 @@ public class IndexerInvertedDoconly extends Indexer implements Serializable
 		returnValue = _invertedIndex.get(_dictionary.get(term)).get_countTerm().get(docID);
 		return returnValue;
 	}
+
+	@Override
+	public int nextPhrase(Query query, int docid, int position) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
