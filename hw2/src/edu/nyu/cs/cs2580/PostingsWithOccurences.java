@@ -139,14 +139,6 @@ public class PostingsWithOccurences<T> extends Vector<PostingEntry<T>>{
 		return str;
 	}
 	
-	public synchronized String formatString() {
-		String str = this.get(0).getDocID() + ":";
-		for(PostingEntry<T> entry : this){
-			str = str + entry.toString() + ":";
-		}
-		return str;
-	}
-
 
 	public synchronized String formatString() {
 		String str = this.get(0).getDocID() + ":";

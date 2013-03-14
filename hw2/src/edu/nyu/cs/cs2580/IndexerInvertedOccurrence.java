@@ -102,12 +102,8 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 		_invertedIndexWithOccurences.writeToDisk();
 
 		//Merges all the temp index.
-<<<<<<< HEAD
 		mergeIndexes();
-=======
-//		mergeIndexes();
 		Merge.merge(_options._indexPrefix + "/" + indexFolderName, _terms.size()/10);
->>>>>>> eee2384bf3cea99e5b6ce6c8a3df8fc7d44775ba
 
 		System.out.println(
 				"Indexed " + Integer.toString(_numDocs) + " docs with " +
@@ -544,16 +540,5 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 			}
 		}
 
-
-<<<<<<< HEAD
-
 	}
-=======
-	}
-
-	public static void main(String args[]){
-		IndexerInvertedOccurrence.mergeIndexes();
-	}
-
->>>>>>> eee2384bf3cea99e5b6ce6c8a3df8fc7d44775ba
 }

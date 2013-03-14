@@ -14,11 +14,8 @@ public class T3IndexReader {
 	}
 
 	//split file after these many entries
-<<<<<<< HEAD
-	public final Integer splitCount = 100000;
-=======
+
 	public final Integer splitCount = 1000000;
->>>>>>> eee2384bf3cea99e5b6ce6c8a3df8fc7d44775ba
 	
 	private String rootFileName;
 	private Integer currentReader = 0;
