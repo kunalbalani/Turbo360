@@ -1,5 +1,6 @@
 package edu.nyu.cs.cs2580;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -72,6 +73,10 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 			indexDirectory.mkdir();
 	}
 
+	public IndexerInvertedOccurrence() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void constructIndex() throws IOException
 	{
@@ -97,7 +102,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 		_invertedIndexWithOccurences.writeToDisk();
 
 		//Merges all the temp index.
-		//mergeIndexes();
+		mergeIndexes();
 
 		System.out.println(
 				"Indexed " + Integer.toString(_numDocs) + " docs with " +
@@ -110,7 +115,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 		writer.writeObject(this);
 		writer.close();
 
-		
+
 	}
 
 
@@ -338,6 +343,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 	/**
 	 *Finds the next Phrase.
 	 */
+	@Override
 	public int nextPhrase(Query query, int docid, int position) {
 
 		Document document_verfiy = nextDoc(query, docid-1);
@@ -423,43 +429,118 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 
 
 	//Utility
-//	private void mergeIndexes()
-//	{	
-//
-//		T3FileReader t3R;
-//
-//		String indexFileName = "invertedOccurenceIndex";
-//		T3IndexReader indexReader = new T3IndexReader(indexFileName);
-//		T3IndexWriter indexWriter = new T3IndexWriter(indexFileName);
-//
-//		File tempFolder = new File(indexTempFolderName);
-//
-//		if(tempFolder.exists() && tempFolder.isDirectory())
-//		{
-//
-//			for(File file : tempFolder.listFiles())
-//			{
-//
-//				t3R = new T3FileReader(indexTempFolderName+"/"+file.getName());
-//
-//				Integer termID  = (Integer)t3R.read();
-//				if(termID  != Integer.MIN_VALUE)
-//				{
-//					PostingsWithOccurences<Integer> postingList = 
-//						(PostingsWithOccurences<Integer>) t3R.read();
-//
-//					if(!indexReader.contains(termID))
-//					{
-//						indexWriter.write(termID);
-//						indexWriter.write(postingList);
-//					}else
-//					{
-//						System.out.println("merging terms"+termID);
-//						indexReader.merge(termID,postingList);
-//					}
-//				}
-//			}
-//		}
-//
-//	}
+	private static void mergeIndexes()
+	{	
+
+		T3FileReader t3R;
+
+		String indexTempFolderName = "data/index/invertedOccurenceIndex/temp";
+
+		String indexFileName = "data/index/invertedOccurenceIndex/Index";
+		T3IndexWriter indexWriter = new T3IndexWriter(indexFileName);
+
+		File tempFolder = new File(indexTempFolderName);
+
+		if(tempFolder.exists() && tempFolder.isDirectory())
+		{
+
+
+			for(int i = 0 ; i < 1000; i ++){
+
+				File[] files = tempFolder.listFiles();
+
+				T3FileReader firstFile = new T3FileReader(indexTempFolderName+"/"+files[0].getName());
+				String bufferIndexLine = firstFile.read();
+
+				for(int f = 1 ; f < files.length; f++)
+				{
+					File file = files[f];
+					t3R = new T3FileReader(indexTempFolderName+"/"+file.getName());
+
+					String entry  = t3R.read();
+
+					if(entry != null)
+					{
+						boolean isPresentInIndex = bufferIndexLine.charAt(0) ==
+							entry.charAt(0) ? true : false;
+
+						if(isPresentInIndex){
+							merge(bufferIndexLine,entry);
+							removeEntry(indexTempFolderName+"/"+file.getName(),entry);
+						}else{
+							indexWriter.write(entry);
+						}
+
+					}
+
+					indexWriter.write(bufferIndexLine);
+				}
+			}
+		}
+	}
+
+	private static void removeEntry(String fileName,String entry) {
+		String contents = readFileAsString(fileName);
+		contents.replaceFirst(entry,"");
+		contents.trim();
+		T3FileWriter fileWriter = new T3FileWriter(fileName);
+		fileWriter.write(contents);
+		fileWriter.close();
+
+	}
+
+	private static String readFileAsString(String filePath)
+	{
+		try
+		{
+
+			StringBuffer fileData = new StringBuffer();
+			BufferedReader reader = new BufferedReader(
+					new FileReader(filePath));
+			char[] buf = new char[1024];
+			int numRead=0;
+			while((numRead=reader.read(buf)) != -1)
+			{
+				String readData = String.valueOf(buf, 0, numRead);
+				fileData.append(readData);
+			}
+			reader.close();
+			return fileData.toString();
+		}catch (IOException e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public static void merge(String entry,String entry2)
+	{
+		String delimiter = "\\n";
+
+		for(String line : entry2.split(delimiter))
+		{
+			Integer lineTermID = T3Parser.parseTermInvertedIndex(line);
+			Integer entryTermID = T3Parser.parseTermInvertedIndex(entry);
+
+			if(lineTermID == entryTermID){
+
+				PostingsWithOccurences<Integer> p1 = T3Parser.parsePostingInvertedIndex(line);
+				PostingsWithOccurences<Integer> p2 = T3Parser.parsePostingInvertedIndex(entry);
+
+				p2.addAll(p1);
+
+				String newEntry = p2.formatString();
+				newEntry.trim();
+
+				entry.replaceFirst(line, newEntry);
+			}
+		}
+
+
+
+	}
+
+	public static void main(String args[]){
+		IndexerInvertedOccurrence.mergeIndexes();
+	}
+
 }

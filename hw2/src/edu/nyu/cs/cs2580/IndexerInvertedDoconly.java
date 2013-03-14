@@ -150,4 +150,10 @@ public class IndexerInvertedDoconly extends Indexer
 	public static void main(String args[]){
 
 	}
+
+	@Override
+	public int nextPhrase(Query query, int docid, int position) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
