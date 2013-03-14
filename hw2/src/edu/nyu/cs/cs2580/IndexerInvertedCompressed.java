@@ -112,7 +112,7 @@ public class IndexerInvertedCompressed extends Indexer {
 	}
 
 
-	private static Vector<Integer> decode(Vector<String> encoded) {
+	public static Vector<Integer> decode(Vector<String> encoded) {
 		Vector<Integer> out = new Vector<Integer>();
 		for(String str : encoded) {
 			out.add(decodeCorrected(str));
@@ -441,8 +441,9 @@ public class IndexerInvertedCompressed extends Indexer {
 
 
 	/**
-	 *Finds the nex Phrase.
+	 *Finds the next Phrase.
 	 */
+	@Override
 	public int nextPhrase(Query query, int docid, int position) {
 
 		Document document_verfiy = nextDoc(query, docid-1);
