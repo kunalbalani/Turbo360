@@ -44,3 +44,46 @@ hw2/data/index/invertedOccurenceIndex/temp/3
 *.conf
 
 *.class
+<<<<<<< HEAD
+=======
+
+*.class
+
+hw2/data/index/invertedOccurenceIndex/dictionary
+
+hw2/data/index/invertedOccurenceIndex/docIds
+
+hw2/data/index/invertedOccurenceIndex/documents
+
+hw2/data/index/invertedOccurenceIndex/numDocs
+
+hw2/data/index/invertedOccurenceIndex/temp_per/0
+
+hw2/data/index/invertedOccurenceIndex/temp_per/1
+
+hw2/data/index/invertedOccurenceIndex/temp_per/10
+
+hw2/data/index/invertedOccurenceIndex/temp_per/2
+
+hw2/data/index/invertedOccurenceIndex/temp_per/3
+
+hw2/data/index/invertedOccurenceIndex/temp_per/4
+
+hw2/data/index/invertedOccurenceIndex/temp_per/5
+
+hw2/data/index/invertedOccurenceIndex/temp_per/6
+
+hw2/data/index/invertedOccurenceIndex/temp_per/7
+
+hw2/data/index/invertedOccurenceIndex/temp_per/8
+
+hw2/data/index/invertedOccurenceIndex/temp_per/9
+
+hw2/data/index/invertedOccurenceIndex/termCorpusFrequency
+
+hw2/data/index/invertedOccurenceIndex/termDocFrequency
+
+hw2/data/index/invertedOccurenceIndex/terms
+
+*.class
+>>>>>>> Occurence and Compressed updated

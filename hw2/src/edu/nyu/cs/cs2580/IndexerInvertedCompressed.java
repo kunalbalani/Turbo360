@@ -56,20 +56,23 @@ public class IndexerInvertedCompressed extends Indexer {
 	private final Integer INFINITY = Integer.MAX_VALUE;
 	private final Integer documentBlock = 1000;
 
-	private final String contentFolderName = "data/wiki";
-	private final String indexFolderName = "invertedOccurenceompressionIndex";
-	private final String indexTempFolderName = 
-			_options._indexPrefix + "/" + indexFolderName + "/temp";
-	private final String indexFileName = "invertedOccurenceIndex.idx";
+	private final String contentFolderName;
+	private final String indexFolderName = "invertedOccurenceCompressionIndex";
+	private final String indexFileName = "invertedOccurenceCompressionIndex.idx";
 
 	// Maps each term to their posting list
 	private IndexWrapper _invertedIndexWithCompresion = 
-			new IndexWrapper(indexTempFolderName);
+			new IndexWrapper(_options._indexPrefix + "/"+indexFolderName);
 
 
 	public IndexerInvertedCompressed(Options options) {
 		super(options);
 		System.out.println("Using Indexer: " + this.getClass().getSimpleName());
+		contentFolderName = _options._corpusPrefix;
+		String indexFolder = _options._indexPrefix + "/"+indexFolderName;
+		File indexDirectory = new File(indexFolder);
+		if(!indexDirectory.exists())
+			indexDirectory.mkdir();
 	}
 
 
@@ -196,6 +199,8 @@ public class IndexerInvertedCompressed extends Indexer {
 
 		_invertedIndexWithCompresion.writeToDisk();
 
+		Merge.merge(_options._indexPrefix + "/" + indexFolderName, _terms.size()/10);
+		
 		System.out.println(
 				"Indexed " + Integer.toString(_numDocs) + " docs with " +
 						Long.toString(_totalTermFrequency) + " terms.");
@@ -371,6 +376,16 @@ public class IndexerInvertedCompressed extends Indexer {
 
 		Vector<String> queryTerms = query._tokens;
 
+		if(queryTerms.size() == 0)
+			return null;
+		
+		if(queryTerms.size() == 1){
+			Integer nextDocID = next(queryTerms.get(0), docid);
+			if(nextDocID == INFINITY)
+				return null;
+			return getDoc(nextDocID);
+		}
+		
 		//case 1 
 		Vector <Integer> docIds = new Vector<Integer>();
 		for(String token : queryTerms) {
@@ -412,7 +427,11 @@ public class IndexerInvertedCompressed extends Indexer {
 	 */
 	private int next(String term , int current) {
 
-		PostingsWithOccurences<String> postingList = _invertedIndexWithCompresion.get(term);
+		if(!_dictionary.containsKey(term))
+			return INFINITY;
+		
+		PostingsWithOccurences<String> postingList = 
+				_invertedIndexWithCompresion.getPostingList(_dictionary.get(term));
 
 		Integer lt = postingList.size();
 		Integer ct = postingList.getCachedIndex();
@@ -490,7 +509,12 @@ public class IndexerInvertedCompressed extends Indexer {
 	 * @return
 	 */
 	private int nextPosition(String term ,int docId, int pos) {
-		PostingsWithOccurences<String> postingList = _invertedIndexWithCompresion.get(term);
+		
+		if(!_dictionary.containsKey(term))
+			return INFINITY;
+		
+		PostingsWithOccurences<String> postingList = 
+				_invertedIndexWithCompresion.getPostingList(_dictionary.get(term));
 
 		PostingEntry<String> documentEntry = postingList.searchDocumentID(docId);
 
@@ -519,32 +543,19 @@ public class IndexerInvertedCompressed extends Indexer {
 
 	@Override
 	public int documentTermFrequency(String term, String url) {
+		
+		if(!_dictionary.containsKey(term))
+			return 0;
+		
 		int term_idx = _dictionary.get(term);
 		int docID = _docIds.get(url);
-		PostingsWithOccurences<String> list = _invertedIndexWithCompresion.get(term_idx);
+		PostingsWithOccurences<String> list = 
+				_invertedIndexWithCompresion.getPostingList(term_idx);
 		PostingEntry<String> entry = list.searchDocumentID(docID);
 
 		return entry.getOffset().size();
 	}
 
 
-
-	//Utility
-//	private void mergeIndexes(){
-//		try{
-//			File tempFolder = new File(indexTempFolderName);
-//			if(tempFolder.exists() && tempFolder.isDirectory()){
-//				FileInputStream fileReader = new FileInputStream(indexTempFolderName+"/0");
-//				ObjectInputStream reader = new ObjectInputStream(fileReader);
-//				Integer termID = (Integer) reader.readObject();
-//				PostingsWithOccurences postingList = (PostingsWithOccurences) reader.readObject();
-//
-//				System.out.println(termID);
-//				System.out.println(postingList.get(0));
-//			}
-//		}catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
 
 }
