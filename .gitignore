@@ -42,3 +42,5 @@ hw2/data/index/invertedOccurenceIndex/temp/3
 *.class
 
 *.conf
+
+*.class

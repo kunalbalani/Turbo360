@@ -14,12 +14,18 @@ public class Merge {
 	 * @param output output filename
 	 * @param delimiter 
 	 * */
-	private static void merge(String[] tempFiles, String base, String delimiter) throws IOException{
+	public static void merge(String base, int blockSize) throws IOException{
 		
+		File directory = new File(base+"/temp");
+		String[] tempFiles = new String[directory.list().length];
+		
+		if(directory.exists() && directory.isDirectory()){
+			tempFiles = directory.list();
+		}
 		BufferedReader[] readers = new BufferedReader[tempFiles.length];
 		String[] currentLines = new String[tempFiles.length];
 		
-		File file = new File(base+"index.idx");
+		File file = new File(base+"/0.idx");
 		// if file doesnt exists, then create it
 		if (!file.exists()) {
 			file.createNewFile();
@@ -28,7 +34,7 @@ public class Merge {
 		BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
 		
 		for(int i = 0; i<tempFiles.length; i++){
-			readers[i] = new BufferedReader(new FileReader(base + "temp/" + tempFiles[i]));
+			readers[i] = new BufferedReader(new FileReader(base + "/temp/" + tempFiles[i]));
 			currentLines[i] = readers[i].readLine();
 		}
 		
@@ -42,7 +48,7 @@ public class Merge {
 				
 				if(currentLines[i] != null && 
 						currentLines[i].startsWith(Integer.toString(currentTermID))){
-					currentTermPostingList += " "+currentLines[i].substring(currentLines[i].indexOf(":")+1, currentLines[i].length());
+					currentTermPostingList += " "+currentLines[i].substring(currentLines[i].indexOf(":"), currentLines[i].length());
 					currentLines[i] = readers[i].readLine();
 					if(currentLines[i] == null){
 						endOfFiles++;
@@ -50,15 +56,23 @@ public class Merge {
 					}
 				}
 			}
-			currentTermID++;
 			bufferWritter.write(currentTermPostingList + "\n");
+			currentTermID++;
+			
+//			if(currentTermID > 0 &&  currentTermID % blockSize == 0){
+//				bufferWritter.close();
+//				fileWritter = new FileWriter(new File(base+"/"+currentTermID+".idx"));
+//				bufferWritter = new BufferedWriter(fileWritter);
+//				blockSize += blockSize; 
+//			}
+			
 		}
 		
 		bufferWritter.close();
 
 		//Delete all temporary files
 		for(String tFile : tempFiles){
-			File currentFile = new File(base + "temp/" + tFile);
+			File currentFile = new File(base + "/temp/" + tFile);
 			currentFile.delete();
 		}
 	}
@@ -69,8 +83,7 @@ public class Merge {
 	 */
 	public static void main(String[] args) throws IOException {
 		
-		String[] tempFiles = new String[]{"0","1","2","3","4","5","6","7","8","9","10"};
-		merge(tempFiles, "data/index/invertedOccurenceIndex/", "\n");
+		merge("data/index/invertedOccurenceIndex",10);
 
 	}
 
