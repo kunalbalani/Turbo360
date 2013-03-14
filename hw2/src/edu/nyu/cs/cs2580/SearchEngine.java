@@ -135,6 +135,7 @@ public class SearchEngine {
     Check(OPTIONS != null, "Must provide options!");
   }
   
+  
   ///// Main functionalities start
   
   private static void startIndexing() throws IOException {

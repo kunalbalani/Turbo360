@@ -12,17 +12,15 @@ public class T3FileReader{
 	private FileInputStream fileInputStream ;
 	private DataInputStream in;
 	private BufferedReader reader;
-	private String filePath;
-	
+
 	public T3FileReader(String filepath){
 
-		this.filePath = filepath;
 		try 
 		{
 			fileInputStream = new FileInputStream(filepath);
 			in = new DataInputStream(fileInputStream);
 			reader = new BufferedReader(new InputStreamReader(in));
-			
+
 		} catch (IOException e) 
 		{
 			e.printStackTrace();
@@ -51,26 +49,18 @@ public class T3FileReader{
 	}
 
 	public boolean isStringPresent(String term){
-		
+
 		String strLine;
 		try {
-			  //Read File Line By Line
-			  while ((strLine = reader.readLine()) != null)   {
-				  if(term.equalsIgnoreCase(strLine)){
-					  return true;
-				  }
-			  }
+			//Read File Line By Line
+			while ((strLine = reader.readLine()) != null)  {
+				if(term.charAt(0) == strLine.charAt(0)){
+					return true;
+				}
+			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		return false;
 	}
-
-	public void merge(Integer termID, PostingsWithOccurences postingList) {
-		
-//		close();
-//		T3FileWriter t3W = new T3FileWriter(this.filePath);
-////		t3W.getWriter().
-	}	
 }

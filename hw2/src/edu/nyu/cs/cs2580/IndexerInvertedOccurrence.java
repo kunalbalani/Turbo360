@@ -1,5 +1,6 @@
 package edu.nyu.cs.cs2580;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -72,6 +73,10 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 			indexDirectory.mkdir();
 	}
 
+	public IndexerInvertedOccurrence() {
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
 	public void constructIndex() throws IOException
 	{
@@ -110,7 +115,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 		writer.writeObject(this);
 		writer.close();
 
-		
+
 	}
 
 
@@ -412,6 +417,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 
 	@Override
 	public int documentTermFrequency(String term, String url) {
+		
 		int term_idx = _dictionary.get(term);
 		int docID = _docIds.get(url);
 		PostingsWithOccurences<Integer> list = _invertedIndexWithOccurences.get(term_idx);
@@ -423,13 +429,14 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 
 
 	//Utility
-	private void mergeIndexes()
+	private static void mergeIndexes()
 	{	
 
 		T3FileReader t3R;
 
-		String indexFileName = "invertedOccurenceIndex";
-		T3IndexReader indexReader = new T3IndexReader(indexFileName);
+		String indexTempFolderName = "data/index/invertedOccurenceIndex/temp";
+
+		String indexFileName = "data/index/invertedOccurenceIndex/Index";
 		T3IndexWriter indexWriter = new T3IndexWriter(indexFileName);
 
 		File tempFolder = new File(indexTempFolderName);
@@ -437,32 +444,98 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 		if(tempFolder.exists() && tempFolder.isDirectory())
 		{
 
-			for(File file : tempFolder.listFiles())
-			{
 
-				t3R = new T3FileReader(indexTempFolderName+"/"+file.getName());
+			for(int i = 0 ; i < 1000; i ++){
 
-				String entry  = t3R.read();
-				
-				if(entry != null)
+				File[] files = tempFolder.listFiles();
+
+				T3FileReader firstFile = new T3FileReader(indexTempFolderName+"/"+files[0].getName());
+				String bufferIndexLine = firstFile.read();
+
+				for(int f = 1 ; f < files.length; f++)
 				{
-//					Integer term = T3Parser.parseTermInvertedIndex(entry);
-//					
-//					PostingsWithOccurences<Integer> postingList = 
-//						 T3Parser.parsePostingInvertedIndex(entry);
+					File file = files[f];
+					t3R = new T3FileReader(indexTempFolderName+"/"+file.getName());
 
-					
-					if(!indexReader.contains(entry))
+					String entry  = t3R.read();
+
+					if(entry != null)
 					{
-						indexWriter.write(entry);
-					}else
-					{
-						System.out.println("merging entry "+entry);
-						indexReader.merge(entry);
+						boolean isPresentInIndex = bufferIndexLine.charAt(0) ==
+							entry.charAt(0) ? true : false;
+
+						if(isPresentInIndex){
+							merge(bufferIndexLine,entry);
+							removeEntry(indexTempFolderName+"/"+file.getName(),entry);
+						}else{
+							indexWriter.write(entry);
+						}
+
 					}
+
+					indexWriter.write(bufferIndexLine);
 				}
 			}
 		}
+	}
+
+	private static void removeEntry(String fileName,String entry) {
+		String contents = readFileAsString(fileName);
+		contents.replaceFirst(entry,"");
+		contents.trim();
+		T3FileWriter fileWriter = new T3FileWriter(fileName);
+		fileWriter.write(contents);
+		fileWriter.close();
+
+	}
+
+	private static String readFileAsString(String filePath)
+	{
+		try
+		{
+
+			StringBuffer fileData = new StringBuffer();
+			BufferedReader reader = new BufferedReader(
+					new FileReader(filePath));
+			char[] buf = new char[1024];
+			int numRead=0;
+			while((numRead=reader.read(buf)) != -1)
+			{
+				String readData = String.valueOf(buf, 0, numRead);
+				fileData.append(readData);
+			}
+			reader.close();
+			return fileData.toString();
+		}catch (IOException e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public static void merge(String entry,String entry2)
+	{
+		String delimiter = "\\n";
+
+		for(String line : entry2.split(delimiter))
+		{
+			Integer lineTermID = T3Parser.parseTermInvertedIndex(line);
+			Integer entryTermID = T3Parser.parseTermInvertedIndex(entry);
+
+			if(lineTermID == entryTermID){
+
+				PostingsWithOccurences<Integer> p1 = T3Parser.parsePostingInvertedIndex(line);
+				PostingsWithOccurences<Integer> p2 = T3Parser.parsePostingInvertedIndex(entry);
+
+				p2.addAll(p1);
+
+				String newEntry = p2.formatString();
+				newEntry.trim();
+
+				entry.replaceFirst(line, newEntry);
+			}
+		}
+
+
 
 	}
 }

@@ -2,6 +2,7 @@ package edu.nyu.cs.cs2580;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Vector;
 
@@ -60,6 +61,8 @@ public class DocumentProcessor {
 
 		return processedTokens;
 	}
+	
+	
 
 
 	/**
