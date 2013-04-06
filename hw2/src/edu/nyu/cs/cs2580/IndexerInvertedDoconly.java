@@ -47,7 +47,6 @@ public class IndexerInvertedDoconly extends Indexer implements Serializable
 	// value is the number of documents the term appears in.
 	Map<Integer, Integer> _termDocFrequency = new HashMap<Integer, Integer>();
 
-
 	public IndexerInvertedDoconly(Options options) {
 		super(options);
 		System.out.println("Using Indexer: " + this.getClass().getSimpleName());
@@ -71,11 +70,10 @@ public class IndexerInvertedDoconly extends Indexer implements Serializable
 			for(File corpusFile :corpusDirectory.listFiles()){
 				processDocument(corpusFile);	
 				fileCount++;
-				if(fileCount>500){
-					break;
-				}
-				System.out.println(fileCount+ " ->"+ corpusDirectory.listFiles().length);
+				System.out.println(fileCount +" out of 10264 Indexing complete");
+				
 			}
+			System.out.println(fileCount+ " ->"+ corpusDirectory.listFiles().length);
 		}
 
 		System.out.println(
@@ -125,6 +123,7 @@ public class IndexerInvertedDoconly extends Indexer implements Serializable
 		doc.setTitle(title);
 		doc.setNumViews(numViews);
 		doc.setDocumentTokens(documentTokens);
+		doc.setUrl(title);
 		_documents.add(doc);
 		_docIds.put(title, documentID);
 		++_numDocs;
@@ -181,11 +180,14 @@ public class IndexerInvertedDoconly extends Indexer implements Serializable
 				Integer idx = tokens.get(i);
 				uniques.add(idx);
 
-				//populates the inverted index
+				//create and initialize the posting list
 				if(!_invertedIndex.containsKey(idx)){
 					_invertedIndex.put(idx,new Postings());
 				}
-				_invertedIndex.get(idx).add(documentID); //offset start from 1
+				
+				if(!_invertedIndex.get(idx).contains(documentID)){
+					_invertedIndex.get(idx).add(documentID);
+				}
 
 				_termCorpusFrequency.put(idx, _termCorpusFrequency.get(idx) + 1);
 				++_totalTermFrequency;
@@ -222,8 +224,8 @@ public class IndexerInvertedDoconly extends Indexer implements Serializable
 		this._terms = loaded._terms;
 		this._termCorpusFrequency = loaded._termCorpusFrequency;
 		this._termDocFrequency = loaded._termDocFrequency;
-		this._invertedIndex = loaded._invertedIndex;;
-
+		this._invertedIndex = loaded._invertedIndex;
+		this._docIds = loaded._docIds;
 		reader.close();
 
 		System.out.println(Integer.toString(_numDocs) + " documents loaded " +
