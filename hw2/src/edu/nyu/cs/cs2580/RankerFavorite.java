@@ -27,32 +27,42 @@ public class RankerFavorite extends Ranker {
 	@Override
 	public Vector<ScoredDocument> runQuery(Query query, int numResults) {
 
-		Queue<ScoredDocument> rankQueue = new PriorityQueue<ScoredDocument>();
-		DocumentIndexed doc = null;
-		int docid = -1;
+		try{
+			Queue<ScoredDocument> rankQueue = new PriorityQueue<ScoredDocument>();
+			DocumentIndexed doc = null;
+			int docid = -1;
+			System.out.println("in");
 
-		while ((doc = (DocumentIndexed)_indexer.nextDoc(query, docid)) != null) {
-			//Scoring the document
-			rankQueue.add(new ScoredDocument(doc, this.getScore(query, doc)));
-			if (rankQueue.size() > numResults) {
-				rankQueue.poll();
+			while ((doc = (DocumentIndexed)_indexer.nextDoc(query, docid)) != null) {
+				//Scoring the document
+				rankQueue.add(new ScoredDocument(doc, this.getScore(query, doc)));
+				if (rankQueue.size() > numResults) {
+					rankQueue.poll();
+				}
+				docid = doc._docid;
 			}
-			docid = doc._docid;
-		}
+			
 
-		Vector<ScoredDocument> results = new Vector<ScoredDocument>();
-		ScoredDocument scoredDoc = null;
-		while ((scoredDoc = rankQueue.poll()) != null) {
-			results.add(scoredDoc);
+			Vector<ScoredDocument> results = new Vector<ScoredDocument>();
+			ScoredDocument scoredDoc = null;
+			while ((scoredDoc = rankQueue.poll()) != null) {
+				results.add(scoredDoc);
+			}
+			Collections.sort(results, Collections.reverseOrder());
+			return results;
+		}catch(Exception e){
+			e.printStackTrace();
 		}
-		Collections.sort(results, Collections.reverseOrder());
-		return results;
+		return null;
 	}
 
 
 	private Double getScore(Query query, DocumentIndexed d) {
 
+<<<<<<< HEAD
 		//query.processQuery();
+=======
+>>>>>>> eb19539d36a2a49d5e50b427a40e45f53c674bf8
 		Vector<String> qv = query._tokens;
 
 		Vector <Integer> dv = d.getDocumentTokens();
@@ -68,7 +78,7 @@ public class RankerFavorite extends Ranker {
 
 			String queryTerm = qv.get(i);
 			boolean isPhraseQuery = false;
-			
+
 			Query phraseToken = null;
 			if(queryTerm.indexOf("\\s+") != -1){
 				isPhraseQuery = true;

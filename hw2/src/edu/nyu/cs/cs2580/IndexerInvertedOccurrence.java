@@ -53,11 +53,8 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 	private final Integer INFINITY = Integer.MAX_VALUE;
 	private final Integer documentBlock = 1000;
 
-	private final String contentFolderName = "data/wiki";
+	private final String contentFolderName;
 	private final String indexFolderName = "invertedOccurenceIndex";
-	private final String indexTempFolderName = 
-		_options._indexPrefix + "/" + indexFolderName + "/temp";
-
 	private final String indexFileName = "invertedOccurenceIndex.idx";
 
 	// Maps each term to their posting list
@@ -67,15 +64,13 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 	public IndexerInvertedOccurrence(Options options) {
 		super(options);
 		System.out.println("Using Indexer: " + this.getClass().getSimpleName());
+		contentFolderName = _options._corpusPrefix;
 		String indexFolder = _options._indexPrefix + "/"+indexFolderName;
 		File indexDirectory = new File(indexFolder);
 		if(!indexDirectory.exists())
 			indexDirectory.mkdir();
 	}
 
-	public IndexerInvertedOccurrence() {
-		// TODO Auto-generated constructor stub
-	}
 
 	@Override
 	public void constructIndex() throws IOException
@@ -100,9 +95,10 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 		}
 
 		_invertedIndexWithOccurences.writeToDisk();
+		_invertedIndexWithOccurences.clear();
 
 		//Merges all the temp index.
-		mergeIndexes();
+//		mergeIndexes();
 		Merge.merge(_options._indexPrefix + "/" + indexFolderName, _terms.size()/10);
 
 		System.out.println(
@@ -111,9 +107,40 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 
 		String indexFile = _options._indexPrefix + "/"+indexFolderName+"/"+indexFileName;
 		System.out.println("Store index to: " + indexFile);
+//		ObjectOutputStream writer =
+//			new ObjectOutputStream(new FileOutputStream(indexFile));
+//		writer.writeObject(this);
+		
+		
+		String indexFolder = _options._indexPrefix + "/"+indexFolderName;
 		ObjectOutputStream writer =
-			new ObjectOutputStream(new FileOutputStream(indexFile));
-		writer.writeObject(this);
+				new ObjectOutputStream(new FileOutputStream(indexFolder+"/documents"));
+		
+		writer.writeObject(this._documents);
+		writer.close();
+		
+		writer = new ObjectOutputStream(new FileOutputStream(indexFolder+"/terms"));
+		writer.writeObject(this._terms);
+		writer.close();
+		
+		writer = new ObjectOutputStream(new FileOutputStream(indexFolder+"/numDocs"));
+		writer.writeObject(this._numDocs);
+		writer.close();
+		
+		writer = new ObjectOutputStream(new FileOutputStream(indexFolder+"/docIds"));
+		writer.writeObject(this._docIds);
+		writer.close();
+		
+		writer = new ObjectOutputStream(new FileOutputStream(indexFolder+"/dictionary"));
+		writer.writeObject(this._dictionary);
+		writer.close();
+		
+		writer = new ObjectOutputStream(new FileOutputStream(indexFolder+"/termCorpusFrequency"));
+		writer.writeObject(this._termCorpusFrequency);
+		writer.close();
+		
+		writer = new ObjectOutputStream(new FileOutputStream(indexFolder+"/termDocFrequency"));
+		writer.writeObject(this._termDocFrequency);
 		writer.close();
 
 
@@ -150,6 +177,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 
 			DocumentIndexed doc = new DocumentIndexed(documentID, this);
 			doc.setTitle(title);
+			doc.setUrl(title);
 			doc.setNumViews(numViews);
 			doc.setDocumentTokens(documentTokens);
 			_documents.add(doc);
@@ -228,27 +256,65 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void loadIndex() throws IOException, ClassNotFoundException {
 
-		String indexFile = _options._indexPrefix + "/"+indexFolderName+"/"+indexFileName;
+
+		String indexFolder = _options._indexPrefix + "/"+indexFolderName;
+		String indexFile = indexFolder+"/"+indexFileName;
 		System.out.println("Load index from: " + indexFile);
 
-		ObjectInputStream reader =
-			new ObjectInputStream(new FileInputStream(indexFile));
-		IndexerInvertedOccurrence loaded = (IndexerInvertedOccurrence) reader.readObject();
+//		ObjectInputStream reader =
+//			new ObjectInputStream(new FileInputStream(indexFile));
+//		IndexerInvertedOccurrence loaded = (IndexerInvertedOccurrence) reader.readObject();
 
-		this._documents = loaded._documents;
-		// Compute numDocs and totalTermFrequency b/c Indexer is not serializable.
-		this._numDocs = _documents.size();
-		for (Integer freq : loaded._termCorpusFrequency.values()) {
+		ObjectInputStream reader =
+				new ObjectInputStream(new FileInputStream(indexFolder+"/documents"));
+		
+		this._documents = (Vector<DocumentIndexed>)reader.readObject();
+		reader.close();
+		
+		reader = new ObjectInputStream(new FileInputStream(indexFolder+"/numDocs"));
+		this._numDocs = (Integer) reader.readObject();
+		reader.close();
+		
+		reader = new ObjectInputStream(new FileInputStream(indexFolder+"/docIds"));
+		this._docIds = (Map<String, Integer>) reader.readObject();
+		reader.close();
+		
+		reader = new ObjectInputStream(new FileInputStream(indexFolder+"/terms"));
+		this._terms = (Vector<String>) reader.readObject();
+		reader.close();
+		
+		reader = new ObjectInputStream(new FileInputStream(indexFolder+"/dictionary"));
+		this._dictionary = (Map<String, Integer>) reader.readObject();
+		reader.close();
+		
+		reader = new ObjectInputStream(new FileInputStream(indexFolder+"/termCorpusFrequency"));
+		this._termCorpusFrequency = (Map<Integer, Integer>) reader.readObject();
+		reader.close();
+		
+		reader = new ObjectInputStream(new FileInputStream(indexFolder+"/termDocFrequency"));
+		this._termDocFrequency = (Map<Integer, Integer>) reader.readObject();
+		reader.close();
+		
+		
+		for (Integer freq : _termCorpusFrequency.values()) {
 			this._totalTermFrequency += freq;
 		}
-		this._dictionary = loaded._dictionary;
-		this._docIds = loaded._docIds;
-		this._terms = loaded._terms;
-		this._termCorpusFrequency = loaded._termCorpusFrequency;
-		this._termDocFrequency = loaded._termDocFrequency;
+		
+//		this._documents = loaded._documents;
+//		// Compute numDocs and totalTermFrequency b/c Indexer is not serializable.
+//		this._numDocs = _documents.size();
+//		for (Integer freq : loaded._termCorpusFrequency.values()) {
+//			this._totalTermFrequency += freq;
+//		}
+//		this._dictionary = loaded._dictionary;
+//		this._docIds = loaded._docIds;
+//		this._terms = loaded._terms;
+//		this._termCorpusFrequency = loaded._termCorpusFrequency;
+//		this._termDocFrequency = loaded._termDocFrequency;
 		reader.close();
 
 		System.out.println(Integer.toString(_numDocs) + " documents loaded " +
@@ -272,6 +338,16 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 
 		Vector<String> queryTerms = query._tokens;
 
+		if(queryTerms.size() == 0)
+			return null;
+		
+		if(queryTerms.size() == 1){
+			Integer nextDocID = next(queryTerms.get(0), docid);
+			if(nextDocID == INFINITY)
+				return null;
+			return getDoc(nextDocID);
+		}
+		
 		//case 1 
 		Vector <Integer> docIds = new Vector<Integer>();
 		for(String token : queryTerms) {
@@ -313,6 +389,9 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 	 */
 	private int next(String term , int current) {
 
+		if(!_dictionary.containsKey(term))
+			return INFINITY;
+		
 		PostingsWithOccurences<Integer> postingList = 
 				_invertedIndexWithOccurences.getPostingList(_dictionary.get(term));
 
@@ -349,6 +428,7 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 	public int nextPhrase(Query query, int docid, int position) {
 
 		Document document_verfiy = nextDoc(query, docid-1);
+		
 		if(document_verfiy._docid != docid)
 			return INFINITY;
 
@@ -392,6 +472,10 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 	 * @return
 	 */
 	private int nextPosition(String term ,int docId, int pos) {
+
+		if(!_dictionary.containsKey(term))
+			return INFINITY;
+		
 		PostingsWithOccurences<Integer> postingList = 
 				_invertedIndexWithOccurences.getPostingList(_dictionary.get(term));
 
@@ -422,10 +506,15 @@ public class IndexerInvertedOccurrence extends Indexer implements Serializable
 	@Override
 	public int documentTermFrequency(String term, String url) {
 		
+		if(!_dictionary.containsKey(term))
+			return 0;
+		
 		int term_idx = _dictionary.get(term);
 		int docID = _docIds.get(url);
+		
 		PostingsWithOccurences<Integer> list = 
-				_invertedIndexWithOccurences.getPostingList(_dictionary.get(term));
+				_invertedIndexWithOccurences.getPostingList(term_idx);
+
 		PostingEntry<Integer> entry = list.searchDocumentID(docID);
 
 		return entry.getOffset().size();
