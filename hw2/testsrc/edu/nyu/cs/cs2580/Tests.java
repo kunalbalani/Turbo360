@@ -1,6 +1,5 @@
 package edu.nyu.cs.cs2580;
 
-import java.io.File;
 import java.util.Vector;
 
 import org.junit.Assert;
@@ -14,7 +13,7 @@ public class Tests {
 		QueryPhrase qp = new QueryPhrase("x y \"New york\"");
 		qp.processQuery();
 		Vector<String> v = qp._tokens;
-		
+		System.out.println(v);
 		Assert.assertEquals("x", v.get(0));
 		Assert.assertEquals("y", v.get(1));
 		Assert.assertEquals("New york", v.get(2));

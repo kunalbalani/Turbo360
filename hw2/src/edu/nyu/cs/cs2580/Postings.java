@@ -15,16 +15,16 @@ public class Postings extends Vector<Integer> implements Serializable
 	private HashMap<Integer,Integer> _countTerm = new HashMap<Integer,Integer>();
 	private static final long serialVersionUID = 5790192283947925472L;
 	private Integer cachedIndex;
-	
-	
+
+
 	@Override
 	public boolean add(Integer e){
-		if(!get_countTerm().containsKey(e)){
-			
-			get_countTerm().put(e, 0);//initalize to zero
+		
+		if(!_countTerm.containsKey(e)){
+			_countTerm.put(e, 1);//initalize to zero
 		}else{
 			//increment count
-			get_countTerm().put(e,get_countTerm().get(e)+1);
+			_countTerm.put(e,_countTerm.get(e)+1);
 		}
 		return super.add(e);
 	}
@@ -42,6 +42,51 @@ public class Postings extends Vector<Integer> implements Serializable
 	}
 
 	public HashMap<Integer,Integer> get_countTerm() {
-		return _countTerm;
+
+		HashMap<Integer,Integer> _ct_terms = new HashMap<Integer,Integer>();
+		for(Integer termID : this){
+
+			if(!_ct_terms.containsKey(termID)){
+				_ct_terms.put(termID, 1);//initalize to zero
+			}else{
+				//increment count
+				_ct_terms.put(termID,_ct_terms.get(termID)+1);
+			}
+		}
+		return _ct_terms;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result
+		+ ((_countTerm == null) ? 0 : _countTerm.hashCode());
+		result = prime * result
+		+ ((cachedIndex == null) ? 0 : cachedIndex.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Postings other = (Postings) obj;
+		if (_countTerm == null) {
+			if (other._countTerm != null)
+				return false;
+		} else if (!_countTerm.equals(other._countTerm))
+			return false;
+		if (cachedIndex == null) {
+			if (other.cachedIndex != null)
+				return false;
+		} else if (!cachedIndex.equals(other.cachedIndex))
+			return false;
+		return true;
 	}
 }
+

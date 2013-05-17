@@ -13,13 +13,8 @@ public class QueryPhrase extends Query {
 		super(query);
 	}
 
-	/**
-	 * Processes the phrase queries
-	 * @author samitpatel
-	 * */
 	@Override
 	public void processQuery() {
-		
 		if (_query == null) {
 			return;
 		}
@@ -29,26 +24,31 @@ public class QueryPhrase extends Query {
 		if(firstOccurenceIndex!=-1) {
 			secondOccurenceIndex = _query.indexOf("\"", firstOccurenceIndex+1);
 			if(secondOccurenceIndex != -1){
-				
+
 				String leadingQuery = _query.substring(0, firstOccurenceIndex);
 				Scanner s = new Scanner(leadingQuery);
 				while (s.hasNext()) {
 					_tokens.add(s.next());
 				}
 				s.close();
-				
+
 				String phrase = _query.substring(firstOccurenceIndex + 1, secondOccurenceIndex);
 				_tokens.add(phrase);
-				
+
 				String followingQuery = _query.substring(secondOccurenceIndex + 1, _query.length());
 				s = new Scanner(followingQuery);
 				while (s.hasNext()) {
 					_tokens.add(s.next());
 				}
 				s.close();
-				
 			}
+		}else{
+			Scanner s = new Scanner(_query);
+		    while (s.hasNext()) {
+		      _tokens.add(s.next());
+		    }
+		    s.close();
 		}
 	}
-	
 }
+

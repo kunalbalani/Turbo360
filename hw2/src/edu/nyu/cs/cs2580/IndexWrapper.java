@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
 
+import edu.nyu.cs.cs2580.FileManager.T3FileWriter;
+
 
 public class IndexWrapper extends HashMap<Integer, PostingsWithOccurences>{
 

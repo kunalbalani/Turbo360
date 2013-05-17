@@ -16,6 +16,7 @@ import edu.nyu.cs.cs2580.SearchEngine.Options;
  */
 public class RankerFavorite extends Ranker {
 
+	private final int INFINITY = Integer.MAX_VALUE;
 
 	public RankerFavorite(Options options,
 			CgiArguments arguments, Indexer indexer) {
@@ -31,7 +32,6 @@ public class RankerFavorite extends Ranker {
 			Queue<ScoredDocument> rankQueue = new PriorityQueue<ScoredDocument>();
 			DocumentIndexed doc = null;
 			int docid = -1;
-			System.out.println("in");
 
 			while ((doc = (DocumentIndexed)_indexer.nextDoc(query, docid)) != null) {
 				//Scoring the document
@@ -57,12 +57,8 @@ public class RankerFavorite extends Ranker {
 	}
 
 
-	private Double getScore(Query query, DocumentIndexed d) {
+	private double getScore(Query query, DocumentIndexed d) {
 
-<<<<<<< HEAD
-		//query.processQuery();
-=======
->>>>>>> eb19539d36a2a49d5e50b427a40e45f53c674bf8
 		Vector<String> qv = query._tokens;
 
 		Vector <Integer> dv = d.getDocumentTokens();
@@ -80,7 +76,7 @@ public class RankerFavorite extends Ranker {
 			boolean isPhraseQuery = false;
 
 			Query phraseToken = null;
-			if(queryTerm.indexOf("\\s+") != -1){
+			if(queryTerm.indexOf(" ") != -1){
 				isPhraseQuery = true;
 				phraseToken = new Query(queryTerm);
 				phraseToken.processQuery();
@@ -88,8 +84,12 @@ public class RankerFavorite extends Ranker {
 
 			int qtermFreqDoc = 0;
 			if(isPhraseQuery){
-				while(_indexer.nextPhrase(phraseToken, d._docid, -1) != Integer.MAX_VALUE){
+				int position = -2;
+				while((position = _indexer.nextPhrase(phraseToken, d._docid, position+1)) != INFINITY){
 					qtermFreqDoc++;
+				}
+				for(String token : phraseToken._tokens){
+					qtermFreqDoc += _indexer.documentTermFrequency(token, d.getUrl());
 				}
 			}else{
 				qtermFreqDoc = _indexer.documentTermFrequency(queryTerm, d.getUrl());
